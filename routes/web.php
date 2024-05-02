@@ -50,6 +50,12 @@ Route::prefix('backend')
         $ctrl = 'ReportController';
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/index', $ctrl . '@index')->name('reports.index');
+            Route::post('/export-lending-book/{status}', $ctrl . '@exportLendingBook')->name('reports.export-lending-book');
+            Route::post('/export-lending-cd-dvd/{status}', $ctrl . '@exportLendingCD')->name('reports.export-lending-cd-dvd');
+            Route::post('/export-visitor', $ctrl . '@exportVisitor')->name('reports.export-visitor');
+            Route::get('/view-lending-book/{status}', $ctrl . '@viewLendingBook')->name('reports.view-lending-book');
+            Route::get('/view-lending-cd-dvd/{status}', $ctrl . '@viewLendingCD')->name('reports.view-lending-cd');
+            Route::get('/view-visitor', $ctrl . '@viewVisitor')->name('reports.view-visitor');
         });
 
         $pref = 'users';
