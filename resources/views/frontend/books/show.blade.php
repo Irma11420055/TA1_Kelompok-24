@@ -164,4 +164,20 @@
                 });
         }
     </script>
+    <script>
+        let fileUrl = '{{ $book->cover }}';
+        if (fileUrl.includes('drive.google.com')) {
+            $(document).ready(function() {
+                var file = document.getElementById('file');
+                var fileId = fileUrl.split('=')[1];
+                fileId = fileId.split('&')[0];
+                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+            });
+        } else {
+            $(document).ready(function() {
+                var file = document.getElementById('file');
+                file.src = fileUrl;
+            });
+        }
+    </script>
 @endpush

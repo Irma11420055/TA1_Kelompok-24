@@ -139,7 +139,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('backend/js/method.js') }}"></script>
-
+    <script>
+        function logout() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan keluar dari aplikasi!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, keluar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "{{ route('logout') }}"
+                }
+            })
+        }
+    </script>
     @stack('scripts')
 </body>
 
