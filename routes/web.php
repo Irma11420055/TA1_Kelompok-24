@@ -100,7 +100,7 @@ Route::namespace('App\Http\Controllers\Frontend')
         $pref = 'books';
         $ctrl = 'BookController';
         Route::prefix($pref)->group(function () use ($ctrl) {
-            Route::get('/', $ctrl . '@index')->name('books.index');
+            Route::get('/frontend/books/index', $ctrl . '@index')->name('books.index');
             Route::get('/{book}', $ctrl . '@show')->name('books.show');
         });
 
