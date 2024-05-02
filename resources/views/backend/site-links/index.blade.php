@@ -95,7 +95,10 @@
                         `;
                     },
                     width: '15%'
-                }, ]
+                }],
+                order: [
+                    [0, 'asc']
+                ]
             });
 
             $('#link_datatable').on('click', '.btn-delete', function(e) {

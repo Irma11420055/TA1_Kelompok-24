@@ -103,8 +103,11 @@
                             </div>
                         `;
                     },
-                }]
-
+                }],
+                searching: true,
+                order: [
+                    [0, 'desc']
+                ]
             });
 
             $('#cd_datatable').on('click', '.btn-delete', function(e) {

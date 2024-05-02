@@ -153,8 +153,11 @@
                             }
                         }
                     @endif
+                ],
+                searching: true,
+                order: [
+                    [0, 'desc']
                 ]
-
             });
 
             @if ($status == 'pending' && $type == 'book')

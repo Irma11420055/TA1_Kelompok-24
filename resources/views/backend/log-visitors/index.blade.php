@@ -133,6 +133,18 @@
                 ],
                 searching: false,
                 lengthChange: false,
+                columnDefs: [{
+                    targets: 0,
+                    className: 'text-center',
+                    width: '5%',
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                }],
+                order: [
+                    [3, 'desc'],
+                    [4, 'desc']
+                ]
             });
 
             $('#filter').on('click', function() {

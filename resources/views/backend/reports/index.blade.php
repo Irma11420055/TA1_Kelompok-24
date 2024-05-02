@@ -18,7 +18,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- form start -->
-                        <form action="" method="post">
+                        <form action="{{ route('backend.reports.export-lending-book', 'lent') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
@@ -45,8 +45,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary">Cetak Laporan</button>
-                                <button type="button" class="btn btn-secondary ml-2">Lihat Laporan</button>
+                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
+                                <a href="javascript:;" onclick="viewReport(this.form, 'book', 'lent')"
+                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -60,7 +61,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- form start -->
-                        <form action="" method="post">
+                        <form action="{{ route('backend.reports.export-lending-book', 'returned') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
@@ -87,8 +88,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary">Cetak Laporan</button>
-                                <button type="button" class="btn btn-secondary ml-2">Lihat Laporan</button>
+                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
+                                <a href="javascript:;" onclick="viewReport(this.form, 'book', 'returned')"
+                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -102,7 +104,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- form start -->
-                        <form action="" method="post">
+                        <form action="{{ route('backend.reports.export-lending-book', 'fine') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
@@ -129,50 +131,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary">Cetak Laporan</button>
-                                <button type="button" class="btn btn-secondary ml-2">Lihat Laporan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-center">
-                        <h3 class="card-title font-weight-bold">Laporan Pemesanan CD/DVD</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <!-- form start -->
-                        <form action="" method="post">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_month" id="start_month" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_month" id="end_month" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="start_year" class="col-sm-3 col-form-label">Pilih Tahun Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_year" id="start_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_year" class="col-sm-3 col-form-label">Pilih Tahun Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_year" id="end_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary">Cetak Laporan</button>
-                                <button type="button" class="btn btn-secondary ml-2">Lihat Laporan</button>
+                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
+                                <a href="javascript:;" onclick="viewReport(this.form, 'book'. 'fine')"
+                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -186,7 +147,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <!-- form start -->
-                        <form action="" method="post">
+                        <form action="{{ route('backend.reports.export-lending-cd-dvd', 'lent') }}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
@@ -213,8 +174,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-secondary">Cetak Laporan</button>
-                                <button type="button" class="btn btn-secondary ml-2">Lihat Laporan</button>
+                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
+                                <a href="javascript:;" onclick="viewReport(this.form, 'cd-dvd', 'lent')"
+                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -223,3 +185,28 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        function viewReport(form, type, status = null) {
+            // get all input elements
+            const inputs = form.querySelectorAll('input');
+            // get all input values
+            const values = Array.from(inputs).map(input => input.value);
+            // get all input names
+            const names = Array.from(inputs).map(input => input.name);
+            // create an object from input names and values
+            const data = names.reduce((acc, name, index) => {
+                acc[name] = values[index];
+                return acc;
+            }, {});
+            // create a query string from the object
+            const queryString = new URLSearchParams(data).toString();
+            // add status to the query string if it's not null
+            if (status) {
+                queryString += `&status=${status}`;
+            }
+            // redirect to the report page
+            window.location.href = `/backend/reports/export-lending-${type}?${queryString}`;
+        }
+    </script>
+@endpush

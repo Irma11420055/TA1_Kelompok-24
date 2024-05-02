@@ -81,6 +81,12 @@ class LibraryArchiveController extends Controller
             // if type is rules and first record, set active
             if ($type == 'rules' && $documentCount == 0) {
                 $libraryArchive->update(['active' => 1]);
+            } elseif ($type == 'guidelines' && $documentCount == 0) {
+                $libraryArchive->update(['active' => 1]);
+            } elseif ($type == 'achivements') {
+                $libraryArchive->update(['active' => 1]);
+            } elseif ($type == 'archives' && $documentCount == 0) {
+                $libraryArchive->update(['active' => 1]);
             }
 
             DB::commit();

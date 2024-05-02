@@ -97,6 +97,9 @@
                     width: '15%'
                 }],
                 searching: true,
+                order: [
+                    [0, 'desc']
+                ]
             });
 
             $('#announcement_datatable').on('click', '.btn-delete', function(e) {

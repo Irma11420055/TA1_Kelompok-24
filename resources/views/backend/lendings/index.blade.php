@@ -161,6 +161,9 @@
                     dom: "lfrti",
                     info: false,
                     lengthChange: false,
+                    order: [
+                        [0, 'desc']
+                    ]
                 });
 
                 pendingTable.on('click', '.btn-delete', function(e) {
@@ -250,7 +253,10 @@
                 // set data id
                 createdRow: function(row, data, dataIndex) {
                     $(row).attr('data-id', data.id);
-                }
+                },
+                order: [
+                    [0, 'desc']
+                ]
             });
 
             // on row click
@@ -305,6 +311,9 @@
                 dom: "lfrti",
                 info: false,
                 pageLength: 3,
+                order: [
+                    [0, 'desc']
+                ]
             });
         });
     </script>

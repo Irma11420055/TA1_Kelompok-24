@@ -96,6 +96,9 @@
                     width: '15%'
                 }],
                 searching: true,
+                order: [
+                    [0, 'desc']
+                ]
             });
 
             $('#category_datatable').on('click', '.btn-delete', function(e) {
