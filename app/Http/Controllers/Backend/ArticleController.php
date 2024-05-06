@@ -21,10 +21,15 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $articles = Article::query();
+            $articles = Article::latest();
             return DataTables::of($articles)
                 ->editColumn('id', function ($article) {
                     return encodeId($article->id);
+                })
+                ->editColumn('body', function ($article) {
+                    $dom = new DOMDocument();
+                    $dom->loadHTML($article->body);
+                    return $dom->textContent;
                 })
                 ->toJson();
         }

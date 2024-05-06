@@ -19,7 +19,7 @@ class CompactDiskController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $compactDisks = CompactDisk::query();
+            $compactDisks = CompactDisk::latest();
             return DataTables::of($compactDisks)
                 ->editColumn('id', function ($compactDisk) {
                     return encodeId($compactDisk->id);
@@ -45,6 +45,7 @@ class CompactDiskController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
+                'code' => 'required|string|unique:compact_disks,code',
                 'title' => 'required|string',
                 'subject' => 'required|string',
                 'author' => 'required|string',
@@ -63,6 +64,7 @@ class CompactDiskController extends Controller
             $cover = $this->uploadFile($request->file('cover'), 'CompactDisks');
 
             CompactDisk::create([
+                'code' => $request->code,
                 'title' => $request->title,
                 'subject' => $request->subject,
                 'author' => $request->author,
@@ -76,9 +78,10 @@ class CompactDiskController extends Controller
 
             DB::commit();
 
-            return redirect()->route('backend.compact-disks.index   ')->with('success', 'Compact Disk created successfully.');
+            return redirect()->route('backend.compact-disks.index')->with('success', 'Compact Disk created successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            DB::rollBack();
+            return redirect()->route('backend.compact-disks.index')->with('error', $e->getMessage());
         }
     }
 
@@ -111,6 +114,7 @@ class CompactDiskController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
+                'code' => 'required|string|unique:compact_disks,code,' . $compact_disk,
                 'title' => 'required|string',
                 'subject' => 'required|string',
                 'author' => 'required|string',
@@ -135,6 +139,7 @@ class CompactDiskController extends Controller
             }
 
             $compact_disk->update([
+                'code' => $request->code,
                 'title' => $request->title,
                 'subject' => $request->subject,
                 'author' => $request->author,
@@ -150,7 +155,8 @@ class CompactDiskController extends Controller
 
             return redirect()->route('backend.compact-disks.index')->with('success', 'Compact Disk updated successfully.');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollBack();
+            return redirect()->route('backend.compact-disks.index')->with('error', $e->getMessage());
         }
     }
 

@@ -36,16 +36,32 @@ class LendingController extends Controller
         $this->checkType($type);
         if ($request->ajax()) {
             if ($type == 'book') {
-                $lendings = Lending::with('user', 'book')->whereNotNull('book_id');
+                $lendings = Lending::with('user', 'book')->whereNotNull('book_id')->latest();
             } else {
-                $lendings = Lending::with('user', 'compactDisk')->whereNotNull('compact_disk_id');
+                $lendings = Lending::with('user', 'compactDisk')->whereNotNull('compact_disk_id')->latest();
             }
             if ($status) {
-                $lendings->where('status', $status);
+                if ($status == 'all') {
+                    $lendings->where('status', 'returned')->orWhere('status', 'rejected');
+                } else {
+                    $lendings->where('status', $status);
+                }
             }
 
             // $lendings = $lendings->get(); // Execute the query
             $data = DataTables::of($lendings)
+                ->filter(function ($query) use ($request) {
+                    if ($request->has('search') && !is_null($request->search['value'])) {
+                        $search = $request->search['value'];
+                        $query->whereHas('user', function ($q) use ($search) {
+                            $q->where('name', 'like', "%$search%");
+                        })->orWhereHas('book', function ($q) use ($search) {
+                            $q->where('title', 'like', "%$search%");
+                        })->orWhereHas('compactDisk', function ($q) use ($search) {
+                            $q->where('title', 'like', "%$search%");
+                        });
+                    }
+                })
                 ->editColumn('id', function ($lending) {
                     return encodeId($lending->id);
                 })
