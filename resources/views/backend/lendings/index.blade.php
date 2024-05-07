@@ -23,60 +23,67 @@
                     <div class="card-body">
                         @if ($type == 'book')
                             <div class="mb-3">
-                                <table id="pending_datatable" class="table table-head-fixed">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ID Anggota</th>
-                                            <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
-                                            <th>Tanggal Kembali</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                                <div class="d-flex justify-content-end">
-                                    <a href="{{ route('backend.lendings.list', ['status' => 'pending', 'type' => $type]) }}"
-                                        class="">Lihat
-                                        Semua</a>
+                                <div class="table-responsive">
+                                    <table id="pending_datatable" class="table table-head-fixed">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>ID Anggota</th>
+                                                <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
+                                                <th>Tanggal Kembali</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ route('backend.lendings.list', ['status' => 'pending', 'type' => $type]) }}"
+                                            class="">Lihat
+                                            Semua</a>
+                                    </div>
                                 </div>
                             </div>
                         @endif
 
 
                         <div class="mb-3">
-                            <table id="lending_datatable" class="table table-head-fixed">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Peminjam</th>
-                                        <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
-                                        <th>Tanggal Kembali</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('backend.lendings.list', ['status' => 'lent', 'type' => $type]) }}"
-                                    class="">Lihat
-                                    Semua</a>
+                            <div class="table-responsive">
+                                <table id="lending_datatable" class="table table-head-fixed">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Peminjam</th>
+                                            <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
+                                            <th>Tanggal Kembali</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('backend.lendings.list', ['status' => 'lent', 'type' => $type]) }}"
+                                        class="">Lihat
+                                        Semua</a>
+                                </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <table id="returned_datatable" class="table table-head-fixed">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Peminjam</th>
-                                        <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
-                                        <th>Tanggal Pinjam</th>
-                                        <th>Tanggal Kembali</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('backend.lendings.list', ['status' => 'returned', 'type' => $type]) }}"
-                                    class="">Lihat
-                                    Semua</a>
+                            <div class="table-responsive">
+                                <table id="returned_datatable" class="table table-head-fixed">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Peminjam</th>
+                                            <th>{{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</th>
+                                            <th>Tanggal Pinjam</th>
+                                            <th>Tanggal Kembali</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('backend.lendings.list', ['status' => 'all', 'type' => $type]) }}"
+                                        class="">Lihat
+                                        Semua</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +129,9 @@
                         },
                         {
                             data: 'action',
-                            name: 'action'
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
                         }
                     ],
                     columnDefs: [{
@@ -158,7 +167,8 @@
                         }
                     }],
                     pageLength: 3,
-                    dom: "lfrti",
+                    // set id to dom header
+                    dom: 'l<"toolbar">frtip',
                     info: false,
                     lengthChange: false,
                     order: [
@@ -175,7 +185,7 @@
                             if (result.isConfirmed) {
                                 handleAction(url, 'DELETE', 'Lending has been deleted!',
                                     'Failed to delete lending!', {}, null, () => {
-                                        table.ajax.reload();
+                                        pendingTable.ajax.reload();
                                     });
                             }
                         });
@@ -189,7 +199,7 @@
                             if (result.isConfirmed) {
                                 handleAction(url, 'PUT', 'Lending has been approved!',
                                     'Failed to approve lending!', {}, null, () => {
-                                        table.ajax.reload();
+                                        pendingTable.ajax.reload();
                                     });
                             }
                         });
@@ -203,7 +213,7 @@
                             if (result.isConfirmed) {
                                 handleAction(url, 'PUT', 'Lending has been rejected!',
                                     'Failed to reject lending!', {}, null, () => {
-                                        table.ajax.reload();
+                                        pendingTable.ajax.reload();
                                     });
                             }
                         });
@@ -247,7 +257,7 @@
                     }
                 }],
                 lengthChange: false,
-                dom: "lfrti",
+                dom: 'l<"toolbar">frtip',
                 info: false,
                 pageLength: 3,
                 // set data id
@@ -275,7 +285,7 @@
             const table = $('#returned_datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: url + '/data/returned',
+                ajax: url + '/data/all',
                 columns: [{
                         data: 'DT_RowIndex',
                         defaultContent: '',
@@ -297,24 +307,62 @@
                     {
                         data: 'return_date',
                         name: 'return_date'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     }
                 ],
                 columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }],
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
+                    },
+                    {
+                        targets: 5,
+                        className: 'text-center',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            // status returned or rejected
+                            var status = '';
+                            if (row.status === 'returned') {
+                                status = '<span class="badge badge-info">Returned</span>';
+                            } else if (row.status === 'rejected') {
+                                status = '<span class="badge badge-danger">Rejected</span>';
+                            }
+                            return status;
+                        }
+                    },
+                ],
                 lengthChange: false,
-                dom: "lfrti",
+                dom: 'l<"toolbar">frtip',
                 info: false,
                 pageLength: 3,
                 order: [
                     [0, 'desc']
                 ]
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // set title
+            var title = '';
+            @if ($type == 'book')
+                title = 'Buku';
+            @else
+                title = 'CD/DVD';
+            @endif
+            // select toolbar this table
+            $('#pending_datatable_wrapper .toolbar').html(
+                `<h3 class="card-title">Pemesanan ${title}</h3>`);
+            $('#lending_datatable_wrapper .toolbar').html(
+                `<h3 class="card-title">Peminjaman ${title}</h3>`);
+            $('#returned_datatable_wrapper .toolbar').html(
+                `<h3 class="card-title">Riwayat Peminjaman ${title}</h3>`);
         });
     </script>
 @endpush

@@ -20,19 +20,21 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="user_datatable" class="table table-head-fixed">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ID Anggota</th>
-                                    <th>Nama</th>
-                                    <th>Status</th>
-                                    <th>Role</th>
-                                    <th>Batas Peminjaman</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="user_datatable" class="table table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ID Anggota</th>
+                                        <th>Nama</th>
+                                        <th>Status</th>
+                                        <th>Role</th>
+                                        <th>Batas Peminjaman</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -86,18 +88,29 @@
                     }
                 ],
                 columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    targets: 6,
-                    className: 'text-center',
-                    width: '15%',
-                    render: function(data, type, row) {
-                        return `
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        targets: 3,
+                        className: 'text-center',
+                        width: '10%',
+                        render: function(data, type, row) {
+                            return data === 'active' ?
+                                '<span class="badge badge-success">Aktif</span>' :
+                                '<span class="badge badge-danger">Tidak Aktif</span>';
+                        },
+                    },
+                    {
+                        targets: 6,
+                        className: 'text-center',
+                        width: '15%',
+                        render: function(data, type, row) {
+                            return `
                             <div class="btn-group">
                                 <a class="btn btn-info btn-sm" href="${url}/${row.id}">
                                     <i class="fas fa-eye"></i>
@@ -107,8 +120,9 @@
                                 </a>
                             </div>
                         `;
-                    },
-                }],
+                        },
+                    }
+                ],
                 searching: true,
                 order: [
                     [0, 'desc']
