@@ -56,10 +56,10 @@ class ReportController extends Controller
 
         $lendings = Lending::with('user', 'book')
             ->where('status', $status)
-            ->whereYear('returned_at', '>=', $start_year)
-            ->whereYear('returned_at', '<=', $end_year)
-            ->whereMonth('returned_at', '>=', $start_month)
-            ->whereMonth('returned_at', '<=', $end_month)
+            ->whereYear('lending_date', '>=', $start_year)
+            ->whereYear('lending_date', '<=', $end_year)
+            ->whereMonth('lending_date', '>=', $start_month)
+            ->whereMonth('lending_date', '<=', $end_month)
             ->get();
 
         return view('backend.reports.lending-book', compact('lendings', 'start_month', 'end_month', 'start_year', 'end_year'));
@@ -74,10 +74,10 @@ class ReportController extends Controller
 
         $lendings = Lending::with('user', 'compactDisk')
             ->where('status', $status)
-            ->whereYear('returned_at', '>=', $start_year)
-            ->whereYear('returned_at', '<=', $end_year)
-            ->whereMonth('returned_at', '>=', $start_month)
-            ->whereMonth('returned_at', '<=', $end_month)
+            ->whereYear('lending_date', '>=', $start_year)
+            ->whereYear('lending_date', '<=', $end_year)
+            ->whereMonth('lending_date', '>=', $start_month)
+            ->whereMonth('lending_date', '<=', $end_month)
             ->get();
 
         return view('backend.reports.lending-cd-dvd', compact('lendings', 'start_month', 'end_month', 'start_year', 'end_year'));
