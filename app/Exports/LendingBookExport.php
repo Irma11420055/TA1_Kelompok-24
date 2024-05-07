@@ -30,17 +30,17 @@ class LendingBookExport implements FromQuery
         if ($this->type == 'book') {
             return Lending::with('user', 'book')
                 ->where('status', $this->status)
-                ->whereYear('returned_at', '>=', $this->start_year)
-                ->whereYear('returned_at', '<=', $this->end_year)
-                ->whereMonth('returned_at', '>=', $this->start_month)
-                ->whereMonth('returned_at', '<=', $this->end_month);
+                ->whereYear('lending_date', '>=', $this->start_year)
+                ->whereYear('lending_date', '<=', $this->end_year)
+                ->whereMonth('lending_date', '>=', $this->start_month)
+                ->whereMonth('lending_date', '<=', $this->end_month);
         } else {
             return Lending::with('user', 'cd_dvd')
                 ->where('status', $this->status)
-                ->whereYear('returned_at', '>=', $this->start_year)
-                ->whereYear('returned_at', '<=', $this->end_year)
-                ->whereMonth('returned_at', '>=', $this->start_month)
-                ->whereMonth('returned_at', '<=', $this->end_month);
+                ->whereYear('lending_date', '>=', $this->start_year)
+                ->whereYear('lending_date', '<=', $this->end_year)
+                ->whereMonth('lending_date', '>=', $this->start_month)
+                ->whereMonth('lending_date', '<=', $this->end_month);
         }
     }
 }
