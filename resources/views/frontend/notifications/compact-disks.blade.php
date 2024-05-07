@@ -32,6 +32,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-end">
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;">Buku Terbaru Sejak
+            {{ $lastUpdated }}</p>
         {{ $compactDisks->links('components.pagination') }}
     </div>
     <div class="card-container-book">
@@ -214,3 +216,18 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+        });
+    </script>
+@endpush

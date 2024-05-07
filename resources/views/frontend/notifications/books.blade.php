@@ -33,8 +33,8 @@
     </div>
     <div
         style="display: flex; flex-direction: row; justify-content: space-between; padding-left: 30px; padding-right: 30px; margin: 0;">
-        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;">Buku Terbaru Sejak 14 November
-            2023</p>
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;">Buku Terbaru Sejak
+            {{ $lastUpdated }}</p>
         {{ $books->links('components.pagination') }}
     </div>
     <div class="card-container-book">
@@ -227,3 +227,18 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+        });
+    </script>
+@endpush
