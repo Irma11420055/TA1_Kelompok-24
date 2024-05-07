@@ -59,7 +59,8 @@
                         <div class="form-group">
                             <label for="cover">Cover</label>
                             <br>
-                            <img src="{{ $compactDisk->cover }}" alt="{{ $compactDisk->title }}" class="img-fluid">
+                            <img src="{{ $compactDisk->cover }}" alt="{{ $compactDisk->title }}" id="file"
+                                class="img-fluid">
                         </div>
 
                         <div class="form-group">
