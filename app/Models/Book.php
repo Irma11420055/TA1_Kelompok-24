@@ -12,9 +12,17 @@ class Book extends Model
 
     protected $guarded = [];
 
-    public function category()
+    protected static function booted()
     {
-        return $this->belongsTo(Category::class);
+        // generate code
+        static::creating(function ($book) {
+            // if code is not set
+            if (!isset($book->code)) {
+                generateCode($book->created_at, $book);
+            }
+            // generate slug
+            $book->slug = generateSlug($book->title);
+        });
     }
 
     public function lendings()
@@ -31,11 +39,6 @@ class Book extends Model
     {
         return $query->where('title', 'like', '%' . $search . '%')
             ->orWhere('author', 'like', '%' . $search . '%');
-    }
-
-    public function scopeCategory($query, $category)
-    {
-        return $query->where('category_id', $category);
     }
 
     public function scopeRating($query, $rating)
