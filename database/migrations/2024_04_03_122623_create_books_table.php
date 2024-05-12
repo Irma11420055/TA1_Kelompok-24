@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id')->nullable()->index('fk_books_categories_id')->comment('Foreign key to categories table');
-            $table->string('code')->unique()->index('books_code_index');
-            $table->string('title')->index('books_title_index');
-            $table->string('author')->index('books_author_index');
-            $table->integer('isbn')->unique()->index('books_isbn_index');
+            $table->string('code')->nullable()->unique()->index('books_code_index');
+            $table->string('title')->nullable()->index('books_title_index');
+            $table->string('slug')->nullable()->index('books_slug_index');
+            $table->string('author')->nullable()->index('books_author_index');
+            $table->string('isbn')->nullable()->index('books_isbn_index');
             $table->string('cover')->nullable();
             $table->string('description')->nullable();
             $table->string('publisher')->nullable();
@@ -29,9 +29,6 @@ return new class extends Migration
             $table->integer('year')->nullable();
             $table->string('location')->nullable()->index('books_location_index');
             $table->integer('status')->default(1)->comment('1 = Available, 2 = Borrowed, 3 = Lost');
-            $table->integer('quantity')->default(1);
-            $table->integer('available')->default(1);
-            $table->integer('borrowed')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
