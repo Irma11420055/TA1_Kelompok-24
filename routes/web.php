@@ -15,6 +15,11 @@ Route::prefix('backend')
 
         $pref = 'books';
         $ctrl = 'BookController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::post('/import', $ctrl . '@import')->name('books.import');
+            Route::get('/export', $ctrl . '@export')->name('books.export');
+            Route::get('/list/{slug}', $ctrl . '@list')->name('books.list');
+        });
         Route::resource($pref, $ctrl);
 
         $pref = 'compact-disks';

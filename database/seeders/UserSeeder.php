@@ -23,7 +23,5 @@ class UserSeeder extends Seeder
 
         $admin->assignRole('admin');
 
-        User::factory()->lecturer()->count(100)->create();
-        User::factory()->student()->count(100)->create();
     }
 }

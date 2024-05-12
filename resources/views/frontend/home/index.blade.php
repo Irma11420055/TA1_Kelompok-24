@@ -53,13 +53,12 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div class="m-3 align-self-center">
-                                <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}" alt="Deskripsi Gambar"
+                                <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}" alt="Deskripsi Gambar"
                                     class="img-fluid" style="width: 250px" height="250px" />
                             </div>
                             <div>
-                                <h4>
-                                    Melihat
-                                    Bahan Pustaka</h4>
+                                <h4>  Layanan Peminjaman Buku                        
+                                    </h4>
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
@@ -85,27 +84,26 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div class="m-3 align-self-center">
-                                <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}" alt="Deskripsi Gambar"
+                                <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}" alt="Deskripsi Gambar"
                                     class="img-fluid" style="width: 250px" height="250px" />
                             </div>
                             <div>
-                                <h4>
-                                    Melihat
-                                    Bahan Pustaka</h4>
+                                <h4>Layanan
+                                    Cetak Dokuman</h4>
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
                                 <p
                                     style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
-                                    beberapa bahan pustaka
-                                    yang dapat dilihat melalui sistem
-                                    informasi OLIS, diantaranya :</p>
+                                    layanan cetak dokumen 
+                                    di perpustakaan IT DEL, diantaranya untuk mencetak
+                                    dokumen seperti:</p>
                                 <ul
                                     style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
-                                    <li>Buku</li>
-                                    <li>CD/DVD</li>
-                                    <li>Artikel</li>
+                                    <li>Surat Izin Bermalam</li>
+                                    <li>Surat Izin Keluar</li>
+                                    <li>Dokumen PA/TA/KP</li>
                                 </ul>
                             </div>
                         </div>
@@ -117,27 +115,25 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div class="m-3 align-self-center">
-                                <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}" alt="Deskripsi Gambar"
+                                <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}" alt="Deskripsi Gambar"
                                     class="img-fluid" style="width: 250px" height="250px" />
                             </div>
                             <div>
-                                <h4>
-                                    Melihat
-                                    Bahan Pustaka</h4>
+                                <h4>Memiliki
+                                   Ruang Diskusi</h4>
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
                                 <p
                                     style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
-                                    beberapa bahan pustaka
-                                    yang dapat dilihat melalui sistem
-                                    informasi OLIS, diantaranya :</p>
+                                    beberapa ruang diskusi yang nyaman dan
+                                    memiliki fasilitas yang baik, diantaranya seperti:</p>
                                 <ul
                                     style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
-                                    <li>Buku</li>
-                                    <li>CD/DVD</li>
-                                    <li>Artikel</li>
+                                    <li>AC</li>
+                                    <li>Komputer</li>
+                                    <li>Papan Tulis</li>
                                 </ul>
                             </div>
                         </div>
