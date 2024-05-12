@@ -19,24 +19,35 @@
                             <span class="badge badge-info">Total Eksemplar: {{ $totalCopies }}</span>
                         </h1>
                         <div class="card-tools">
-                            <a href="{{ route('backend.books.create') }}" class="btn btn-primary">Tambah Buku</a>
+                            <div class="d-sm-inline-block justify-content-between">
+                                <a href="{{ route('backend.books.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Tambah Buku</a>
+                                <!-- import button -->
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#importBook"><i class="fas fa-upload"></i> Import</button>
+                                <!-- export button -->
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#exportBook"><i class="fas fa-download"></i> Export</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="book_datatable" class="table table-head-fixed">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Judul Buku</th>
-                                    <th>Bahasa</th>
-                                    <th>Pengarang</th>
-                                    <th>Penerbit</th>
-                                    <th>Tahun</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="book_datatable" class="table table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Judul Buku</th>
+                                        <th>Bahasa</th>
+                                        <th>Pengarang</th>
+                                        <th>Penerbit</th>
+                                        <th>Tahun</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -45,6 +56,7 @@
         </div>
         <!-- /.row -->
     </div>
+    @include('backend.books.import')
 @endsection
 @push('scripts')
     <script>
@@ -100,20 +112,17 @@
                     render: function(data, type, row) {
                         return `
                             <div class="btn-group">
-                                <a class="btn btn-info btn-sm" href="${url}/${row.id}">
+                                <a class="btn btn-info btn-sm" href="${url}/list/${row.slug}">
                                     <i class="fas fa-eye"></i>
-                                </a>
-                                <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
-                                    <i class="fas fa-trash"></i>
                                 </a>
                             </div>
                         `;
                     },
                 }],
                 searching: true,
+                order: [
+                    [0, 'desc']
+                ]
             });
 
             $('#book_datatable').on('click', '.btn-delete', function(e) {

@@ -21,37 +21,6 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="code" class="col-sm-2 col-form-label @error('code') text-danger @enderror">
-                                    Kode
-                                </label>
-                                <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                    id="code" name="code" value="{{ old('code') }}">
-                                @error('code')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="category_id"
-                                    class="col-sm-2 col-form-label @error('category_id') text-danger @enderror">
-                                    Jenis
-                                </label>
-                                <select name="category_id" id="category_id"
-                                    class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">Pilih Jenis</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            @if (old('category_id') == $category->id) selected @endif>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
                                 <label for="title" class="col-sm-2 col-form-label @error('title') text-danger @enderror">
                                     Judul
                                 </label>
@@ -86,15 +55,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="cover"
-                                    class="col-sm-2 col-form-label @error('cover') text-danger @enderror">
+                                <label for="cover" class="col-sm-2 col-form-label @error('cover') text-danger @enderror">
                                     Cover
                                 </label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file"
-                                            class="custom-file-input @error('cover') is-invalid @enderror" id="cover"
-                                            name="cover" accept="image/*">
+                                        <input type="file" class="custom-file-input @error('cover') is-invalid @enderror"
+                                            id="cover" name="cover" accept="image/*">
                                         <label class="custom-file-label" for="cover">Choose file</label>
                                     </div>
                                 </div>
@@ -227,30 +194,6 @@
                                 <input type="text" class="form-control @error('quantity') is-invalid @enderror"
                                     id="quantity" name="quantity" value="{{ old('quantity') }}">
                                 @error('quantity')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="available"
-                                    class="col-sm-2 col-form-label @error('available') text-danger @enderror">
-                                    Tersedia
-                                </label>
-                                <input type="text" class="form-control @error('available') is-invalid @enderror"
-                                    id="available" name="available" value="{{ old('available') }}">
-                                @error('available')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="borrowed"
-                                    class="col-sm-2 col-form-label @error('borrowed') text-danger @enderror">
-                                    Dipinjam
-                                </label>
-                                <input type="text" class="form-control @error('borrowed') is-invalid @enderror"
-                                    id="borrowed" name="borrowed" value="{{ old('borrowed') }}">
-                                @error('borrowed')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -34,12 +34,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="category">Kategori</label>
-                            <input type="text" name="category" id="category" class="form-control"
-                                value="{{ $book->category->name }}" readonly>
-                        </div>
-
-                        <div class="form-group">
                             <label for="author">Pengarang</label>
                             <input type="text" name="author" id="author" class="form-control"
                                 value="{{ $book->author }}" readonly>
@@ -106,28 +100,14 @@
 
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" name="status" id="status" class="form-control"
-                                value="{{ $book->status }}" readonly>
+                            @if ($book->status == 1)
+                                <input type="text" name="status" id="status" class="form-control"
+                                    value="Tersedia" readonly>
+                            @else
+                                <input type="text" name="status" id="status" class="form-control"
+                                    value="Tidak Tersedia" readonly>
+                            @endif
                         </div>
-
-                        <div class="form-group">
-                            <label for="quantity">Jumlah</label>
-                            <input type="text" name="quantity" id="quantity" class="form-control"
-                                value="{{ $book->quantity }}" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="available">Tersedia</label>
-                            <input type="text" name="available" id="available" class="form-control"
-                                value="{{ $book->available }}" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="borrowed">Dipinjam</label>
-                            <input type="text" name="borrowed" id="borrowed" class="form-control"
-                                value="{{ $book->borrowed }}" readonly>
-                        </div>
-
                     </div>
                     <!-- /.card -->
                 </div>
@@ -135,6 +115,7 @@
             <!-- /.row -->
         </div>
     </div>
+    <!-- /.container-fluid -->
 @endsection
 @push('scripts')
     <script>
