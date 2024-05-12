@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Book;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Lending;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
@@ -49,5 +46,48 @@ class BookController extends Controller
             $book = Book::where('slug', $slug)->first();
         }
         return view('frontend.books.show', compact('book'));
+    }
+
+    /**
+     * Review book
+     */
+    public function review(Request $request, $slug)
+    {
+        $book = Book::where('slug', $slug)->get();
+        // find available book by status
+        $book = $book->where('status', '1')->first();
+        if (!$book) {
+            $book = Book::where('slug', $slug)->first();
+        }
+        try {
+            $validator = Validator::make($request->all(), [
+                'rating' => 'required|numeric|min:1|max:5',
+                'comment' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $validator->errors()->first(),
+                ]);
+            }
+
+            DB::beginTransaction();
+            $book->reviews()->create([
+                'user_id' => auth()->user()->id,
+                'rating' => $request->rating,
+                'comment' => $request->comment,
+            ]);
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Review berhasil',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage(),
+            ]);
+        }
     }
 }

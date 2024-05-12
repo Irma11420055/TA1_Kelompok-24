@@ -1,5 +1,50 @@
 @extends('layouts.frontend.master')
 @section('title', 'Riwayat Peminjaman')
+@push('styles')
+    <style>
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rate:not(:checked)>input {
+            position: absolute;
+            top: -9999px;
+        }
+
+        .rate:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rate>input:checked~label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked)>label:hover,
+        .rate:not(:checked)>label:hover~label {
+            color: #deb217;
+        }
+
+        .rate>input:checked+label:hover,
+        .rate>input:checked+label:hover~label,
+        .rate>input:checked~label:hover,
+        .rate>input:checked~label:hover~label,
+        .rate>label:hover~input:checked~label {
+            color: #c59b08;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="container-fluid">
         <div class="title-container">
@@ -18,7 +63,6 @@
                         <th>Judul Buku</th>
                         <th>Pengarang</th>
                         <th>Tahun</th>
-                        <th>Jenis</th>
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Denda</th>
@@ -33,7 +77,6 @@
                             <td>{{ $lending->book->title }}</td>
                             <td>{{ $lending->book->author }}</td>
                             <td>{{ $lending->book->year }}</td>
-                            <td>{{ $lending->book->type }}</td>
                             <td>{{ $lending->lending_date }}</td>
                             <td>{{ $lending->return_date }}</td>
                             <td>{{ $lending->fine }}</td>
@@ -46,18 +89,22 @@
                                     <span style="color: #007BFF;" class="fw-bold">Dikembalikan</span>
                                 @elseif ($lending->status == 'extended')
                                     <span style="color: #17A2B8;" class="fw-bold">Diperpanjang</span>
-                                @elseif ($lending->status == 'canceled')
-                                    <span style="color: #DC3545;" class="fw-bold">Dibatalkan</span>
+                                @elseif ($lending->status == 'rejected')
+                                    <span style="color: #DC3545;" class="fw-bold">Ditolak</span>
+                                @elseif($lending->status == 'overdue')
+                                    <span style="color: #DC3545;" class="fw-bold">Terlambat</span>
                                 @endif
                             </td>
                             <td>
-                                @if ($lending->rating)
-                                    @for ($i = 0; $i < $lending->rating; $i++)
-                                        <i class="fas fa-star text-warning"></i>
-                                    @endfor
-                                @else
-                                    <a href="" class="btn btn-warning">Beri
-                                        Rating</a>
+                                @if ($lending->status == 'returned')
+                                    @if ($lending->book->hasReviewed(auth()->user()))
+                                        @for ($i = 0; $i < $lending->book->rating; $i++)
+                                            <i class="fas fa-star text-warning"></i>
+                                        @endfor
+                                    @else
+                                        <a href="{{ route('books.review', $lending->book->slug) }}"
+                                            class="btn btn-primary btn-rate">Beri Rating</a>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
@@ -75,4 +122,47 @@
             </div>
         @endif
     </div>
+
+    <!-- Modal -->
+    @include('frontend.lendings.rate')
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.btn-rate').on('click', function(e) {
+                e.preventDefault();
+                const url = $(this).attr('href');
+                $('#rateModal').on('show.bs.modal', function(e) {
+                    const modal = $(this);
+                    modal.find('form').attr('action', url);
+                })
+                $('#rateModal').modal('show');
+            });
+
+            $('#rateModal').on('hidden.bs.modal', function(e) {
+                const modal = $(this);
+                modal.find('form').attr('action', '');
+            });
+
+            // on submit
+            $('#rateModal form').on('submit', function(e) {
+                e.preventDefault();
+                const form = $(this);
+                const url = form.attr('action');
+                const method = form.attr('method');
+                const data = form.serialize();
+                showConfirmationDialog('Are you sure?', 'You won\'t be able to revert this!', 'warning',
+                    'Yes, rate it!', (result) => {
+                        if (result.isConfirmed) {
+                            handleAction(url, method, 'Book has been rated!', 'Failed to rate book!',
+                                data,
+                                null, () => {
+                                    $('#rateModal').modal('hide');
+                                    window.location.reload();
+                                });
+                        }
+                    });
+            });
+        });
+    </script>
+@endpush

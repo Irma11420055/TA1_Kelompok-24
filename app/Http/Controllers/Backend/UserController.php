@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::role(['lecturer', 'student', 'staff']);
+            $users = User::role(['lecturer', 'student', 'staff'])->latest();
             return DataTables::of($users)
                 ->editColumn('id', function ($user) {
                     return encodeId($user->id);
@@ -76,12 +76,13 @@ class UserController extends Controller
             } elseif ($request->role == 'student') {
                 $user->lending_limit = 4;
             }
+            $user->save();
 
             $user->assignRole($request->role);
 
             DB::commit();
 
-            return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+            return redirect()->route('backend.users.index')->with('success', 'User created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to create user');
@@ -95,7 +96,7 @@ class UserController extends Controller
     {
         $user = User::find(decodeId($user));
         if (!$user) {
-            return redirect()->route('admin.users.index')->with('error', 'User not found');
+            return redirect()->route('backend.users.index')->with('error', 'User not found');
         }
         return view('backend.users.show', compact('user'));
     }
@@ -107,7 +108,7 @@ class UserController extends Controller
     {
         $user = User::find(decodeId($user));
         if (!$user) {
-            return redirect()->route('admin.users.index')->with('error', 'User not found');
+            return redirect()->route('backend.users.index')->with('error', 'User not found');
         }
         $roles = Role::all();
         return view('backend.users.edit', compact('user', 'roles'));
@@ -120,7 +121,7 @@ class UserController extends Controller
     {
         $user = User::find(decodeId($user));
         if (!$user) {
-            return redirect()->route('admin.users.index')->with('error', 'User not found');
+            return redirect()->route('backend.users.index')->with('error', 'User not found');
         }
         try {
             $validator = Validator::make($request->all(), [
@@ -156,13 +157,14 @@ class UserController extends Controller
                 $user->lending_limit = 4;
             }
 
+            $user->save();
+
             $user->syncRoles($request->role);
 
             DB::commit();
 
             return redirect()->route('backend.users.index')->with('success', 'User updated successfully');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             DB::rollBack();
             return redirect()->back()->with('error', 'Failed to update user');
         }

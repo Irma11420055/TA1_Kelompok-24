@@ -176,6 +176,114 @@
                     ]
                 });
 
+                const lendingTable = $('#lending_datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: url + '/data/lent',
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            defaultContent: '',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'user.id_member',
+                            name: 'user.id_member'
+                        },
+                        {
+                            data: 'item',
+                            name: 'item'
+                        },
+                        {
+                            data: 'return_date',
+                            name: 'return_date'
+                        }
+                    ],
+                    columnDefs: [{
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }],
+                    lengthChange: false,
+                    dom: 'l<"toolbar">frtip',
+                    info: false,
+                    pageLength: 3,
+                    // set data id
+                    createdRow: function(row, data, dataIndex) {
+                        $(row).attr('data-id', data.id);
+                    },
+                    order: [
+                        [0, 'desc']
+                    ]
+                });
+
+                const table = $('#returned_datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: url + '/data/all',
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            defaultContent: '',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'user.id_member',
+                            name: 'user.id_member'
+                        },
+                        {
+                            data: 'item',
+                            name: 'item'
+                        },
+                        {
+                            data: 'lending_date',
+                            name: 'lending_date'
+                        },
+                        {
+                            data: 'return_date',
+                            name: 'return_date'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        }
+                    ],
+                    columnDefs: [{
+                            targets: 0,
+                            className: 'text-center',
+                            width: '5%',
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1;
+                            },
+                        },
+                        {
+                            targets: 5,
+                            className: 'text-center',
+                            orderable: false,
+                            render: function(data, type, row) {
+                                // status returned or rejected
+                                var status = '';
+                                if (row.status === 'returned') {
+                                    status = '<span class="badge badge-info">Returned</span>';
+                                } else if (row.status === 'rejected') {
+                                    status = '<span class="badge badge-danger">Rejected</span>';
+                                }
+                                return status;
+                            }
+                        },
+                    ],
+                    lengthChange: false,
+                    dom: 'l<"toolbar">frtip',
+                    info: false,
+                    pageLength: 3,
+                    order: [
+                        [0, 'desc']
+                    ]
+                });
+
                 pendingTable.on('click', '.btn-delete', function(e) {
                     e.preventDefault();
                     const url = $(this).attr('href');
@@ -200,6 +308,7 @@
                                 handleAction(url, 'PUT', 'Lending has been approved!',
                                     'Failed to approve lending!', {}, null, () => {
                                         pendingTable.ajax.reload();
+                                        lendingTable.ajax.reload();
                                     });
                             }
                         });
@@ -214,139 +323,23 @@
                                 handleAction(url, 'PUT', 'Lending has been rejected!',
                                     'Failed to reject lending!', {}, null, () => {
                                         pendingTable.ajax.reload();
+                                        table.ajax.reload();
                                     });
                             }
                         });
                 });
 
+                // on row click
+                lendingTable.on('click', 'tr', function() {
+                    console.log('row clicked');
+                    const data = lendingTable.row(this).data();
+                    const url = window.location.href + '/' + data.id;
+                    openModal(url, '#modalListResult');
+                });
+
             });
         </script>
     @endif
-    <script>
-        $(document).ready(function() {
-            const url = window.location.href;
-            const lendingTable = $('#lending_datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: url + '/data/lent',
-                columns: [{
-                        data: 'DT_RowIndex',
-                        defaultContent: '',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'user.id_member',
-                        name: 'user.id_member'
-                    },
-                    {
-                        data: 'item',
-                        name: 'item'
-                    },
-                    {
-                        data: 'return_date',
-                        name: 'return_date'
-                    }
-                ],
-                columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }],
-                lengthChange: false,
-                dom: 'l<"toolbar">frtip',
-                info: false,
-                pageLength: 3,
-                // set data id
-                createdRow: function(row, data, dataIndex) {
-                    $(row).attr('data-id', data.id);
-                },
-                order: [
-                    [0, 'desc']
-                ]
-            });
-
-            // on row click
-            lendingTable.on('click', 'tr', function() {
-                console.log('row clicked');
-                const data = lendingTable.row(this).data();
-                const url = window.location.href + '/' + data.id;
-                openModal(url, '#modalListResult');
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            const url = window.location.href;
-            const table = $('#returned_datatable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: url + '/data/all',
-                columns: [{
-                        data: 'DT_RowIndex',
-                        defaultContent: '',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'user.id_member',
-                        name: 'user.id_member'
-                    },
-                    {
-                        data: 'item',
-                        name: 'item'
-                    },
-                    {
-                        data: 'lending_date',
-                        name: 'lending_date'
-                    },
-                    {
-                        data: 'return_date',
-                        name: 'return_date'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    }
-                ],
-                columnDefs: [{
-                        targets: 0,
-                        className: 'text-center',
-                        width: '5%',
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        },
-                    },
-                    {
-                        targets: 5,
-                        className: 'text-center',
-                        orderable: false,
-                        render: function(data, type, row) {
-                            // status returned or rejected
-                            var status = '';
-                            if (row.status === 'returned') {
-                                status = '<span class="badge badge-info">Returned</span>';
-                            } else if (row.status === 'rejected') {
-                                status = '<span class="badge badge-danger">Rejected</span>';
-                            }
-                            return status;
-                        }
-                    },
-                ],
-                lengthChange: false,
-                dom: 'l<"toolbar">frtip',
-                info: false,
-                pageLength: 3,
-                order: [
-                    [0, 'desc']
-                ]
-            });
-        });
-    </script>
     <script>
         $(document).ready(function() {
             // set title

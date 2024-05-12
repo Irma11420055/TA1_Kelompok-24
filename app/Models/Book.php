@@ -32,7 +32,7 @@ class Book extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, 'book_slug', 'slug');
     }
 
     public function scopeSearch($query, $search)
@@ -50,5 +50,11 @@ class Book extends Model
     public function getRatingAttribute()
     {
         return $this->reviews->avg('rating');
+    }
+
+    // check if user has reviewed a book
+    public function hasReviewed($user)
+    {
+        return $this->reviews()->where('user_id', $user->id)->exists();
     }
 }

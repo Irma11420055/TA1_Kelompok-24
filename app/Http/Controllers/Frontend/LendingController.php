@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
 use App\Models\Book;
+use App\Models\User;
 use App\Models\Lending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,6 +56,10 @@ class LendingController extends Controller
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
             ]);
+
+            $user = User::find(auth()->user()->id);
+            $user->lending_count = $user->lending_count + 1;
+            $user->save();
 
             DB::commit();
             return response()->json([

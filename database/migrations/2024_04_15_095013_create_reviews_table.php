@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable()->index('reviews_user_id_index');
-            $table->unsignedBigInteger('book_id')->nullable()->index('reviews_book_id_index');
-            $table->text('content');
+            $table->string('book_slug')->nullable()->index('reviews_book_slug_index');
+            $table->text('comment');
             $table->integer('rating');
             $table->timestamps();
         });

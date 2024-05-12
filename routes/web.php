@@ -113,6 +113,7 @@ Route::namespace('App\Http\Controllers\Frontend')
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/frontend/books/index', $ctrl . '@index')->name('books.index');
             Route::get('/{book}', $ctrl . '@show')->name('books.show');
+            Route::post('/{book}/review', $ctrl . '@review')->name('books.review');
         });
 
         $pref = 'compact-disks';

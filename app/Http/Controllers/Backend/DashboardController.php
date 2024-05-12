@@ -14,7 +14,6 @@ class DashboardController extends Controller
     {
         $visitorToday = LogVisitor::whereDate('visited_at', today())->count();
         // Total Peminjaman, itu total card Pemesanan + Peminjaman.
-        $totalLending = Lending::whereIn('status', ['pending', 'lent'])->whereDate('created_at', today())->count();
         // Pemesanan itu total anggota yang memesan buku dari website (secara online).
         $totalLendingByUser = Lending::where('status', 'pending')
             // created by user not admin
@@ -28,6 +27,7 @@ class DashboardController extends Controller
             })
             // today
             ->whereDate('created_at', today())->count();
+        $totalLending = $totalLendingByUser + $totalLendingByAdmin;
         $announcements = Announcement::latest()->limit(5)->get();
         return view('backend.dashboard.index', compact('announcements', 'visitorToday', 'totalLending', 'totalLendingByUser', 'totalLendingByAdmin'));
     }

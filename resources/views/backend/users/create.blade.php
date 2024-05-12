@@ -44,7 +44,8 @@
                                             name="role">
                                             <option value="">Pilih Peran</option>
                                             @foreach ($roles as $role)
-                                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                <option value="{{ $role->name }}"
+                                                    @if (old('role') == $role->name) selected @endif>{{ $role->name }}
                                             @endforeach
                                         </select>
                                         @error('role')
@@ -192,8 +193,10 @@
                                         <select class="form-control @error('status') is-invalid @enderror" id="status"
                                             name="status">
                                             <option value="">Pilih Status</option>
-                                            <option value="active">Aktif</option>
-                                            <option value="inactive">Tidak Aktif</option>
+                                            <option value="active" @if (old('status') == 'active') selected @endif>
+                                                Aktif</option>
+                                            <option value="inactive" @if (old('status') == 'inactive') selected @endif>
+                                                Tidak Aktif</option>
                                         </select>
                                         @error('status')
                                             <div class="text-danger">{{ $message }}</div>
