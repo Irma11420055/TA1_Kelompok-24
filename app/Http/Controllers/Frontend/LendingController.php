@@ -8,7 +8,7 @@ use App\Models\Lending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class LendingController extends Controller
 {
@@ -22,7 +22,7 @@ class LendingController extends Controller
     public function store(Request $request)
     {
         try {
-            $book = Book::find(decodeId($request->book_id));
+            $book = Book::where('slug', $request->slug)->where('status', '1')->first();
             if (!$book) {
                 return response()->json([
                     'status' => 'error',
@@ -30,18 +30,17 @@ class LendingController extends Controller
                 ]);
             }
 
-            if ($book->quantity < 1) {
+            DB::beginTransaction();
+            $validator = Validator::make($request->all(), [
+                'return_date' => 'required|date|after:today',
+            ]);
+
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Stok buku habis',
+                    'message' => $validator->errors()->first(),
                 ]);
             }
-
-            DB::beginTransaction();
-            $request->validate([
-                'book_id' => 'required',
-                'return_date' => 'required',
-            ]);
 
             if ($this->checkLendingLimit()) {
                 return response()->json([
@@ -56,13 +55,6 @@ class LendingController extends Controller
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
             ]);
-
-            $book->quantity = $book->quantity - 1;
-            $book->save();
-
-            $user = User::find(auth()->user()->id);
-            $user->lending_count = $user->lending_count + 1;
-            $user->save();
 
             DB::commit();
             return response()->json([

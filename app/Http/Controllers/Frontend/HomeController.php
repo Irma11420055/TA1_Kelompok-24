@@ -12,11 +12,10 @@ class HomeController extends Controller
     {
         // book with highest rating
 
-        $bestBooks = Book::with('category')
-            ->withCount('reviews')
+        $bestBooks = Book::withCount('reviews')
             ->get()
             ->sortByDesc('rating')
-            ->take(5);
+            ->take(4);
         return view('frontend.home.index', compact('bestBooks'));
     }
 }
