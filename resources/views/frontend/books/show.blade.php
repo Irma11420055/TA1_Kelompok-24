@@ -63,12 +63,18 @@
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
                             {{ $book->description }}</p>
                     </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Jenis</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Buku Teks</p>
-                    </div>
                 </div>
                 <div class="col-4">
+                    <div style="margin: 0 0 8px auto;">
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Status</p>
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                            @if ($book->status == 1)
+                                <span class="badge badge-success">Tersedia</span>
+                            @else
+                                <span class="badge badge-danger">Tidak Tersedia</span>
+                            @endif
+                        </p>
+                    </div>
                     <div style="margin: 0 0 8px auto;">
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Edisi</p>
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
@@ -86,23 +92,25 @@
                     </div>
                     <div style="margin: 0 0 8px auto;">
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Lokasi</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Perpustakaan Lt.1
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                            {{ $book->location }}
                         </p>
                     </div>
                     <div style="margin: 0 0 8px auto;">
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Copy/Original
                         </p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Original</p>
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                            @if ($book->cp_or == 'cp')
+                                Copy
+                            @else
+                                Original
+                            @endif
+                        </p>
                     </div>
                     <div style="margin: 0 0 8px auto;">
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Tahun</p>
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->year }}
                         </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Id Master Buku
-                        </p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">-</p>
                     </div>
                 </div>
             </div>
@@ -131,8 +139,16 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-success"
-                        onclick="lendBook('{{ encodeId($book->id) }}')">Pinjam</button>
+                    @if (auth()->check())
+                        @if ($book->status == 1)
+                            <button type="button" class="btn btn-success"
+                                onclick="lendBook('{{ $book->slug }}')">Pinjam</button>
+                        @else
+                            <span class="text-danger">Buku tidak tersedia</span>
+                        @endif
+                    @else
+                        <span class="text-danger">Anda harus login terlebih dahulu</span>
+                    @endif
                 </div>
 
             </div>
@@ -155,7 +171,7 @@
                     if (result.isConfirmed) {
                         handleAction('{{ route('lendings.store') }}', 'POST',
                             'Buku berhasil dipinjam', 'Gagal meminjam buku', {
-                                book_id: id,
+                                slug: id,
                                 return_date: $('#return_date').val()
                             }, null, () => {
                                 window.location.reload();

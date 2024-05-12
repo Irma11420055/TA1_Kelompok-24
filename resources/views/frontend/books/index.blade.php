@@ -44,7 +44,7 @@
                     <div class="row">
                         @foreach ($books as $book)
                             <div class="col-md-6">
-                                <a href="{{ route('books.show', encodeId($book->id)) }}"
+                                <a href="{{ route('books.show', $book->slug) }}"
                                     style="text-decoration: none; color: black;">
                                     <div style="display: flex; flex-direction: column; margin: 0 0 80px auto;">
                                         <div class="sub-card-container-book">
@@ -152,75 +152,46 @@
                         style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color:#6F410B; margin-left: 30px;">
                         Rating Tertinggi</p>
                     <table>
-                        <tr>
-                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
-                                    1</p>
-                            </td>
-                            <td style="width: 300px;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
-                                    Dilan 1990</p>
-                                <div class="text-book" style="margin: 5px 0 5px 20px;">
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
-                                        5,0</h5>
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
-                                        75/100</h5>
-                                </div>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
-                                    Menjadi Nomor 1 Sejak 10 November</p>
-                            </td>
-                            <td style="vertical-align: top;"><i>
+                        @foreach ($bestBooks as $books)
+                            <tr>
+                                <td style="text-align: center; align-items: center; justify-content: center;">
                                     <p
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin-top: 20px;">
-                                        Novel</p>
-                                </i></td>
-                        </tr>
-                    </table>
-                    <br>
-                    <table>
-                        <tr>
-                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
-                                    2</p>
-                            </td>
-                            <td style="width: 300px;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
-                                    Mengasah Logika untuk Anak 2-6 Tahun</p>
-                                <div class="text-book" style="margin: 5px 0 5px 20px;">
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                    <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
-                                        5,0</h5>
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
-                                        75/100</h5>
-                                </div>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
-                                    Menjadi Nomor 2 Sejak 10 November</p>
-                            </td>
-                            <td style="vertical-align: top;"><i>
+                                        style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
+                                        {{ $loop->iteration }}
+                                    </p>
+                                </td>
+                                <td style="width: 300px;">
                                     <p
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin-top: 20px;">
-                                        Psikologi Anak</p>
-                                </i></td>
-                        </tr>
+                                        style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
+                                        Dilan 1990</p>
+                                    <div class="text-book" style="margin: 5px 0 5px 20px;">
+                                        @for ($i = 0; $i < $books->rating; $i++)
+                                            <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
+                                        @endfor
+                                        <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
+                                        <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
+                                        <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
+                                        <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
+                                        <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 5px;"></i>
+                                        <h5
+                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
+                                            {{ $books->rating }}
+                                        </h5>
+                                        <h5
+                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
+                                            75/100</h5>
+                                    </div>
+                                    {{-- <p
+                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
+                                        Menjadi Nomor 1 Sejak 10 November</p> --}}
+                                </td>
+                                {{-- <td style="vertical-align: top;"><i>
+                                        <p
+                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin-top: 20px;">
+                                            Novel</p>
+                                    </i></td> --}}
+                            </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

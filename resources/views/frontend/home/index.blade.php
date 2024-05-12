@@ -164,292 +164,102 @@
 
     <div class="card-user" style="width: 100%">
         <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <div class="m-3 align-self-center">
-                                    <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}"
-                                        alt="Deskripsi Gambar" class="img-fluid" style="width: 250px" height="250px" />
-                                </div>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;"><i
-                                                    class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tata Imoet</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;"><i
-                                                    class="far fa-file-alt fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    158 Hal</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;"><i
-                                                    class="fas fa-layer-group fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tersisa 3</p>
-                                            </td>
-                                        </tr>
-                                    </table>
+            @foreach ($bestBooks as $book)
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="m-3 align-self-center">
+                                        <img src="{{ $book->cover }}" alt="Deskripsi Gambar" class="img-fluid"
+                                            style="width: 250px" height="250px" />
+                                    </div>
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td
+                                                    style="text-align: center; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
+                                                </td>
+                                                <td style="width: 300px;">
+                                                    <p
+                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        {{ $book->title }}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td
+                                                    style="text-align: center; align-items: center; justify-content: center;">
+                                                    <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
+                                                </td>
+                                                <td style="width: 300px;">
+                                                    <p
+                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        {{ $book->author }}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <td
+                                                    style="text-align: center; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
+                                                </td>
+                                                <td style="width: 300px;">
+                                                    <p
+                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        Tersisa {{ $book->stock }}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="subtitle">
-                            <div class="text-book">
-                                <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
+                            <div class="subtitle">
+                                <div class="text-book">
+                                    <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
+                                    <p
+                                        style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
+                                        Dongeng Nusantara</p>
+                                </div>
                                 <p
-                                    style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
-                                    Dongeng Nusantara</p>
-                            </div>
-                            <p
-                                style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
-                                #Cerpen #BukuAnimasi #Fiksi</p>
-                            <div class="text-book">
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
-                                    5,0</p>
+                                    style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
+                                    #Cerpen #BukuAnimasi #Fiksi</p>
+                                <div class="text-book">
+                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
+                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
+                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
+                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
+                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
+                                    <p
+                                        style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
+                                        5,0</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <div class="m-3 align-self-center">
-                                    <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}"
-                                        alt="Deskripsi Gambar" class="img-fluid" style="width: 250px" height="250px" />
-                                </div>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tata Imoet</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    158 Hal</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tersisa 3</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subtitle">
-                            <div class="text-book">
-                                <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
-                                    Dongeng Nusantara</p>
-                            </div>
-                            <p
-                                style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
-                                #Cerpen #BukuAnimasi #Fiksi</p>
-                            <div class="text-book">
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
-                                    5,0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <div class="m-3 align-self-center">
-                                    <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}"
-                                        alt="Deskripsi Gambar" class="img-fluid" style="width: 250px" height="250px" />
-                                </div>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tata Imoet</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    158 Hal</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tersisa 3</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subtitle">
-                            <div class="text-book">
-                                <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
-                                    Dongeng Nusantara</p>
-                            </div>
-                            <p
-                                style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
-                                #Cerpen #BukuAnimasi #Fiksi</p>
-                            <div class="text-book">
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
-                                    5,0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <div class="m-3 align-self-center">
-                                    <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}"
-                                        alt="Deskripsi Gambar" class="img-fluid" style="width: 250px" height="250px" />
-                                </div>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tata Imoet</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="far fa-file-alt fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    158 Hal</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i></td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                    Tersisa 3</p>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subtitle">
-                            <div class="text-book">
-                                <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
-                                    Dongeng Nusantara</p>
-                            </div>
-                            <p
-                                style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
-                                #Cerpen #BukuAnimasi #Fiksi</p>
-                            <div class="text-book">
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
-                                    5,0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+        });
+    </script>
+@endpush
