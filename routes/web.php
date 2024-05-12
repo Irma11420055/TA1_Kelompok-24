@@ -39,7 +39,7 @@ Route::prefix('backend')
             Route::get('/{type}/{lending}', 'LendingController@show')->name('lendings.show');
             Route::get('/{type}/{lending}/edit', 'LendingController@edit')->name('lendings.edit');
             Route::put('/{type}/{lending}', 'LendingController@update')->name('lendings.update');
-            Route::get('/{type}/{lending}/delete', 'LendingController@destroy')->name('lendings.destroy');
+            Route::delete('/{type}/{lending}', 'LendingController@destroy')->name('lendings.destroy');
             Route::put('/{type}/{lending}/approve', 'LendingController@approve')->name('lendings.approve');
             Route::put('/{type}/{lending}/reject', 'LendingController@reject')->name('lendings.reject');
             Route::put('/{type}/{lending}/return', 'LendingController@return')->name('lendings.return');
