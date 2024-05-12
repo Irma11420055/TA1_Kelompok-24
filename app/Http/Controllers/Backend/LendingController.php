@@ -124,6 +124,17 @@ class LendingController extends Controller
                 'return_date' => $request->return_date,
                 'status' => 'lent',
             ]);
+            if ($request->type == 'book') {
+                $book = Book::find($request->book_id);
+                $book->borrowed = $book->borrowed + 1;
+                $book->available = $book->available - 1;
+                $book->save();
+            }
+
+            $user = User::find($request->user_id);
+            $user->lending_count = $user->lending_count + 1;
+            $user->save();
+
             DB::commit();
             return redirect()->route('backend.lendings.index', $request->type)->with('success', 'Lending created successfully');
         } catch (\Exception $e) {
@@ -237,6 +248,16 @@ class LendingController extends Controller
             $lending->update([
                 'status' => 'lent'
             ]);
+
+            $book = Book::find($lending->book_id);
+            $book->borrowed = $book->borrowed + 1;
+            $book->available = $book->available - 1;
+            $book->save();
+
+            $user = User::find($lending->user_id);
+            $user->borrowed = $user->borrowed + 1;
+            $user->save();
+
             DB::commit();
             return response()->json(['status' => 'success', 'message' => 'Lending approved successfully']);
         } catch (\Exception $e) {
@@ -273,6 +294,17 @@ class LendingController extends Controller
             $lending->update([
                 'status' => 'returned'
             ]);
+
+            // update book lending count
+            $book = Book::find($lending->book_id);
+            $book->borrowed = $book->borrowed - 1;
+            $book->save();
+
+            // update user lending count
+            $user = User::find($lending->user_id);
+            $user->lending_count = $user->lending_count - 1;
+            $user->save();
+
             DB::commit();
             return response()->json(['status' => 'success', 'message' => 'Lending returned successfully']);
         } catch (\Exception $e) {

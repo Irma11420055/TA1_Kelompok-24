@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Book;
 use App\Traits\Upload;
-use App\Models\Category;
+use App\Imports\BooksImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,8 +21,9 @@ class BookController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $books = Book::query();
+            $books = Book::latest()->groupBy('slug');
             return DataTables::of($books)
+
                 ->editColumn('id', function ($book) {
                     return encodeId($book->id);
                 })
@@ -29,10 +31,19 @@ class BookController extends Controller
         }
 
         // total books
-        $totalBooks = Book::count();
+        $totalBooks = Book::distinct('slug')->count();
         // total copies
-        $totalCopies = Book::sum('quantity');
+        $totalCopies = Book::count();
         return view('backend.books.index', compact('totalBooks', 'totalCopies'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function list($slug)
+    {
+        $books = Book::where('slug', $slug)->get();
+        return view('backend.books.list', compact('books'));
     }
 
     /**
@@ -40,8 +51,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('backend.books.create', compact('categories'));
+        return view('backend.books.create');
     }
 
     /**
@@ -52,11 +62,9 @@ class BookController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'code' => 'required|unique:books,code',
-                'category_id' => 'required|integer|exists:categories,id',
                 'title' => 'required|string',
                 'author' => 'required|string',
-                'isbn' => 'required|integer|unique:books,isbn',
+                'isbn' => 'required|numeric',
                 'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'description' => 'required|string',
                 'publisher' => 'required|string',
@@ -68,8 +76,6 @@ class BookController extends Controller
                 'cp_or' => 'required|string',
                 'year' => 'required|integer',
                 'quantity' => 'required|integer',
-                'available' => 'required|integer',
-                'borrowed' => 'required|integer',
             ]);
 
             if ($validator->fails()) {
@@ -77,20 +83,23 @@ class BookController extends Controller
             }
 
             DB::beginTransaction();
-            $book = Book::create($request->except('_token', 'cover'));
+            for ($index = 0; $index < $request->quantity; $index++) {
+                $book = Book::create($request->except('_token', 'cover', 'quantity'));
 
-            if ($request->hasFile('cover')) {
-                $cover = $this->uploadFile($request->file('cover'), 'books');
-                $book->update([
-                    'cover' => $cover
-                ]);
+                if ($request->hasFile('cover')) {
+                    $cover = $this->uploadFile($request->file('cover'), 'books');
+                    $book->update([
+                        'cover' => $cover
+                    ]);
+                }
             }
 
             DB::commit();
 
             return redirect()->route('backend.books.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            DB::rollBack();
+            dd($e);
             return redirect()->route('backend.books.index')->with('error', 'Data gagal ditambahkan');
         }
 
@@ -115,8 +124,7 @@ class BookController extends Controller
     public function edit($book)
     {
         $book = Book::find(decodeId($book));
-        $categories = Category::all();
-        return view('backend.books.edit', compact('book', 'categories'));
+        return view('backend.books.edit', compact('book'));
     }
 
     /**
@@ -130,11 +138,9 @@ class BookController extends Controller
         }
         try {
             $validator = Validator::make($request->all(), [
-                'code' => 'required',
-                'category_id' => 'required|integer|exists:categories,id',
                 'title' => 'required|string',
                 'author' => 'required|string',
-                'isbn' => 'required',
+                'isbn' => 'required|numeric',
                 'description' => 'required',
                 'publisher' => 'required',
                 'language' => 'required',
@@ -143,9 +149,6 @@ class BookController extends Controller
                 'classification' => 'required',
                 'cp_or' => 'required',
                 'year' => 'required',
-                'quantity' => 'required',
-                'available' => 'required',
-                'borrowed' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -201,5 +204,26 @@ class BookController extends Controller
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => 'Data gagal dihapus']);
         }
+    }
+
+    /**
+     * Import data
+     *
+     */
+    public function import(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file|mimes:csv,xlsx,xls',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $file = $request->file('file');
+
+        Excel::import(new BooksImport, $file);
+
+        return redirect()->route('backend.books.index')->with('success', 'Data imported successfully');
     }
 }
