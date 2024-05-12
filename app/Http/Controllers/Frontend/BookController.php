@@ -26,7 +26,10 @@ class BookController extends Controller
             ->get()
             ->sortByDesc('rating')
             ->take(4);
-        return view('frontend.books.index', compact('books', 'bestBooks'));
+
+        // get last date updated book
+        $lastUpdated = Book::latest()->first();
+        return view('frontend.oks.index', compact('books', 'bestBooks', 'lastUpdated'));
     }
 
     /**

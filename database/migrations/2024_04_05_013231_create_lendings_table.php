@@ -25,6 +25,13 @@ return new class extends Migration
             $table->date('extend_date')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('lendings', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('set null');
+            $table->foreign('compact_disk_id')->references('id')->on('compact_disks')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+        });
     }
 
     /**

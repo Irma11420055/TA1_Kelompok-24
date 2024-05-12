@@ -10,9 +10,10 @@ class ArticleController extends Controller
 {
     public function index(Request $request)
     {
-        $articles = Article::paginate(6);
+        $articles = Article::latest()->paginate(6);
         $articles->withPath(url()->current());
-        return view('frontend.articles.index', compact('articles'));
+        $lastUpdated = Article::latest()->first();
+        return view('frontend.articles.index', compact('articles', 'lastUpdated'));
     }
 
     public function show($article)

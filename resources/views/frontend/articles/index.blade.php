@@ -13,7 +13,33 @@
             width: 17%;">
         </div>
     </div>
-    <div class="card-container-book">
+    <div class="d-flex justify-content-end align-items-center">
+        <div class="me-3">
+            <select class="form-select border rounded-pill" placeholder="Filter Buku">
+                <option selected>Filter Buku</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="ms-3">
+            <div class="input-group">
+                <input class="form-control border rounded-pill" type="text" placeholder="Cari Buku">
+                <span class="input-group-append" style="margin-left: -40px;">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                        type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 p-3">
+        <p class="fw-bold">Artikel Terbaru Sejak
+            {{ $lastUpdated->updated_at->format('d F Y') }}</p>
+        {{ $articles->links('components.pagination') }}
+    </div>
+    <div class="py-5" style="background-color: #E7E7E7;">
         <div class="container">
             <div class="row">
                 @foreach ($articles as $article)
@@ -21,7 +47,7 @@
                         <a href="{{ route('articles.show', $article->slug) }}" style="text-decoration: none; color: black;">
                             <div style="display: flex; flex-direction: column;">
                                 <div class="sub-card-container-book">
-                                    <img src="{{ asset('dist/img/melihatbahanpustaka.PNG') }}" alt="Deskripsi Gambar">
+                                    <img src="{{ $article->image }}" alt="Deskripsi Gambar">
                                     <div>
                                         <table style="border-collapse: collapse;">
                                             <tr>
@@ -80,3 +106,18 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+        });
+    </script>
+@endpush

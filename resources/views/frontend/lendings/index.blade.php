@@ -54,9 +54,9 @@
             </center>
         </div>
     </div>
-    <div class="card" style="background-color: #E7E7E7; padding: 40px;">
+    <div class="card">
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -110,7 +110,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">Tidak ada data</td>
+                            <td colspan="9" class="text-center">Tidak ada data</td>
                         </tr>
                     @endforelse
                 </tbody>

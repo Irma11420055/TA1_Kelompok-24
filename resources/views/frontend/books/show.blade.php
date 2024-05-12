@@ -11,110 +11,109 @@
         <hr style="border-color: black; width: 95%; margin: 0 auto;">
     </div>
     </div>
-    <div class="card-container-book" style="height: 720px;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img style="height: 362px; width: 259px" src="{{ $book->cover }}" alt="Deskripsi Gambar">
-                    </div>
-                    @auth
-                        <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
-                            <button class="btn"
-                                style="width: 200px; background-color: #00FF38; font-family: 'Poppins', sans-serif; font-weight: 600;"
-                                type="button" data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
-                        </div>
-                    @endauth
+    <div class="container-fluid py-5" style="background-color: #E7E7E7;">
+        <div class="row">
+            <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img style="height: 362px; width: 259px" src="{{ $book->cover }}" alt="Deskripsi Gambar">
                 </div>
+                @auth
+                    <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
+                        <button class="btn"
+                            style="width: 200px; background-color: #00FF38; font-family: 'Poppins', sans-serif; font-weight: 600;"
+                            type="button" data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
+                    </div>
+                @endauth
+            </div>
 
-                <div class="col-4">
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ID</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ encodeId($book->id) }}</p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Judul</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->title }}
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Bahasa</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->language }}</p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Subjek</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->subject }}
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Pengarang</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->author }}
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Penerbit</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->publisher }}</p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->description }}</p>
-                    </div>
+            <div class="col-4">
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ID</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ encodeId($book->id) }}</p>
                 </div>
-                <div class="col-4">
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Status</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            @if ($book->status == 1)
-                                <span class="badge badge-success">Tersedia</span>
-                            @else
-                                <span class="badge badge-danger">Tidak Tersedia</span>
-                            @endif
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Edisi</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->edition }}</p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ISBN</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->isbn }}
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->classification }}</p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Lokasi</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            {{ $book->location }}
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Copy/Original
-                        </p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                            @if ($book->cp_or == 'cp')
-                                Copy
-                            @else
-                                Original
-                            @endif
-                        </p>
-                    </div>
-                    <div style="margin: 0 0 8px auto;">
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Tahun</p>
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->year }}
-                        </p>
-                    </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Judul</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->title }}
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Bahasa</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->language }}</p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Subjek</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->subject }}
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Pengarang</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->author }}
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Penerbit</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->publisher }}</p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->description }}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Status</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        @if ($book->status == 1)
+                            <span class="badge badge-success">Tersedia</span>
+                        @else
+                            <span class="badge badge-danger">Tidak Tersedia</span>
+                        @endif
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Edisi</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->edition }}</p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ISBN</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->isbn }}
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->classification }}</p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Lokasi</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        {{ $book->location }}
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Copy/Original
+                    </p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                        @if ($book->cp_or == 'cp')
+                            Copy
+                        @else
+                            Original
+                        @endif
+                    </p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Tahun</p>
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->year }}
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- The Modal -->

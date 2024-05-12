@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,52 +29,7 @@
 </head>
 
 <body>
-    <div class="header-container">
-        <!-- Bagian logo akun -->
-        <img src="{{ asset('frontend/dist/img/olis.PNG') }}" class="logo">
-
-        <!-- Bagian teks "INSTITUT TEKNOLOGI DEL" di sebelah logo -->
-        <div class="header-text">
-            <a href="https://www.del.ac.id/" target="_blank" style="text-decoration: none; color: black;">
-                <h3 style="color: black; font-family: 'Poppins', sans-serif;">
-                    INSTITUT TEKNOLOGI DEL
-                </h3>
-            </a>
-        </div>
-
-        <!-- Ikon profil -->
-        <div class="user-name">
-            @auth
-                <!-- notifikasi -->
-                <nav class="navbar navbar-expand separator">
-                    <div id="top-notification" class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="javascript:;" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge badge-danger text-dark" id="top-notification-number">0</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-header">Notifikasi</div>
-                            <div class="dropdown-divider"></div>
-                            <div class="scroll" id="notification_items">
-
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                <span class="me-2">{{ auth()->user()->name }}</span>
-                <i class="fas fa-user"></i>
-                <div class="dropdown-menu">
-                    <a href="{{ route('profile.index') }}">Profile</a>
-                    <a href="{{ route('lendings.index') }}">Riwayat Peminjaman</a>
-                    <a href="javascript:void(0)" onclick="logout()">Logout</a>
-                </div>
-                {{-- Perbaiki Front End Nya --}}
-            @else
-                <a class="login-link {{ Request::is('/login') ? 'active' : '' }}" href="/login">Login</a>
-            @endauth
-        </div>
-    </div>
+    @include('layouts.frontend.header')
 
     <!-- Gambar header dengan menu navigasi -->
     <div class="header-image">

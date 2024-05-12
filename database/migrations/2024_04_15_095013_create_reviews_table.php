@@ -19,6 +19,11 @@ return new class extends Migration
             $table->integer('rating');
             $table->timestamps();
         });
+
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('book_slug')->references('slug')->on('books');
+        });
     }
 
     /**

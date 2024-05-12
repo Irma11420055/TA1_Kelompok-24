@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use Exception;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadGoogleStorageDriver();
+        $this->getAllAnnouncements();
     }
 
     private function loadGoogleStorageDriver(string $driverName = 'google')
@@ -53,5 +55,12 @@ class AppServiceProvider extends ServiceProvider
         } catch (Exception $e) {
             // Handle the exception
         }
+    }
+
+    // get all announcements
+    private function getAllAnnouncements()
+    {
+        // get all announcements
+        View::share('announcements', Announcement::latest()->take(5)->get());
     }
 }

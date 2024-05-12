@@ -21,6 +21,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable()->index('articles_user_id_index');
             $table->timestamps();
         });
+
+        Schema::table('articles', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+        });
     }
 
     /**

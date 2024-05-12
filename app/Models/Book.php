@@ -49,7 +49,7 @@ class Book extends Model
     // get average rating of a book
     public function getRatingAttribute()
     {
-        return $this->reviews->avg('rating');
+        return $this->reviews->avg('rating') ?: 0;
     }
 
     // check if user has reviewed a book

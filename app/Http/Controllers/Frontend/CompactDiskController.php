@@ -12,7 +12,8 @@ class CompactDiskController extends Controller
     {
         $compactDisks = CompactDisk::paginate(4);
         $compactDisks->withPath(url()->current());
-        return view('frontend.compact-disks.index', compact('compactDisks'));
+        $lastUpdated = CompactDisk::latest()->first();
+        return view('frontend.compact-disks.index', compact('compactDisks', 'lastUpdated'));
     }
 
     public function show($compactDisk)
