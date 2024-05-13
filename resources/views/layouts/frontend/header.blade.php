@@ -41,7 +41,7 @@
                     <div class="dropdown-divider"></div>
                     <div class="scroll" style="max-height: 300px; overflow-y: scroll; overflow-x: hidden;">
                         @foreach ($announcements as $announcement)
-                            <a class="dropdown-item" href=""
+                            <a class="dropdown-item" href="{{ route('announcements.show', $announcement->slug) }}"
                                 style="text-decoration: none; color: #333; margin-right: 100px">
                                 <div class="notification-content">
                                     <div class="notification-text d-flex justify-content-between">
@@ -51,6 +51,18 @@
                                 </div>
                             </a>
                         @endforeach
+                        <!-- lihat semua notifikasi -->
+                        <div class="dropdown-divider"></div>
+                        <center>
+                            <a class="dropdown-item text-center" href="{{ route('announcements.index') }}"
+                                style="text-decoration: none; color: #333; margin-right: 100px">
+                                <div class="notification-content">
+                                    <div class="notification-text d-flex justify-content-between">
+                                        <span>Lihat Semua</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </center>
                     </div>
                 </div>
             </div>

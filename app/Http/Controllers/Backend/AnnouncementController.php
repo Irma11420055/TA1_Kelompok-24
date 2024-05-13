@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Traits\Upload;
+use Illuminate\Support\Str;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class AnnouncementController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $announcements = Announcement::query();
+            $announcements = Announcement::latest();
             return DataTables::of($announcements)
                 ->editColumn('id', function ($announcement) {
                     return encodeId($announcement->id);
@@ -46,7 +47,7 @@ class AnnouncementController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|max:255',
-                'content' => 'required|string',
+                'content' => 'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
@@ -106,7 +107,7 @@ class AnnouncementController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|max:255',
-                'content' => 'required|string',
+                'content' => 'required',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,43 +52,7 @@
         &copy; 2023 Kelompok 24 TA Sarjana Terapan Teknologi Rekayasa Perangkat Lunak. Hak Cipta Dilindungi.
     </div>
 
-    <div class="footer-card">
-        <div class="footer-text">
-            <a href="https://www.youtube.com/@itdel_library" target="_blank">
-                <i class="fab fa-youtube" style="margin-top: 20px;"></i>
-                <p style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400;">Perpustakaan Institut
-                    Teknologi Del</p>
-            </a>
-        </div>
-
-        <div class="footer-text">
-            <a href="mailto:library@del.ac.id" target="_blank">
-                <i class="far fa-envelope" style="margin-top: 20px;"></i>
-                <p style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400;">Perpustakaan IT DEL
-                </p>
-                {{-- <p>library@del.ac.id</p> --}}
-            </a>
-        </div>
-
-        <div class="footer-text">
-            <a href="https://www.instagram.com/itdel_library" target="_blank">
-                <i class="fab fa-instagram" style="margin-top: 20px;"></i>
-                <p style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400;">Perpustakaan IT Del
-                </p>
-                {{-- <p>@itdel_library</p> --}}
-            </a>
-        </div>
-
-        <div class="footer-text">
-            <a href="https://www.facebook.com/profile.php?id=100079065687693&mibextid=ZbWKwL" target="_blank">
-                <i class="fab fa-facebook" style="margin-top: 20px;"></i>
-                <p style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400;">Perpustakaan Institut
-                    Teknologi Del</p>
-            </a>
-        </div>
-
-    </div>
-
+    @include('layouts.frontend.footer')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>

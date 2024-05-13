@@ -20,7 +20,7 @@ class LibraryArchiveController extends Controller
     public function index(Request $request, $type)
     {
         if ($request->ajax()) {
-            $libraryArchives = LibraryArchive::where('type', $type);
+            $libraryArchives = LibraryArchive::where('type', $type)->latest();
             return DataTables::of($libraryArchives)
                 ->editColumn('id', function ($libraryArchive) {
                     return encodeId($libraryArchive->id);
@@ -44,10 +44,20 @@ class LibraryArchiveController extends Controller
     public function store(Request $request, $type)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|string',
-                'file' => 'required|file|mimes:pdf|max:2048',
-            ]);
+            if ($type == 'achivements') {
+
+                $validator = Validator::make($request->all(), [
+                    'title' => 'required|string|max:255',
+                    'body' => 'required|string',
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+            } else {
+                $validator = Validator::make($request->all(), [
+                    'title' => 'required|string',
+                    'file' => 'required|file|mimes:pdf|max:2048',
+                ]);
+            }
+
 
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
@@ -55,7 +65,9 @@ class LibraryArchiveController extends Controller
 
             DB::beginTransaction();
 
-            $file = $this->uploadFile($request->file('file'), 'library-archives');
+            if ($request->hasFile('file')) {
+                $file = $this->uploadFile($request->file('file'), 'library-archives');
+            }
 
             $documentCount = LibraryArchive::where('type', $type)->count();
 
@@ -70,12 +82,10 @@ class LibraryArchiveController extends Controller
                 $number = 'PAITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
             }
 
-            $libraryArchive = LibraryArchive::create([
+            $libraryArchive = LibraryArchive::create($request->except('file', '_token') + [
                 'number' => $number,
-                'title' => $request->title,
-                'slug' => Str::slug($request->title),
-                'file' => $file,
                 'type' => $type,
+                'file' => $file ?? null,
             ]);
 
             // if type is rules and first record, set active
@@ -83,9 +93,9 @@ class LibraryArchiveController extends Controller
                 $libraryArchive->update(['active' => 1]);
             } elseif ($type == 'guidelines' && $documentCount == 0) {
                 $libraryArchive->update(['active' => 1]);
-            } elseif ($type == 'achivements') {
-                $libraryArchive->update(['active' => 1]);
             } elseif ($type == 'archives' && $documentCount == 0) {
+                $libraryArchive->update(['active' => 1]);
+            } elseif ($type == 'achivements') {
                 $libraryArchive->update(['active' => 1]);
             }
 
@@ -136,10 +146,18 @@ class LibraryArchiveController extends Controller
             if (!$libraryArchive) {
                 return redirect()->route('backend.library-archives.index', $type)->with('error', $message . ' not found');
             }
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|string',
-                'file' => 'nullable|file|mimes:pdf|max:2048',
-            ]);
+            if ($type == 'achivements') {
+                $validator = Validator::make($request->all(), [
+                    'title' => 'required|string|max:255',
+                    'body' => 'required|string',
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+            } else {
+                $validator = Validator::make($request->all(), [
+                    'title' => 'required|string',
+                    'file' => 'file|mimes:pdf|max:2048',
+                ]);
+            }
 
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
@@ -147,17 +165,17 @@ class LibraryArchiveController extends Controller
 
             DB::beginTransaction();
 
-            $file = $libraryArchive->file;
-            if ($request->hasFile('file')) {
-                $this->deleteFile($file);
-                $file = $this->uploadFile($request->file('file'), 'library-archives');
+            if ($type == 'achivements') {
+                $libraryArchive->update($request->except('file', '_token') + [
+                    'file' => $request->hasFile('image') ? $this->uploadFile($request->file('image'), 'library-archives') : null,
+                ]);
+            } else {
+                $libraryArchive->update($request->except('file', '_token') + [
+                    'file' => $request->hasFile('file') ? $this->uploadFile($request->file('file'), 'library-archives') : null,
+                ]);
             }
 
-            $libraryArchive->update([
-                'title' => $request->title,
-                'slug' => Str::slug($request->title),
-                'file' => $file,
-            ]);
+            $message = $this->setMessage($type);
 
             DB::commit();
             return redirect()->route('backend.library-archives.index', $type)->with('success', $message . ' updated successfully');

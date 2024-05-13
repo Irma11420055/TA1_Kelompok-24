@@ -2,36 +2,39 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Book;
 use App\Models\Article;
+use App\Models\CompactDisk;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class NotificationController extends Controller
 {
-    public function index(Request $request)
+    public function articles(Request $request)
     {
-        // get latest articles
-        $articles = Article::latest()->paginate(6);
+        // get latest articles in this week
+        $articles = Article::latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
         $articles->withPath(url()->current());
-
-        return view('frontend.notifications.articles', compact('articles'));
+        // ambil tanggal perubahan terakhir
+        $lastUpdated = Article::latest()->first();
+        return view('frontend.notifications.articles', compact('articles', 'lastUpdated'));
     }
 
-    public function book(Request $request)
+    public function books(Request $request)
     {
         // get latest books
-        $books = Article::latest()->paginate(6);
+        $books = Book::latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
         $books->withPath(url()->current());
-
-        return view('frontend.notifications.books', compact('books'));
+        $lastUpdated = Book::latest()->first();
+        return view('frontend.notifications.books', compact('books', 'lastUpdated'));
     }
 
     public function compactDisks(Request $request)
     {
         // get latest compact disks
-        $compactDisks = Article::latest()->paginate(6);
+        $compactDisks = CompactDisk::latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
         $compactDisks->withPath(url()->current());
-
-        return view('frontend.notifications.compact-disks', compact('compactDisks'));
+        $lastUpdated = CompactDisk::latest()->first();
+        return view('frontend.notifications.compact-disks', compact('compactDisks', 'lastUpdated'));
     }
 }

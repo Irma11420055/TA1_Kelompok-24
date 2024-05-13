@@ -42,17 +42,26 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="archive_datatable" class="table table-head-fixed">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>No. Dokumen</th>
-                                    <th>Judul</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="archive_datatable" class="table table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        @if ($type == 'rules' || $type == 'guidelines')
+                                            <th>#</th>
+                                            <th>No. Dokumen</th>
+                                            <th>Judul</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        @else
+                                            <th>#</th>
+                                            <th>Judul</th>
+                                            <th>Isi</th>
+                                            <th>Aksi</th>
+                                        @endif
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -76,50 +85,59 @@
                         orderable: false,
                         searchable: false
                     },
-                    {
-                        data: 'number',
-                        name: 'number'
-                    },
-                    {
-                        data: 'title',
-                        name: 'title'
-                    },
-                    {
-                        data: 'active',
-                        name: 'active',
-                        render: function(data) {
-                            return data ? '<span class="badge badge-success">Aktif</span>' :
-                                '<span class="badge badge-danger">Tidak Aktif</span>';
-                        }
-                    },
-                    {
+                    @if ($type == 'rules' || $type == 'guidelines')
+                        {
+                            data: 'number',
+                            name: 'number'
+                        }, {
+                            data: 'title',
+                            name: 'title'
+                        }, {
+                            data: 'active',
+                            name: 'active',
+                            render: function(data) {
+                                return data ? '<span class="badge badge-success">Aktif</span>' :
+                                    '<span class="badge badge-danger">Tidak Aktif</span>';
+                            }
+                        },
+                    @else
+                        {
+                            data: 'title',
+                            name: 'title'
+                        }, {
+                            data: 'content',
+                            name: 'content'
+                        },
+                    @endif {
                         name: 'action',
                         orderable: false,
                         searchable: false
                     }
                 ],
                 columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    targets: 4,
-                    className: 'text-center',
-                    width: '15%',
-                    render: function(data, type, row) {
-                        console.log(!row.active == 1);
-                        var button = '<div class="btn-group">';
-                        if (row.active == 0) {
-                            button += `
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    @if ($type == 'rules' || $type == 'guidelines')
+                        {
+                            targets: 4,
+                            className: 'text-center',
+                            width: '15%',
+                            render: function(data, type, row) {
+                                console.log(!row.active == 1);
+                                var button = '<div class="btn-group">';
+                                if (row.active == 0) {
+                                    button += `
                                 <a class="btn btn-success btn-sm btn-activate" href="${url}/${row.id}/activate">
                                     Gunakan
                                 </a>
                             `;
-                        }
-                        button += `
+                                }
+                                button += `
                             <a class="btn btn-info btn-sm" href="${url}/${row.id}">
                                 <i class="fas fa-eye"></i>
                             </a>
@@ -127,10 +145,42 @@
                                 <i class="fas fa-trash"></i>
                             </a>
                         `;
-                        button += '</div>';
-                        return button;
-                    }
-                }],
+                                button += '</div>';
+                                return button;
+                            }
+                        }
+                    @else
+                        {
+                            targets: 2,
+                            className: 'text-center',
+                            orderable: false,
+                            render: function(data, type, row) {
+                                // render html
+                                return `<div class="text-center">${data.substring(0, 100)}...</div>`;
+                            }
+                        }, {
+                            targets: 3,
+                            className: 'text-center',
+                            orderable: false,
+                            render: function(data, type, row) {
+                                return `
+                            <div class="btn-group">
+                                <a class="btn btn-info btn-sm" href="${url}/${row.id}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        `;
+                            },
+                            width: '15%'
+                        }
+                    @endif
+                ],
                 searching: true,
                 order: [
                     [0, 'desc']

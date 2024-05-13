@@ -34,4 +34,15 @@ class LibraryArchiveController extends Controller
         }
         return view('frontend.library-archives.guidelines', compact('libraryArchive'));
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function achivements()
+    {
+        $libraryArchives = LibraryArchive::where('type', 'achivements')
+            ->where('active', true)
+            ->paginate(6);
+        return view('frontend.library-archives.achivements', compact('libraryArchives'));
+    }
 }

@@ -32,11 +32,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="body" class="col-sm-2 col-form-label @error('body') text-danger @enderror">
+                                <label for="content"
+                                    class="col-sm-2 col-form-label @error('content') text-danger @enderror">
                                     Konten Artikel
                                 </label>
-                                <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body">{!! old('body') !!}</textarea>
-                                @error('body')
+                                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">{!! old('content') !!}</textarea>
+                                @error('content')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -77,7 +78,7 @@
     <script src="{{ asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script>
         $(function() {
-            $('#body').summernote({
+            $('#content').summernote({
                 height: 300,
             });
 

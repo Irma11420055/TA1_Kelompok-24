@@ -10,7 +10,10 @@ class ArticleController extends Controller
 {
     public function index(Request $request)
     {
-        $articles = Article::latest()->paginate(6);
+        $search = $request->get('search');
+        $articles = Article::where('title', 'like', '%' . $search . '%')
+            ->orWhere('content', 'like', '%' . $search . '%')
+            ->paginate(6);
         $articles->withPath(url()->current());
         $lastUpdated = Article::latest()->first();
         return view('frontend.articles.index', compact('articles', 'lastUpdated'));

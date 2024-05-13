@@ -2,7 +2,7 @@
 @section('title', 'List Buku')
 @section('content')
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Buku</h1>
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Buku</h1>
         <hr
             style="height: 4px;
             border-top-width: 1px;
@@ -11,34 +11,35 @@
             border-radius: 20px;
             width: 17%;">
     </div>
-    <div class="d-flex justify-content-end align-items-center">
-        <div class="me-3">
-            <select class="form-select border rounded-pill" placeholder="Filter Buku">
-                <option selected>Filter Buku</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-        <div class="ms-3">
-            <div class="input-group">
-                <input class="form-control border rounded-pill" type="text" placeholder="Cari Buku">
-                <span class="input-group-append" style="margin-left: -40px;">
-                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
-                        type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
+    <div>
+        <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
+            <div class="me-3">
+                <select class="form-select border rounded-pill" placeholder="Filter Buku">
+                    <option selected>Filter Buku</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
-        </div>
+            <div class="ms-3">
+                <div class="input-group">
+                    <input class="form-control border rounded-pill" type="text" name="search" placeholder="Cari Buku"
+                        value="{{ request('search') }}">
+                    <span class="input-group-append" style="margin-left: -40px;">
+                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                            type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-3 p-3">
-        <p class="fw-bold">Buku Terbaru Sejak
-            {{ $lastUpdated->updated_at->format('d F Y') }}</p>
+    <div class="d-flex justify-content-end mb-3 py-3 px-5">
         {{ $books->links('components.pagination') }}
     </div>
-    <div class="container-fluid py-5" style="background-color: #E7E7E7;">
-        <div class="row">
+    <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">
+        <div class="row justify-content-center mx-5">
             <div class="col-8">
                 <div class="row">
                     @foreach ($books as $book)
@@ -53,7 +54,7 @@
                                                     <td colspan="2">
 
                                                         <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
+                                                            style="font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
                                                             {{ $book->title }}</p>
                                                     </td>
                                                 </tr>
@@ -63,8 +64,7 @@
                                                         <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
                                                     </td>
                                                     <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
                                                             {{ $book->author }}</p>
                                                     </td>
                                                 </tr>
@@ -74,8 +74,7 @@
                                                         <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
                                                     </td>
                                                     <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
                                                             158 Hal</p>
                                                     </td>
                                                 </tr>
@@ -85,29 +84,26 @@
                                                         <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
                                                     </td>
                                                     <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                            {{ $book->available }}</p>
+                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                            {{ $book->publisher }}</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><i>
                                                             <p
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                                {{ $book->publisher }}</p>
+                                                                style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
+                                                                {{ $book->subject }}</p>
                                                         </i></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><i>
-                                                            <p
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 0;">
+                                                            <p style="font-size: 12px; font-weight: 500; margin: 0;">
                                                                 ISBN: {{ $book->isbn }}</p>
                                                         </i></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
+                                                        <p style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
                                                             {{ $book->available }}</p>
                                                     </td>
                                                 </tr>
@@ -119,7 +115,7 @@
                                                                     style="color: #FFD43B; margin-right: 2px;"></i>
                                                             @endfor
                                                             <h5
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
+                                                                style="font-size: 12px; font-weight: 400; margin-top: 10px;">
                                                                 {{ $book->rating }}</h5>
                                                         </div>
                                                     </td>
@@ -140,41 +136,36 @@
 
             </div>
             <div class="col-4">
-                <p
-                    style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color:#6F410B; margin-left: 30px;">
+                <p style="font-weight: 700; font-size: 20px; color:#6F410B; margin-left: 30px;">
                     Rating Tertinggi</p>
                 <table>
                     @foreach ($bestBooks as $books)
                         <tr>
                             <td style="text-align: center; align-items: center; justify-content: center;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
+                                <p style="font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
                                     {{ $loop->iteration }}
                                 </p>
                             </td>
                             <td style="width: 300px;">
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
+                                <p style="font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
                                     Dilan 1990</p>
                                 <div class="text-book" style="margin: 5px 0 5px 20px;">
                                     @for ($i = 0; $i < $books->rating; $i++)
                                         <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
                                     @endfor
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
+                                    <h5 style="font-size: 12px; font-weight: 400; margin-top: 10px;">
                                         {{ $books->rating }}
                                     </h5>
-                                    <h5
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
+                                    <h5 style="font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
                                         75/100</h5>
                                 </div>
                                 {{-- <p
-                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
+                                        style="font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
                                         Menjadi Nomor 1 Sejak 10 November</p> --}}
                             </td>
                             {{-- <td style="vertical-align: top;"><i>
                                         <p
-                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin-top: 20px;">
+                                            style="font-size: 12px; font-weight: 500; margin-top: 20px;">
                                             Novel</p>
                                     </i></td> --}}
                         </tr>
@@ -182,7 +173,6 @@
                 </table>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 @push('scripts')
@@ -196,6 +186,11 @@
                     fileId = fileId.split('&')[0];
                     img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
                 }
+            });
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
             });
         });
     </script>

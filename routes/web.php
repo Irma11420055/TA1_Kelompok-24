@@ -138,11 +138,19 @@ Route::namespace('App\Http\Controllers\Frontend')
             Route::get('/{lending}', $ctrl . '@show')->name('lendings.show');
         });
 
+        $pref = 'announcements';
+        $ctrl = 'AnnouncementController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::get('/', $ctrl . '@index')->name('announcements.index');
+            Route::get('/{announcement}', $ctrl . '@show')->name('announcements.show');
+        });
+
         $pref = 'library-archives';
         $ctrl = 'LibraryArchiveController';
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/rules', $ctrl . '@rules')->name('library-archives.rules');
             Route::get('/guidelines', $ctrl . '@guidelines')->name('library-archives.guidelines');
+            Route::get('/achivements', $ctrl . '@achivements')->name('library-archives.achivements');
         });
 
         $pref = 'profile';

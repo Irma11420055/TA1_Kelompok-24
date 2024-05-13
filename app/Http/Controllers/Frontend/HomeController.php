@@ -12,7 +12,9 @@ class HomeController extends Controller
     {
         // book with highest rating
 
-        $bestBooks = Book::withCount('reviews')
+        $bestBooks = Book::has('reviews')
+            ->groupBy('slug')
+            ->withCount('reviews')
             ->get()
             ->sortByDesc('rating')
             ->take(4);

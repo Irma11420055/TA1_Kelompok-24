@@ -10,7 +10,10 @@ class CompactDiskController extends Controller
 {
     public function index(Request $request)
     {
-        $compactDisks = CompactDisk::paginate(4);
+        $search = $request->get('search');
+        $compactDisks = CompactDisk::where('title', 'like', '%' . $search . '%')
+            ->orWhere('author', 'like', '%' . $search . '%')
+            ->paginate(4);
         $compactDisks->withPath(url()->current());
         $lastUpdated = CompactDisk::latest()->first();
         return view('frontend.compact-disks.index', compact('compactDisks', 'lastUpdated'));

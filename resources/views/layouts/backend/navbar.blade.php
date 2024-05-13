@@ -7,21 +7,6 @@
         </li>
     </ul>
 
-    <!-- Right navbar links -->
-    {{-- <ul class="navbar-nav ml-auto">
-        <!-- Profile icon and username -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-user-circle"></i>
-                {{ auth()->user()->name }}
-            </a>
-        </li>
-        <div class="dropdown-menu">
-            <a href="">Profile</a>
-            <a href="javascript:;" onclick="logout()">Logout</a>
-        </div>
-    </ul> --}}
-
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">

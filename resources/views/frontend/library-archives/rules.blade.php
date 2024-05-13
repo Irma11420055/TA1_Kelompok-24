@@ -2,7 +2,7 @@
 @section('title', 'Peraturan Perpustakaan')
 @section('content')
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Peraturan
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Peraturan
             Perpustakaan</h1>
         <div style="position: relative;">
             <hr

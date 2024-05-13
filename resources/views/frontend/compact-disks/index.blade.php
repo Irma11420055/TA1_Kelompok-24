@@ -2,7 +2,7 @@
 @section('title', 'List CD/DVD')
 @section('content')
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">CD/DVD</h1>
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">CD/DVD</h1>
         <hr
             style="height: 4px;
         border-top-width: 1px;
@@ -11,34 +11,34 @@
         border-radius: 20px;
         width: 17%;">
     </div>
-    <div class="d-flex justify-content-end align-items-center">
-        <div class="me-3">
-            <select class="form-select border rounded-pill" placeholder="Filter Buku">
-                <option selected>Filter Buku</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-        <div class="ms-3">
-            <div class="input-group">
-                <input class="form-control border rounded-pill" type="text" placeholder="Cari Buku">
-                <span class="input-group-append" style="margin-left: -40px;">
-                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
-                        type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
+    <div>
+        <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
+            <div class="me-3">
+                <select class="form-select border rounded-pill" placeholder="Filter CD/DVD">
+                    <option selected>Filter CD/DVD</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
-        </div>
+            <div class="ms-3">
+                <div class="input-group">
+                    <input class="form-control border rounded-pill" type="text" placeholder="Cari CD/DVD">
+                    <span class="input-group-append" style="margin-left: -40px;">
+                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                            type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="d-flex justify-content-between align-items-center mb-3 p-3">
-        <p class="fw-bold">CD/DVD Terbaru Sejak
-            {{ $lastUpdated->updated_at->format('d F Y') }}</p>
+    <div class="d-flex justify-content-end mb-3 p-3">
         {{ $compactDisks->links('components.pagination') }}
     </div>
-    <div class="container-fluid py-5" style="background-color: #E7E7E7;">
-        <div class="row">
+    <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">
+        <div class="row justify-content-center mx-5">
             <div class="col-8">
                 <div class="row">
                     @foreach ($compactDisks as $cd)
@@ -211,7 +211,6 @@
                 </table>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 @push('scripts')

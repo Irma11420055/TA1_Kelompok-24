@@ -15,6 +15,20 @@ class LibraryArchive extends Model
         'slug',
         'file',
         'active',
-        'type'
+        'type',
+        'body',
+        'excerpt',
+        'image',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($libraryArchive) {
+            $libraryArchive->slug = generateSlug($libraryArchive->title);
+        });
+
+        static::updating(function ($libraryArchive) {
+            $libraryArchive->slug = generateSlug($libraryArchive->title);
+        });
+    }
 }

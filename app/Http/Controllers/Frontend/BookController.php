@@ -15,13 +15,18 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $books = Book::latest()
+        $search = $request->get('search');
+        $books = Book::where('title', 'like', '%' . $search . '%')
+            ->orWhere('author', 'like', '%' . $search . '%')
+            ->orWhere('publisher', 'like', '%' . $search . '%')
+            ->orWhere('year', 'like', '%' . $search . '%')
             ->groupBy('slug')
             ->paginate(6);
 
         $books->withPath(url()->current());
 
-        $bestBooks = Book::groupBy('slug')
+        $bestBooks = Book::has('reviews')
+            ->groupBy('slug')
             ->withCount('reviews')
             ->get()
             ->sortByDesc('rating')
@@ -29,7 +34,7 @@ class BookController extends Controller
 
         // get last date updated book
         $lastUpdated = Book::latest()->first();
-        return view('frontend.oks.index', compact('books', 'bestBooks', 'lastUpdated'));
+        return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated'));
     }
 
     /**
