@@ -28,7 +28,6 @@
         <div class="row px-2 py-1">
             <div class="col-12">
                 <h2 class="card-title">{{ $article->title }}</h2>
-                <span class="badge bg-primary">Irma Tobing</span>
             </div>
         </div>
     </div>
@@ -36,7 +35,32 @@
         <div class="col-12">
             <div style="background-color: #E7E7E7" class="p-4">
                 {!! $article->body !!}
+                <div class="row mt-3">
+                    <!-- image -->
+                    <img id="file" src="{{ $article->image }}" class="img-fluid" style="width: 200px; height: 200px;"
+                        alt="{{ $article->title }}">
+                </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
+            });
+        });
+    </script>
+@endpush

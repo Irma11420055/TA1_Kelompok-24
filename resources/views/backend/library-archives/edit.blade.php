@@ -15,9 +15,10 @@
                 <div class="col-12">
                     <div class="card">
                         <form
-                            action="{{ route('backend.library-achievements.update', [$type, encodeId($library_achievement->id)]) }}"
+                            action="{{ route('backend.library-archives.update', [$type, encodeId($libraryArchive->id)]) }}"
                             method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h3 class="card-title">Edit Penghargaan</h3>
                             </div>
@@ -29,19 +30,19 @@
                                         Judul Arsip
                                     </label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                        id="title" name="title" value="{{ old('title') }}">
+                                        id="title" name="title" value="{{ old('title', $libraryArchive->title) }}">
                                     @error('title')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="content"
-                                        class="col-sm-2 col-form-label @error('content') text-danger @enderror">
+                                    <label for="body"
+                                        class="col-sm-2 col-form-label @error('body') text-danger @enderror">
                                         Konten Arsip
                                     </label>
-                                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">{!! old('content') !!}</textarea>
-                                    @error('content')
+                                    <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body">{!! old('body', $libraryArchive->body) !!}</textarea>
+                                    @error('body')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -79,6 +80,7 @@
                             action="{{ route('backend.library-archives.update', [$type, encodeId($library_archive->id)]) }}"
                             method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h3 class="card-title">Tambah Arsip Perpustakaan</h3>
                             </div>
@@ -92,7 +94,8 @@
                                                 Judul Arsip
                                             </label>
                                             <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                                id="title" name="title" value="{{ old('title') }}">
+                                                id="title" name="title"
+                                                value="{{ old('title', $library_archive->title) }}">
                                             @error('title')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -101,8 +104,8 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="description"
-                                                class="col-sm-2 col-form-label @error('description') text-danger @enderror">
+                                            <label for="file"
+                                                class="col-sm-2 col-form-label @error('file') text-danger @enderror">
                                                 File
                                             </label>
                                             <div class="input-group">
@@ -133,12 +136,20 @@
         </div>
     </div>
 @endsection
+@if ($type == 'achievements')
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
+    @endpush
+@endif
 @push('scripts')
+    @if ($type == 'achievements')
+        <script src="{{ asset('backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    @endif
     <script src="{{ asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             @if ($type == 'achievements')
-                $('#content').summernote({
+                $('#body').summernote({
                     height: 300,
                 });
             @endif

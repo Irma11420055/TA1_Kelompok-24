@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @section('title', 'Buku')
 @section('breadcrumb')
@@ -57,6 +58,7 @@
         <!-- /.row -->
     </div>
     @include('backend.books.import')
+    @include('backend.books.export')
 @endsection
 @push('scripts')
     <script>

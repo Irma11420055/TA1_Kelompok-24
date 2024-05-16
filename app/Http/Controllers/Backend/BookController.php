@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Book;
 use App\Traits\Upload;
+use App\Exports\BooksExport;
 use App\Imports\BooksImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,18 +64,18 @@ class BookController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string',
-                'author' => 'required|string',
+                'author' => 'nullable|string',
                 'isbn' => 'required|numeric',
-                'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'description' => 'required|string',
-                'publisher' => 'required|string',
-                'language' => 'required|string  ',
-                'edition' => 'required|string',
-                'location' => 'required|string',
-                'subject' => 'required|string',
-                'classification' => 'required|string',
-                'cp_or' => 'required|string',
-                'year' => 'required|integer',
+                'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'nullable|string',
+                'publisher' => 'nullable|string',
+                'language' => 'nullable|string  ',
+                'edition' => 'nullable|string',
+                'location' => 'nullable|string',
+                'subject' => 'nullable|string',
+                'classification' => 'nullable|string',
+                'cp_or' => 'nullable|string',
+                'year' => 'nullable|integer',
                 'quantity' => 'required|integer',
             ]);
 
@@ -83,8 +84,13 @@ class BookController extends Controller
             }
 
             DB::beginTransaction();
-            for ($index = 0; $index < $request->quantity; $index++) {
-                $book = Book::create($request->except('_token', 'cover', 'quantity'));
+            $lastId = Book::withTrashed()->distinct('slug')->count();
+            for ($index = 1; $index <= $request->quantity; $index++) {
+                $data = $request->except('_token', 'cover', 'quantity');
+                $data['slug'] = generateSlug($data['title']);
+                $book = Book::create($data);
+
+                $book->code = generateCode($book, $lastId, $index);
 
                 if ($request->hasFile('cover')) {
                     $cover = $this->uploadFile($request->file('cover'), 'books');
@@ -92,6 +98,8 @@ class BookController extends Controller
                         'cover' => $cover
                     ]);
                 }
+
+                $book->save();
             }
 
             DB::commit();
@@ -99,7 +107,6 @@ class BookController extends Controller
             return redirect()->route('backend.books.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
             return redirect()->route('backend.books.index')->with('error', 'Data gagal ditambahkan');
         }
 
@@ -139,16 +146,18 @@ class BookController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string',
-                'author' => 'required|string',
+                'author' => 'nullable|string',
                 'isbn' => 'required|numeric',
-                'description' => 'required',
-                'publisher' => 'required',
-                'language' => 'required',
-                'edition' => 'required',
-                'subject' => 'required',
-                'classification' => 'required',
-                'cp_or' => 'required',
-                'year' => 'required',
+                'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'nullable|string',
+                'publisher' => 'nullable|string',
+                'language' => 'nullable|string',
+                'edition' => 'nullable|string',
+                'location' => 'nullable|string',
+                'subject' => 'nullable|string',
+                'classification' => 'nullable|string',
+                'cp_or' => 'nullable|string',
+                'year' => 'nullable|integer',
             ]);
 
             if ($validator->fails()) {
@@ -212,18 +221,36 @@ class BookController extends Controller
      */
     public function import(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|file|mimes:csv,xlsx,xls',
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|file|mimes:csv,xlsx,xls',
+            ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', $validator->errors()->first('file'));
+            }
+
+            $file = $request->file('file');
+            DB::beginTransaction();
+            Excel::import(new BooksImport, $file);
+            DB::commit();
+            return redirect()->route('backend.books.index')->with('success', 'Data imported successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('backend.books.index')->with('error', 'Data import failed');
         }
+    }
 
-        $file = $request->file('file');
-
-        Excel::import(new BooksImport, $file);
-
-        return redirect()->route('backend.books.index')->with('success', 'Data imported successfully');
+    /**
+     * Export data
+     *
+     */
+    public function export(Request $request)
+    {
+        $columns = $request->input('columns', []);
+        if (empty($columns)) {
+            return redirect()->back()->with('error', 'Please select at least one column to export.');
+        }
+        return Excel::download(new BooksExport($columns), 'books.xlsx');
     }
 }

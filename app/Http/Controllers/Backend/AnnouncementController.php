@@ -55,7 +55,7 @@ class AnnouncementController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
 
-            $image = $this->uploadImage($request->file('image'), 'announcements');
+            $image = $this->uploadFile($request->file('image'), 'announcements');
             DB::beginTransaction();
             Announcement::create([
                 'title' => $request->title,
@@ -66,7 +66,8 @@ class AnnouncementController extends Controller
             return redirect()->route('backend.announcements.index')->with('success', 'Announcement created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', 'Failed to create announcement');
+            dd($e);
+            return redirect()->route('backend.announcements.index')->with('error', 'Failed to create announcement');
         }
     }
 

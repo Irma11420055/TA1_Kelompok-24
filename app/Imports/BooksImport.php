@@ -1,44 +1,34 @@
 <?php
 
+// app/Imports/BooksImport.php
 namespace App\Imports;
 
-use Carbon\Carbon;
 use App\Models\Book;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class BooksImport implements ToModel, WithStartRow
+class BooksImport implements ToModel, WithHeadingRow
 {
-    /**
-     * @param array $row
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
+
     public function model(array $row)
     {
         return new Book([
-            // code	title	author	isbn	cover	description	publisher	languange	edition	subject	classification	cp_or	year	location	status	quantity	available	borrowed	created_at
-            'code' => $row[1],
-            'title' => $row[2],
-            'author' => $row[3],
-            'isbn' => $row[4],
-            // 'cover' => $row[5],
-            'description' => $row[6],
-            'publisher' => $row[7],
-            // 'languange' => $row[8],
-            'edition' => $row[9],
-            'subject' => $row[10],
-            'classification' => $row[11],
-            'cp_or' => $row[12],
-            'year' => $row[13],
-            'location' => $row[14],
-            // 'status' => $row[15],
-            'created_at' => Carbon::parse($row[19]),
+            'code'          => $row['code'] ?? null,
+            'title'         => $row['title'] ?? null,
+            'slug'          => $row['slug'] ?? null,
+            'author'        => $row['author'] ?? null,
+            'isbn'          => $row['isbn'] ?? null,
+            'cover'         => $row['cover'] ?? null,
+            'description'   => $row['description'] ?? null,
+            'publisher'     => $row['publisher'] ?? null,
+            'language'      => $row['language'] ?? null,
+            'edition'       => $row['edition'] ?? null,
+            'subject'       => $row['subject'] ?? null,
+            'classification' => $row['classification'] ?? null,
+            'cp_or'         => $row['cp_or'] ?? null,
+            'year'          => $row['year'] ?? null,
+            'location'      => $row['location'] ?? null,
+            'status'        => $row['status'] ?? '',
         ]);
-    }
-
-    public function startRow(): int
-    {
-        return 2;
     }
 }

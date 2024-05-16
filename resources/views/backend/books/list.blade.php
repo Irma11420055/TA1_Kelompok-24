@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @section('title', 'Buku')
 @section('breadcrumb')
@@ -20,6 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Kode Buku</th>
                                         <th>Judul Buku</th>
                                         <th>Bahasa</th>
                                         <th>Pengarang</th>
@@ -32,6 +34,7 @@
                                     @foreach ($books as $book)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $book->code }}</td>
                                             <td>{{ $book->title }}</td>
                                             <td>{{ $book->language }}</td>
                                             <td>{{ $book->author }}</td>

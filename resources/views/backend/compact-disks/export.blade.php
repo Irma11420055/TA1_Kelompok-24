@@ -1,12 +1,12 @@
-
-<!-- export book modal -->
-<div class="modal fade" id="exportBook" tabindex="-1" role="dialog" aria-labelledby="exportBookLabel" aria-hidden="true">
+<!-- export compact disks modal -->
+<div class="modal fade" id="exportCompactDisks" tabindex="-1" role="dialog" aria-labelledby="exportCompactDisksLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('backend.books.export') }}" method="POST">
+            <form action="{{ route('backend.compact-disks.export') }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exportBookLabel">Export Buku</h5>
+                    <h5 class="modal-title" id="exportCompactDisksLabel">Export Compact Disks</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -18,19 +18,14 @@
                             $columns = [
                                 'code',
                                 'title',
-                                'slug',
-                                'author',
-                                'isbn',
-                                'cover',
-                                'description',
-                                'publisher',
-                                'language',
-                                'edition',
                                 'subject',
-                                'classification',
-                                'cp_or',
+                                'author',
+                                'description',
+                                'source',
+                                'cover',
+                                'major',
+                                'category',
                                 'year',
-                                'location',
                                 'status',
                                 'created_at',
                             ];

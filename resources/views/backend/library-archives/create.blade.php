@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @section('title', 'Tambah Arsip Perpustakaan')
 @section('breadcrumb')
@@ -35,12 +36,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="content"
-                                        class="col-sm-2 col-form-label @error('content') text-danger @enderror">
-                                        Konten Artikel
+                                    <label for="body"
+                                        class="col-sm-2 col-form-label @error('body') text-danger @enderror">
+                                        Konten Arsip
                                     </label>
-                                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">{!! old('content') !!}</textarea>
-                                    @error('content')
+                                    <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body">{!! old('body') !!}</textarea>
+                                    @error('body')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -131,12 +132,20 @@
         </div>
     </div>
 @endsection
+@if ($type == 'achievements')
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
+    @endpush
+@endif
 @push('scripts')
+    @if ($type == 'achievements')
+        <script src="{{ asset('backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    @endif
     <script src="{{ asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             @if ($type == 'achievements')
-                $('#content').summernote({
+                $('#body').summernote({
                     height: 300,
                 });
             @endif

@@ -35,16 +35,14 @@ if (!function_exists('decodeId')) {
 }
 
 if (!function_exists('generateCode')) {
-    function generateCode($date, $book)
+    function generateCode($book, $lastId, $idx)
     {
-        $year = $date->format('Y');
-        $lastId = Book::whereYear('created_at', $year)->orderBy('id', 'desc')->first();
-        $lastId = $lastId ? (int) $lastId->id : 0;
+        $year = date('Y');
+        // only use 2 digits
+        $year = substr($year, -2);
         $lastId = $lastId + 1;
-        $count = Book::where('title', $book->title)->count();
-        $count = $count + 1;
 
-        $book->code = $year . "." . sprintf('%02s', $lastId) . "." . sprintf('%02s', $count);
+        return $year . "." . sprintf('%02s', $lastId) . "." . sprintf('%02s', $idx);
     }
 }
 

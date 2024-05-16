@@ -15,23 +15,35 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-tools">
-                            <a href="{{ route('backend.compact-disks.create') }}" class="btn btn-primary">Tambah CD/DVD</a>
+
+                            <div class="d-sm-inline-block justify-content-between">
+                                <a href="{{ route('backend.compact-disks.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Tambah CD/DVD</a>
+                                <!-- import button -->
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#importCompactDisks"><i class="fas fa-upload"></i> Import</button>
+                                <!-- export button -->
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#exportCompactDisks"><i class="fas fa-download"></i> Export</button>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="cd_datatable" class="table table-head-fixed">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Judul Cd/Dvd</th>
-                                    <th>Subjek</th>
-                                    <th>Pengarang</th>
-                                    <th>Tahun</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="cd_datatable" class="table table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Judul Cd/Dvd</th>
+                                        <th>Subjek</th>
+                                        <th>Pengarang</th>
+                                        <th>Tahun</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -40,6 +52,8 @@
         </div>
         <!-- /.row -->
     </div>
+    @include('backend.compact-disks.import')
+    @include('backend.compact-disks.export')
 @endsection
 @push('scripts')
     <script>

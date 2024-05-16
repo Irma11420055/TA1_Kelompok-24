@@ -148,15 +148,17 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="category"
-                                    class="col-sm-2 col-form-label @error('category') text-danger @enderror">
-                                    Kategori
+                                <label for="cd_dvd"
+                                    class="col-sm-2 col-form-label @error('cd_dvd') text-danger @enderror">
+                                    CD/DVD
                                 </label>
-                                <input type="text" class="form-control @error('category') is-invalid @enderror"
-                                    id="category" name="category"
-                                    value="{{ old('category', $compact_disk->category) }}">
-
-                                @error('category')
+                                <select class="form-control @error('cd_dvd') is-invalid @enderror" id="cd_dvd"
+                                    name="cd_dvd">
+                                    <option value="">Pilih CD/DVD</option>
+                                    <option value="CD" @if (old('cd_dvd', $compact_disk->cd_dvd) == 'CD') selected @endif>CD</option>
+                                    <option value="DVD" @if (old('cd_dvd', $compact_disk->cd_dvd) == 'DVD') selected @endif>DVD</option>
+                                </select>
+                                @error('cd_dvd')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

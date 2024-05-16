@@ -44,8 +44,7 @@ class LibraryArchiveController extends Controller
     public function store(Request $request, $type)
     {
         try {
-            if ($type == 'achivements') {
-
+            if ($type == 'achievements') {
                 $validator = Validator::make($request->all(), [
                     'title' => 'required|string|max:255',
                     'body' => 'required|string',
@@ -65,28 +64,33 @@ class LibraryArchiveController extends Controller
 
             DB::beginTransaction();
 
-            if ($request->hasFile('file')) {
-                $file = $this->uploadFile($request->file('file'), 'library-archives');
-            }
-
             $documentCount = LibraryArchive::where('type', $type)->count();
+            $data = $request->all();
+            $data['type'] = $type;
 
-            $number = '';
             if ($type == 'rules') {
-                $number = 'PPITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
+                $data['number'] = 'PPITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
             } else if ($type == 'guidelines') {
-                $number = 'PGITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
-            } else if ($type == 'achivements') {
-                $number = 'PAITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
+                $data['number'] = 'PGITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
+            } else if ($type == 'achievements') {
+                $data['number'] = 'PAITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
             } else {
-                $number = 'PAITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
+                $data['number'] = 'PAITDEL/' . date('d') . '/' . date('m') . '/' . date('Y') . '/' . $documentCount + 1;
             }
 
-            $libraryArchive = LibraryArchive::create($request->except('file', '_token') + [
-                'number' => $number,
-                'type' => $type,
-                'file' => $file ?? null,
-            ]);
+            if ($type == 'achievements') {
+                $excerpt = \Soundasleep\Html2Text::convert($request->body);
+                $excerpt = preg_replace('/\s+/', ' ', $excerpt);
+                $excerpt = Str::words($excerpt, 100, '');
+                $image = $this->uploadFile($request->file('image'), 'library-archives');
+                $data['excerpt'] = $excerpt;
+                $data['image'] = $image;
+            } else {
+                $file = $this->uploadFile($request->file('file'), 'library-archives');
+                $data['file'] = $file;
+            }
+
+            $libraryArchive = LibraryArchive::create($data);
 
             // if type is rules and first record, set active
             if ($type == 'rules' && $documentCount == 0) {
@@ -95,7 +99,7 @@ class LibraryArchiveController extends Controller
                 $libraryArchive->update(['active' => 1]);
             } elseif ($type == 'archives' && $documentCount == 0) {
                 $libraryArchive->update(['active' => 1]);
-            } elseif ($type == 'achivements') {
+            } elseif ($type == 'achievements') {
                 $libraryArchive->update(['active' => 1]);
             }
 
@@ -104,7 +108,8 @@ class LibraryArchiveController extends Controller
             return redirect()->route('backend.library-archives.index', $type)->with('success', $message . ' created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('backend.library-rules.index', $type)->with('error', 'Failed to create ' . $message);
+            $message = $this->setMessage($type);
+            return redirect()->route('backend.library-archives.index', $type)->with('error', 'Failed to create ' . $message);
         }
     }
 
@@ -146,7 +151,7 @@ class LibraryArchiveController extends Controller
             if (!$libraryArchive) {
                 return redirect()->route('backend.library-archives.index', $type)->with('error', $message . ' not found');
             }
-            if ($type == 'achivements') {
+            if ($type == 'achievements') {
                 $validator = Validator::make($request->all(), [
                     'title' => 'required|string|max:255',
                     'body' => 'required|string',
@@ -164,15 +169,19 @@ class LibraryArchiveController extends Controller
             }
 
             DB::beginTransaction();
-
-            if ($type == 'achivements') {
-                $libraryArchive->update($request->except('file', '_token') + [
-                    'file' => $request->hasFile('image') ? $this->uploadFile($request->file('image'), 'library-archives') : null,
-                ]);
+            $data = $request->except('file', '_token');
+            if ($type == 'achievements') {
+                $excerpt = \Soundasleep\Html2Text::convert($request->body);
+                $excerpt = preg_replace('/\s+/', ' ', $excerpt);
+                $excerpt = Str::words($excerpt, 100, '');
+                $image = $this->uploadFile($request->file('image'), 'library-archives');
+                $data['excerpt'] = $excerpt;
+                $data['image'] = $image;
+                $libraryArchive->update($data);
             } else {
-                $libraryArchive->update($request->except('file', '_token') + [
-                    'file' => $request->hasFile('file') ? $this->uploadFile($request->file('file'), 'library-archives') : null,
-                ]);
+                $file = $this->uploadFile($request->file('file'), 'library-archives');
+                $data['file'] = $file;
+                $libraryArchive->update($data);
             }
 
             $message = $this->setMessage($type);
@@ -181,6 +190,7 @@ class LibraryArchiveController extends Controller
             return redirect()->route('backend.library-archives.index', $type)->with('success', $message . ' updated successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            $message = $this->setMessage($type);
             return redirect()->route('backend.library-archives.index', $type)->with('error', 'Failed to update ' . $message);
         }
     }
@@ -238,7 +248,7 @@ class LibraryArchiveController extends Controller
             $message = 'Peraturan perpustakaan';
         } else if ($type == 'guidelines') {
             $message = 'Pedoman perpustakaan';
-        } else if ($type == 'achivements') {
+        } else if ($type == 'achievements') {
             $message = 'Penghargaan perpustakaan';
         } else {
             $message = 'Arsip perpustakaan';

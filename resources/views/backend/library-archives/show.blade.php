@@ -65,18 +65,33 @@
                             <input type="text" name="title" id="title" class="form-control"
                                 value="{{ $libraryArchive->title }}" readonly>
                         </div>
+                        @if ($type == 'achievements')
+                            <div class="form-group">
+                                <label for="body">Isi Artikel</label>
+                                <textarea name="body" id="body" class="form-control" rows="5" readonly>{!! $libraryArchive->body !!}</textarea>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="file">File</label>
-                            <br>
-                            <embed type="application/pdf" width="100%" height="600px" id="file">
-                        </div>
+                            @if ($libraryArchive->image)
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <br>
+                                    <img alt="{{ $libraryArchive->title }}" class="img-fluid" id="file">
+                                </div>
+                            @endif
+                        @else
+                            <div class="form-group">
+                                <label for="file">File</label>
+                                <br>
+                                <embed type="application/pdf" width="100%" height="600px" id="file">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="active">Status</label>
-                            <input type="text" name="active" id="active" class="form-control"
-                                value="{{ $libraryArchive->active == 1 ? 'Aktif' : 'Tidak Aktif' }}" readonly>
-                        </div>
+                            <div class="form-group">
+                                <label for="active">Status</label>
+                                <input type="text" name="active" id="active" class="form-control"
+                                    value="{{ $libraryArchive->active == 1 ? 'Aktif' : 'Tidak Aktif' }}" readonly>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
                 <!-- /.card -->
@@ -88,9 +103,26 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            var file = document.getElementById('file');
-            var fileUrl = '{{ $libraryArchive->file }}';
-            file.src = 'https://drive.google.com/viewerng/viewer?embedded=true&url=' + fileUrl;
+            @if ($type == 'achievements')
+                var file = document.getElementById('file');
+                var fileUrl = '{{ $libraryArchive->file }}';
+                file.src = 'https://drive.google.com/viewerng/viewer?embedded=true&url=' + fileUrl;
+            @else
+                let fileUrl = '{{ $article->image }}';
+                if (fileUrl.includes('drive.google.com')) {
+                    $(document).ready(function() {
+                        var file = document.getElementById('file');
+                        var fileId = fileUrl.split('=')[1];
+                        fileId = fileId.split('&')[0];
+                        file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                    });
+                } else {
+                    $(document).ready(function() {
+                        var file = document.getElementById('file');
+                        file.src = fileUrl;
+                    });
+                }
+            @endif
         });
     </script>
 @endpush

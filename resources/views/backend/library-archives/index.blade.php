@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @if ($type == 'rules')
     @section('title', 'Peraturan Perpustakaan')
@@ -105,8 +106,8 @@
                             data: 'title',
                             name: 'title'
                         }, {
-                            data: 'content',
-                            name: 'content'
+                            data: 'excerpt',
+                            name: 'excerpt'
                         },
                     @endif {
                         name: 'action',
@@ -151,14 +152,6 @@
                         }
                     @else
                         {
-                            targets: 2,
-                            className: 'text-center',
-                            orderable: false,
-                            render: function(data, type, row) {
-                                // render html
-                                return `<div class="text-center">${data.substring(0, 100)}...</div>`;
-                            }
-                        }, {
                             targets: 3,
                             className: 'text-center',
                             orderable: false,

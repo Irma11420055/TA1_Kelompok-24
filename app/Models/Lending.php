@@ -19,6 +19,7 @@ class Lending extends Model
         'status',
         'fine',
         'extend_date',
+        'created_by',
     ];
 
     protected static function boot()
@@ -43,5 +44,10 @@ class Lending extends Model
     public function compactDisk()
     {
         return $this->belongsTo(CompactDisk::class);
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

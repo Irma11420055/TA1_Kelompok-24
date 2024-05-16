@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('excerpt');
             $table->string('image');
             $table->unsignedBigInteger('user_id')->nullable()->index('articles_user_id_index');
+            $table->integer('status')->default(1)->comment('1 = Publish, 2 = Draft, 3 = Archive');
+            $table->integer('views')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
 

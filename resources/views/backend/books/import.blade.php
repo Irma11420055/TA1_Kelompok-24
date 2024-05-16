@@ -14,6 +14,7 @@
                     <div class="form-group">
                         <label for="file">File</label>
                         <input type="file" class="form-control" id="file" name="file">
+                        <small class="text-muted">File harus berformat .xlsx|.xls|.csv</small>
                     </div>
                 </div>
                 <div class="modal-footer">

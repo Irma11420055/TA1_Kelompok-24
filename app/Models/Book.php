@@ -14,13 +14,9 @@ class Book extends Model
 
     protected static function booted()
     {
-        // generate code
+        parent::booted();
+
         static::creating(function ($book) {
-            // if code is not set
-            if (!isset($book->code)) {
-                generateCode($book->created_at, $book);
-            }
-            // generate slug
             $book->slug = generateSlug($book->title);
         });
     }

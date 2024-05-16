@@ -6,7 +6,10 @@ use App\Traits\Upload;
 use App\Models\CompactDisk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\CompactDisksExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CompactDisksImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,7 +56,7 @@ class CompactDiskController extends Controller
                 'source' => 'required|string',
                 'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'major' => 'required|string',
-                'category' => 'required|string',
+                'cd_dvd' => 'required|string',
                 'year' => 'required|integer',
             ]);
 
@@ -63,18 +66,10 @@ class CompactDiskController extends Controller
 
             $cover = $this->uploadFile($request->file('cover'), 'CompactDisks');
 
-            CompactDisk::create([
-                'code' => $request->code,
-                'title' => $request->title,
-                'subject' => $request->subject,
-                'author' => $request->author,
-                'description' => $request->description,
-                'source' => $request->source,
-                'cover' => $cover,
-                'major' => $request->major,
-                'category' => $request->category,
-                'year' => $request->year,
-            ]);
+            $data = $request->except('_token', 'cover');
+            $data['cover'] = $cover;
+
+            CompactDisk::create($data);
 
             DB::commit();
 
@@ -122,7 +117,7 @@ class CompactDiskController extends Controller
                 'source' => 'required|string',
                 'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'major' => 'required|string',
-                'category' => 'required|string',
+                'cd_dvd' => 'required|string',
                 'year' => 'required|integer',
             ]);
 
@@ -133,23 +128,16 @@ class CompactDiskController extends Controller
 
             $compact_disk = CompactDisk::find(decodeId($compact_disk));
 
-            $cover = $compact_disk->cover;
+            $data = $request->except('_token', 'cover');
             if ($request->hasFile('cover')) {
-                $cover = $this->uploadFile($request->file('cover'), 'CompactDisks');
+                // if has cover, delete the cover
+                if ($compact_disk->cover) {
+                    $this->deleteFile($compact_disk->cover);
+                }
+                $data['cover'] = $this->uploadFile($request->file('cover'), 'CompactDisks');
             }
 
-            $compact_disk->update([
-                'code' => $request->code,
-                'title' => $request->title,
-                'subject' => $request->subject,
-                'author' => $request->author,
-                'description' => $request->description,
-                'source' => $request->source,
-                'cover' => $cover,
-                'major' => $request->major,
-                'category' => $request->category,
-                'year' => $request->year,
-            ]);
+            $compact_disk->update($data);
 
             DB::commit();
 
@@ -182,5 +170,44 @@ class CompactDiskController extends Controller
             DB::rollBack();
             return response()->json(['status' => 'error', 'message' => 'Failed to delete Compact Disk']);
         }
+    }
+
+    /**
+     * Import data
+     *
+     */
+    public function import(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|file|mimes:csv,xlsx,xls',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', $validator->errors()->first('file'));
+            }
+
+            $file = $request->file('file');
+            DB::beginTransaction();
+            Excel::import(new CompactDisksImport, $file);
+            DB::commit();
+            return redirect()->route('backend.compact-disks.index')->with('success', 'Data imported successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('backend.compact-disks.index')->with('error', 'Data import failed');
+        }
+    }
+
+    /**
+     * Export data
+     *
+     */
+    public function export(Request $request)
+    {
+        $columns = $request->input('columns', []);
+        if (empty($columns)) {
+            return redirect()->back()->with('error', 'Please select at least one column to export.');
+        }
+        return Excel::download(new CompactDisksExport($columns), 'compact_disks.xlsx');
     }
 }
