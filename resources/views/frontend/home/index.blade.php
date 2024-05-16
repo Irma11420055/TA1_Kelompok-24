@@ -1,4 +1,5 @@
 @extends('layouts.frontend.master')
+@section('title', 'Home')
 @section('content')
     <div class="title-container">
         <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Layanan
@@ -14,9 +15,9 @@
         </div>
     </div>
 
-    <div class="container-fluid py-5" style="background-color: #e7e7e7;">
+    <div class="container-fluid py-5 px-5" style="background-color: #e7e7e7;">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -43,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -72,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -101,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
@@ -147,17 +148,18 @@
         </div>
     </div>
 
-    <div class="card-user" style="width: 100%">
+    <div class="container-fluid py-5 px-5" style="background-color: #e7e7e7;">
         <div class="row">
             @foreach ($bestBooks as $book)
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3 d-flex align-items-stretch">
                     <div class="card">
                         <div class="card-body">
                             <div>
                                 <div class="d-flex justify-content-between">
                                     <div class="m-3 align-self-center">
                                         <img src="{{ $book->cover }}" alt="Deskripsi Gambar" class="img-fluid"
-                                            style="width: 250px" height="250px" />
+                                            style="width: 250px" height="250px"
+                                            onerror="https://lancangkuning.com/image/NoImage.png" />
                                     </div>
                                     <div>
                                         <table>
@@ -188,20 +190,6 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <table>
-                                            <tr>
-                                                <td
-                                                    style="text-align: center; align-items: center; justify-content: center;">
-                                                    <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
-                                                </td>
-                                                <td style="width: 300px;">
-                                                    <p
-                                                        style="font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
-                                                        Tersisa {{ $book->stock }}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -210,19 +198,18 @@
                                     <i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>
                                     <p
                                         style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; margin-bottom: 5px;">
-                                        Dongeng Nusantara</p>
+                                        {{ $book->subject }}
+                                    </p>
                                 </div>
                                 <p
                                     style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin: 0;">
-                                    #Cerpen #BukuAnimasi #Fiksi</p>
+                                    {{ $book->description }}
+                                </p>
                                 <div class="text-book">
                                     <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
-                                    <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
                                     <p style="font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
-                                        5,0</p>
+                                        {{ $book->rating }}
+                                    </p>
                                 </div>
                             </div>
                         </div>

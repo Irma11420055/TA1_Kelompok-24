@@ -46,7 +46,8 @@
                     <a href="{{ route('articles.show', $article->slug) }}" style="text-decoration: none; color: black;">
                         <div style="display: flex; flex-direction: column;">
                             <div class="sub-card-container-book">
-                                <img src="{{ $article->image }}" alt="Deskripsi Gambar">
+                                <img src="{{ $article->image }}" alt={{ $article->image }} class="img-fluid"
+                                    onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
                                 <div>
                                     <table style="border-collapse: collapse;">
                                         <tr>

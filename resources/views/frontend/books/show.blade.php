@@ -13,7 +13,8 @@
         <div class="row">
             <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img style="height: 362px; width: 259px" src="{{ $book->cover }}" alt="Deskripsi Gambar">
+                    <img style="height: 362px; width: 259px" src="{{ $book->cover }}" alt={{ $book->title }}
+                        onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
                 </div>
                 @auth
                     <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
@@ -138,7 +139,7 @@
                     @if (auth()->check())
                         @if ($book->status == 1)
                             <button type="button" class="btn btn-success"
-                                onclick="lendBook('{{ $book->slug }}')">Pinjam</button>
+                                onclick="lendBook('{{ encodeId($book->id) }}')">Pinjam</button>
                         @else
                             <span class="text-danger">Buku tidak tersedia</span>
                         @endif
@@ -177,7 +178,7 @@
                     if (result.isConfirmed) {
                         handleAction('{{ route('lendings.store') }}', 'POST',
                             'Buku berhasil dipinjam', 'Gagal meminjam buku', {
-                                slug: id,
+                                book_id: id,
                                 return_date: $('#return_date').val()
                             }, null, () => {
                                 window.location.reload();

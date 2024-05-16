@@ -34,12 +34,13 @@
     </div>
     <div class="row py-1">
         <div class="col-12">
-            <div style="background-color: #E7E7E7" class="p-4">
+            <div style="background-color: #E7E7E7" class="p-4 text-white">
                 {!! $libraryArchive->body !!}
                 <div class="row mt-3">
                     <!-- image -->
-                    <img id="file" class="img-fluid" style="width: 200px; height: 200px;"
-                        alt="{{ $libraryArchive->title }}">
+                    <img id="file" src="{{ $libraryArchive->image }}" class="img-fluid"
+                        style="width: 200px; height: 200px;" alt="{{ $libraryArchive->title }}"
+                        onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
                 </div>
             </div>
         </div>
@@ -47,19 +48,16 @@
 @endsection
 @push('scripts')
     <script>
-        let fileUrl = '{{ $libraryArchive->image }}';
-        if (fileUrl.includes('drive.google.com')) {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                var fileId = fileUrl.split('=')[1];
-                fileId = fileId.split('&')[0];
-                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
             });
-        } else {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                file.src = fileUrl;
-            });
-        }
+        });
     </script>
 @endpush

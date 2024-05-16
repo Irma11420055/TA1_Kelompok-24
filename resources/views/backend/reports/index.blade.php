@@ -23,31 +23,18 @@
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="start_month" id="start_month" class="form-control">
+                                    <input type="text" name="start_date" id="start_month"
+                                        class="form-control start_month">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="end_month" id="end_month" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="start_year" class="col-sm-3 col-form-label">Pilih Tahun Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_year" id="start_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_year" class="col-sm-3 col-form-label">Pilih Tahun Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_year" id="end_year" class="form-control">
+                                    <input type="text" name="end_month" id="end_month" class="form-control end_month">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
-                                <a href="javascript:;" onclick="viewReport(this.form, 'book', 'lent')"
-                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -66,31 +53,15 @@
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="start_month" id="start_month" class="form-control">
+                                    <input type="text" name="start_month" id="start_month"
+                                        class="form-control start_month">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="end_month" id="end_month" class="form-control">
+                                    <input type="text" name="end_month" id="end_month" class="form-control end_month">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="start_year" class="col-sm-3 col-form-label">Pilih Tahun Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_year" id="start_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_year" class="col-sm-3 col-form-label">Pilih Tahun Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_year" id="end_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
-                                <a href="javascript:;" onclick="viewReport(this.form, 'book', 'returned')"
-                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -109,31 +80,18 @@
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="start_month" id="start_month" class="form-control">
+                                    <input type="text" name="start_month" id="start_month"
+                                        class="form-control start_month">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="end_month" id="end_month" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="start_year" class="col-sm-3 col-form-label">Pilih Tahun Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_year" id="start_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_year" class="col-sm-3 col-form-label">Pilih Tahun Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_year" id="end_year" class="form-control">
+                                    <input type="text" name="end_month" id="end_month" class="form-control end_month">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
-                                <a href="javascript:;" onclick="viewReport(this.form, 'book'. 'fine')"
-                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -152,31 +110,19 @@
                             <div class="form-group row">
                                 <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="start_month" id="start_month" class="form-control">
+                                    <input type="text" name="start_month" id="start_month"
+                                        class="form-control start_month">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="end_month" id="end_month" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="start_year" class="col-sm-3 col-form-label">Pilih Tahun Awal</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="start_year" id="start_year" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="end_year" class="col-sm-3 col-form-label">Pilih Tahun Akhir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="end_year" id="end_year" class="form-control">
+                                    <input type="text" name="end_month" id="end_month"
+                                        class="form-control end_month">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
-                                <a href="javascript:;" onclick="viewReport(this.form, 'cd-dvd', 'lent')"
-                                    class="btn btn-secondary ml-2">Lihat Laporan</a>
                             </div>
                         </form>
                     </div>
@@ -185,8 +131,55 @@
         </div>
     </div>
 @endsection
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
+@endpush
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
     <script>
+        $(document).ready(function() {
+            // flatpickr for start month
+            $('.start_month').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "m/Y",
+                        altFormat: "F Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for end month
+            $('.end_month').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "m/Y",
+                        altFormat: "F Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for start year
+            $('.start_year').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "Y",
+                        altFormat: "Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for end year
+            $('.end_year').flatpickr({
+
+            });
+        });
+
         function viewReport(form, type, status = null) {
             // get all input elements
             const inputs = form.querySelectorAll('input');

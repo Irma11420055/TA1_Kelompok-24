@@ -15,6 +15,7 @@ class Announcement extends Model
         'slug',
         'content',
         'image',
+        'status',
     ];
 
     protected static function booted()

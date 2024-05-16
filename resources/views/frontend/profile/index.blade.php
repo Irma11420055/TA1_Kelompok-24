@@ -13,7 +13,6 @@
     <div class="card" style="background-color: #E7E7E7; padding: 40px;">
 
         <div class="d-flex justify-content-between">
-            <!-- Mengatur lebar maksimum untuk konten dan menggunakan flexbox untuk penempatan gambar dan teks -->
             <div style="align-self: center;"> <!-- Mengatur teks profil -->
                 <p><strong>Nama :</strong> {{ auth()->user()->name }}</p>
                 <hr style="border-color: #6F410B;">

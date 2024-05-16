@@ -24,16 +24,9 @@ class LendingController extends Controller
     public function store(Request $request)
     {
         try {
-            $book = Book::where('slug', $request->slug)->where('status', '1')->first();
-            if (!$book) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Buku tidak ditemukan',
-                ]);
-            }
-
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
+                'book_id' => 'required',
                 'return_date' => 'required|date|after:today',
             ]);
 
@@ -51,12 +44,24 @@ class LendingController extends Controller
                 ]);
             }
 
+            $book = Book::find(decodeId($request->book_id));
+
+            if ($book->status == 2) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Buku sedang dipinjam',
+                ]);
+            }
+
             $lending = Lending::create([
                 'book_id' => $book->id,
                 'user_id' => auth()->user()->id,
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
             ]);
+
+            $book->status = 2;
+            $book->save();
 
             LogLending::create([
                 'lending_id' => $lending->id,

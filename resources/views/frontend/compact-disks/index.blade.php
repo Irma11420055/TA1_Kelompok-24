@@ -39,7 +39,7 @@
     </div>
     <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">
         <div class="row justify-content-center mx-5">
-            <div class="col-8">
+            <div class="col-12">
                 <div class="row">
                     @foreach ($compactDisks as $cd)
                         <div class="col-md-6">
@@ -47,7 +47,8 @@
                                 style="text-decoration: none; color: black;">
                                 <div style="display: flex; flex-direction: column;">
                                     <div class="sub-card-container-book">
-                                        <img src="{{ $cd->cover }}" alt="Deskripsi Gambar">
+                                        <img src="{{ $cd->cover }}" alt={{ $cd->title }}
+                                            onerror="https://lancangkuning.com/image/NoImage.png">
                                         <div>
                                             <table style="border-collapse: collapse;">
                                                 <tr>
@@ -102,7 +103,7 @@
                 </div>
 
             </div>
-            <div class="col-4">
+            {{-- <div class="col-4">
                 <p style="font-weight: 700; font-size: 20px; color:#6F410B; margin-left: 30px;">
                     Rating Tertinggi</p>
                 <table>
@@ -164,7 +165,7 @@
                             </i></td>
                     </tr>
                 </table>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

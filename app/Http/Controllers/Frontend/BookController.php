@@ -48,9 +48,7 @@ class BookController extends Controller
             return redirect()->route('books.index')->with('error', 'Data tidak ditemukan');
         }
 
-        $book = Book::where('slug', $slug)->get();
-        // find available book by status
-        $book = $book->where('status', '1')->first();
+        $book = Book::where('slug', $slug)->where('status', '1')->first();
         if (!$book) {
             $book = Book::where('slug', $slug)->first();
         }

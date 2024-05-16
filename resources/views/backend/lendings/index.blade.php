@@ -158,7 +158,6 @@
                                     <a class="dropdown-item btn-approve" href="${url}/${row.id}/approve">Setujui</a>
                                     <a class="dropdown-item btn-reject" href="${url}/${row.id}/reject">Tolak</a>
                                     <a class="dropdown-item" href="${url}/${row.id}/edit">Edit</a>
-                                    <a class="dropdown-item btn-delete" href="${url}/${row.id}">Hapus</a>
                                 </div>
                             </div>
                         `;

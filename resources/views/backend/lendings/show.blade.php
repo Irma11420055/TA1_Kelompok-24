@@ -59,7 +59,11 @@
                 <a href="javascript:void(0)"
                     onclick="showConfirmationDialog('Kembalikan Buku', 'Apakah Anda yakin ingin mengembalikan Buku ini?', 'warning', 'Ya, kembalikan', function(result) {
                     if (result.isConfirmed) {
-                        handleAction('{{ route('backend.lendings.return', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', 'PUT', 'Peminjaman berhasil dikembalikan', 'Gagal mengembalikan peminjaman');
+                        handleAction('{{ route('backend.lendings.return', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', 'PUT', 'Peminjaman berhasil dikembalikan', 'Gagal mengembalikan peminjaman', null, null, () => {
+                            $('#modalListResult').modal('hide');
+                            lendingTable.ajax.reload();
+                            table.ajax.reload();
+                        });
                     }
                 })"
                     class="btn btn-success">Kembalikan</a>

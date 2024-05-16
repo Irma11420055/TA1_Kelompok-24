@@ -49,6 +49,7 @@ class AnnouncementController extends Controller
                 'title' => 'required|string|max:255',
                 'content' => 'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'status' => 'required|in:pin,unpin'
             ]);
 
             if ($validator->fails()) {
@@ -61,12 +62,12 @@ class AnnouncementController extends Controller
                 'title' => $request->title,
                 'content' => $request->content,
                 'image' => $image,
+                'status' => $request->status,
             ]);
             DB::commit();
             return redirect()->route('backend.announcements.index')->with('success', 'Announcement created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
             return redirect()->route('backend.announcements.index')->with('error', 'Failed to create announcement');
         }
     }
@@ -110,6 +111,7 @@ class AnnouncementController extends Controller
                 'title' => 'required|string|max:255',
                 'content' => 'required',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'status' => 'required|in:pin,unpin'
             ]);
 
             if ($validator->fails()) {
@@ -126,6 +128,7 @@ class AnnouncementController extends Controller
                 'title' => $request->title,
                 'content' => $request->content,
                 'image' => $image,
+                'status' => $request->status,
             ]);
             DB::commit();
             return redirect()->route('backend.announcements.index')->with('success', 'Announcement updated successfully');
@@ -156,6 +159,24 @@ class AnnouncementController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['status' => 'error', 'message' => 'Failed to delete announcement']);
+        }
+    }
+
+    /**
+     * Change status announcement
+     */
+    public function changeStatus($announcement)
+    {
+        try {
+            $announcement = Announcement::find(decodeId($announcement));
+            if (!$announcement) {
+                return response()->json(['status' => 'error', 'message' => 'Announcement not found']);
+            }
+            $status = $announcement->status == 'pin' ? 'unpin' : 'pin';
+            $announcement->update(['status' => $status]);
+            return response()->json(['status' => 'success', 'message' => 'Announcement status changed successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Failed to change announcement status']);
         }
     }
 }

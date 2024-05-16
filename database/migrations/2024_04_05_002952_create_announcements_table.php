@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->index('announcements_slug_index');
             $table->longText('content');
             $table->string('image')->nullable();
+            $table->enum('status', ['pin', 'unpin'])->default('unpin');
             $table->timestamps();
         });
     }

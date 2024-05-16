@@ -47,7 +47,9 @@
                                 style="text-decoration: none; color: black;">
                                 <div style="display: flex; flex-direction: column;">
                                     <div class="sub-card-container-book">
-                                        <img src="{{ asset('dist/img/cd.PNG') }}" alt="Deskripsi Gambar">
+                                        <img src="{{ asset('dist/img/cd.PNG') }}" alt="{{ $cd->title }}"
+                                            class="img-fluid"
+                                            onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
                                         <div>
                                             <table style="border-collapse: collapse;">
                                                 <tr>

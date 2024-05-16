@@ -48,7 +48,8 @@
                             <a href="{{ route('books.show', $book->slug) }}" style="text-decoration: none; color: black;">
                                 <div style="display: flex; flex-direction: column; margin: 0 0 80px auto;">
                                     <div class="sub-card-container-book">
-                                        <img src="{{ $book->cover }}" class="img-fluid" alt="Deskripsi Gambar">
+                                        <img src="{{ $book->cover }}" class="img-fluid" alt="{{ $book->title }}"
+                                            onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
                                         <div>
                                             <table style="border-collapse: collapse;">
                                                 <tr>
@@ -111,10 +112,8 @@
                                                 <tr>
                                                     <td colspan="2">
                                                         <div class="text-book">
-                                                            @for ($i = 0; $i < $book->rating; $i++)
-                                                                <i class="fas fa-star fa-sm"
-                                                                    style="color: #FFD43B; margin-right: 2px;"></i>
-                                                            @endfor
+                                                            <i class="fas fa-star fa-sm"
+                                                                style="color: #FFD43B; margin-right: 2px;"></i>
                                                             <h5
                                                                 style="font-size: 12px; font-weight: 400; margin-top: 10px;">
                                                                 {{ $book->rating }}</h5>
@@ -149,7 +148,7 @@
                             </td>
                             <td style="width: 300px;">
                                 <p style="font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
-                                    Dilan 1990</p>
+                                    {{ $books->title }}</p>
                                 <div class="text-book" style="margin: 5px 0 5px 20px;">
                                     @for ($i = 0; $i < $books->rating; $i++)
                                         <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
@@ -158,17 +157,10 @@
                                         {{ $books->rating }}
                                     </h5>
                                     <h5 style="font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
-                                        75/100</h5>
+                                        {{ $books->author }}
+                                    </h5>
                                 </div>
-                                {{-- <p
-                                        style="font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
-                                        Menjadi Nomor 1 Sejak 10 November</p> --}}
                             </td>
-                            {{-- <td style="vertical-align: top;"><i>
-                                        <p
-                                            style="font-size: 12px; font-weight: 500; margin-top: 20px;">
-                                            Novel</p>
-                                    </i></td> --}}
                         </tr>
                     @endforeach
                 </table>

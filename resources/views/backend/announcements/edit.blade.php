@@ -58,6 +58,21 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="status"
+                                    class="col-sm-2 col-form-label @error('status') text-danger @enderror">
+                                    Status
+                                </label>
+                                <select class="form-control @error('status') is-invalid @enderror" id="status"
+                                    name="status">
+                                    <option value="pin"
+                                        {{ old('status', $announcement->status) == 'pin' ? 'selected' : '' }}>Pin</option>
+                                    <option value="unpin"
+                                        {{ old('status', $announcement->status) == 'unpin' ? 'selected' : '' }}>Unpin
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

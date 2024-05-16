@@ -30,6 +30,7 @@
                                         <th>Status</th>
                                         <th>Role</th>
                                         <th>Batas Peminjaman</th>
+                                        <th>Jumlah Peminjaman</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -79,6 +80,10 @@
                     {
                         data: 'lending_limit',
                         name: 'lending_limit'
+                    },
+                    {
+                        data: 'lending_count',
+                        name: 'lending_count'
                     },
                     {
                         name: 'action',

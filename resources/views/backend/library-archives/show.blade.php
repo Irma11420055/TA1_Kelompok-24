@@ -103,25 +103,20 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            @if ($type == 'achievements')
+            @if ($type == 'rules')
                 var file = document.getElementById('file');
                 var fileUrl = '{{ $libraryArchive->file }}';
                 file.src = 'https://drive.google.com/viewerng/viewer?embedded=true&url=' + fileUrl;
             @else
-                let fileUrl = '{{ $article->image }}';
-                if (fileUrl.includes('drive.google.com')) {
-                    $(document).ready(function() {
-                        var file = document.getElementById('file');
+                let images = document.querySelectorAll('img');
+                images.forEach((img) => {
+                    let fileUrl = img.src;
+                    if (fileUrl.includes('drive.google.com')) {
                         var fileId = fileUrl.split('=')[1];
                         fileId = fileId.split('&')[0];
-                        file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
-                    });
-                } else {
-                    $(document).ready(function() {
-                        var file = document.getElementById('file');
-                        file.src = fileUrl;
-                    });
-                }
+                        img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                    }
+                });
             @endif
         });
     </script>

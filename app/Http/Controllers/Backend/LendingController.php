@@ -136,6 +136,7 @@ class LendingController extends Controller
                 'lending_id' => $lending->id,
                 'status' => 'lent',
             ]);
+
             if ($type == 'book') {
                 $book->status = 2;
                 $book->save();

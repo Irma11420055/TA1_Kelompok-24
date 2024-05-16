@@ -36,6 +36,9 @@ Route::prefix('backend')
 
         $pref = 'announcements';
         $ctrl = 'AnnouncementController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::put('/{announcement}/change-status', $ctrl . '@changeStatus')->name('announcements.change-status');
+        });
         Route::resource($pref, $ctrl);
 
         $ctrl = 'LendingController';
@@ -115,7 +118,7 @@ Route::namespace('App\Http\Controllers\Frontend')
         $pref = 'books';
         $ctrl = 'BookController';
         Route::prefix($pref)->group(function () use ($ctrl) {
-            Route::get('/', $ctrl . '@index')->name('books.index');
+            Route::get('/frontend/books/index', $ctrl . '@index')->name('books.index');
             Route::get('/{book}', $ctrl . '@show')->name('books.show');
             Route::post('/{book}/review', $ctrl . '@review')->name('books.review');
         });

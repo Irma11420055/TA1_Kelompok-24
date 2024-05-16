@@ -39,86 +39,79 @@
     </div>
     <div class="container-fluid py-5" style="background-color: #E7E7E7;">
         <div class="row">
-            <div class="col-8">
-                <div class="row">
-                    @foreach ($books as $book)
-                        <div class="col-md-6">
-                            <a href="{{ route('books.show', $book->slug) }}" style="text-decoration: none; color: black;">
-                                <div style="display: flex; flex-direction: column; margin: 0 0 80px auto;">
-                                    <div class="sub-card-container-book">
-                                        <img src="{{ $book->cover }}" class="img-fluid" alt="Deskripsi Gambar">
-                                        <div>
-                                            <table style="border-collapse: collapse;">
-                                                <tr>
-                                                    <td colspan="2">
+            @foreach ($books as $book)
+                <div class="col-md-4">
+                    <a href="{{ route('books.show', $book->slug) }}" style="text-decoration: none; color: black;">
+                        <div style="display: flex; flex-direction: column; margin: 0 0 80px auto;">
+                            <div class="sub-card-container-book">
+                                <img src="{{ $book->cover }}" class="img-fluid" alt="{{ $book->title }}"
+                                    onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
+                                <div>
+                                    <table style="border-collapse: collapse;">
+                                        <tr>
+                                            <td colspan="2">
 
-                                                        <p
-                                                            style="font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
-                                                            {{ $book->title }}</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        style="text-align: center; align-items: center; justify-content: center;">
-                                                        <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                            {{ $book->author }}</p>
-                                                    </td>
-                                                </tr>
-                                                <tr style="margin-top: 3px;">
-                                                    <td
-                                                        style="text-align: center; align-items: center; justify-content: center; margin-top: 5px;">
-                                                        <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                            158 Hal</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2"><i>
-                                                            <p
-                                                                style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                                {{ $book->publisher }}</p>
-                                                        </i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2"><i>
-                                                            <p style="font-size: 12px; font-weight: 500; margin: 0;">
-                                                                ISBN: {{ $book->isbn }}</p>
-                                                        </i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <div class="text-book">
-                                                            @for ($i = 0; $i < $book->rating; $i++)
-                                                                <i class="fas fa-star fa-sm"
-                                                                    style="color: #FFD43B; margin-right: 2px;"></i>
-                                                            @endfor
-                                                            <h5
-                                                                style="font-size: 12px; font-weight: 400; margin-top: 10px;">
-                                                                {{ $book->rating }}</h5>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div style="position: relative;">
-                                        <p
-                                            style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; position: absolute; bottom: -10px; margin-left: 30px;">
-                                            {{ $book->code }}</p>
-                                    </div>
+                                                <p
+                                                    style="font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
+                                                    {{ $book->title }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; align-items: center; justify-content: center;">
+                                                <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
+                                            </td>
+                                            <td style="width: 300px;">
+                                                <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                    {{ $book->author }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr style="margin-top: 3px;">
+                                            <td
+                                                style="text-align: center; align-items: center; justify-content: center; margin-top: 5px;">
+                                                <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
+                                            </td>
+                                            <td style="width: 300px;">
+                                                <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                    158 Hal</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><i>
+                                                    <p style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
+                                                        {{ $book->publisher }}</p>
+                                                </i></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><i>
+                                                    <p style="font-size: 12px; font-weight: 500; margin: 0;">
+                                                        ISBN: {{ $book->isbn }}</p>
+                                                </i></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="text-book">
+                                                    @for ($i = 0; $i < $book->rating; $i++)
+                                                        <i class="fas fa-star fa-sm"
+                                                            style="color: #FFD43B; margin-right: 2px;"></i>
+                                                    @endfor
+                                                    <h5 style="font-size: 12px; font-weight: 400; margin-top: 10px;">
+                                                        {{ $book->rating }}</h5>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-                            </a>
+                            </div>
+                            <div style="position: relative;">
+                                <p
+                                    style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; position: absolute; bottom: -10px; margin-left: 30px;">
+                                    {{ $book->code }}</p>
+                            </div>
                         </div>
-                    @endforeach
+                    </a>
                 </div>
-            </div>
+            @endforeach
         </div>
-    </div>
     </div>
 @endsection
 @push('scripts')

@@ -28,7 +28,7 @@ class BooksImport implements ToModel, WithHeadingRow
             'cp_or'         => $row['cp_or'] ?? null,
             'year'          => $row['year'] ?? null,
             'location'      => $row['location'] ?? null,
-            'status'        => $row['status'] ?? '',
+            'status'        => $row['status'] ?? 1,
         ]);
     }
 }

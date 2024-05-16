@@ -1,4 +1,3 @@
-
 @extends('layouts.backend.master')
 @section('title', 'Detail Pengumuman')
 @section('breadcrumb')

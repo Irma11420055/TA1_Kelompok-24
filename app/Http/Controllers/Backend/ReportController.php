@@ -21,20 +21,16 @@ class ReportController extends Controller
     {
         $start_month = $request->start_month;
         $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
 
-        return Excel::download(new LendingBookExport($start_month, $end_month, $start_year, $end_year, $status, 'book'), 'LendingBook.xlsx');
+        return Excel::download(new LendingBookExport($start_month, $end_month, $status, 'book'), 'LendingBook.xlsx');
     }
 
     public function exportLendingCD(Request $request, $status)
     {
         $start_month = $request->start_month;
         $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
 
-        return Excel::download(new LendingBookExport($start_month, $end_month, $start_year, $end_year, $status, 'cd_dvd'), 'LendingCD.xlsx');
+        return Excel::download(new LendingBookExport($start_month, $end_month, $status, 'cd_dvd'), 'LendingCD.xlsx');
     }
 
     public function exportVisitor(Request $request)

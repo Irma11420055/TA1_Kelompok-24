@@ -13,14 +13,27 @@
             <div class="col-12">
                 <x-alert />
                 <div class="card">
-                    @if (($status == 'pending' && $type == 'book') || ($status == 'lent' && $type == 'cd-dvd'))
-                        <div class="card-header">
-                            <div class="card-tools">
-                                <a href="{{ route('backend.lendings.create', $type) }}" class="btn btn-primary">Tambah
-                                    Peminjaman {{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</a>
-                            </div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            @if ($type == 'book')
+                                @if ($status == 'pending')
+                                    Pemesanan Buku
+                                @elseif($status == 'lent')
+                                    Peminjaman Buku
+                                @else
+                                    Riwayat Peminjaman Buku
+                                @endif
+                            @else
+                                @if ($status == 'pending')
+                                    Pemesanan CD/DVD
+                                @elseif($status == 'lent')
+                                    Peminjaman CD/DVD
+                                @else
+                                    Riwayat Peminjaman CD/DVD
+                                @endif
+                            @endif
                         </div>
-                    @endif
+                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="mb-3">
@@ -52,7 +65,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            const url = window.location.href;
+            const url = '{{ route('backend.lendings.index', ['type' => $type]) }}';
             const type = '{{ $type }}';
             const status = '{{ $status }}';
             const table = $('#datatable').DataTable({
@@ -144,7 +157,6 @@
                                     <a class="dropdown-item btn-approve" href="${url}/${row.id}/approve">Setujui</a>
                                     <a class="dropdown-item btn-reject" href="${url}/${row.id}/reject">Tolak</a>
                                     <a class="dropdown-item" href="${url}/${row.id}/edit">Edit</a>
-                                    <a class="dropdown-item btn-delete" href="${url}/${row.id}">Hapus</a>
                                 </div>
                             </div>
                         `;
@@ -179,7 +191,8 @@
                 table.on('click', '.btn-approve', function(e) {
                     e.preventDefault();
                     const url = $(this).attr('href');
-                    showConfirmationDialog('Are you sure?', 'You won\'t be able to revert this!', 'warning',
+                    showConfirmationDialog('Are you sure?', 'You won\'t be able to revert this!',
+                        'warning',
                         'Yes, approve it!', (result) => {
                             if (result.isConfirmed) {
                                 handleAction(url, 'PUT', 'Lending has been approved!',

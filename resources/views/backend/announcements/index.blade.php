@@ -28,6 +28,7 @@
                                         <th>#</th>
                                         <th>Judul Pengumuman</th>
                                         <th>Isi Pengumuman</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -65,6 +66,10 @@
                         name: 'content'
                     },
                     {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
                         name: 'action',
                         orderable: false,
                         searchable: false
@@ -87,21 +92,43 @@
                     {
                         targets: 3,
                         className: 'text-center',
+                        render: function(data) {
+                            return data === 'pin' ? '<span class="badge badge-info">Pin</span>' :
+                                '<span class="badge badge-secondary">Unpin</span>';
+                        }
+                    },
+                    {
+                        targets: 4,
+                        className: 'text-center',
                         orderable: false,
                         render: function(data, type, row) {
-                            return `
-                            <div class="btn-group">
-                                <a class="btn btn-info btn-sm" href="${url}/${row.id}">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        `;
+                            var btn = `
+                                <div class="btn-group">
+                                    <a class="btn btn-info btn-sm" href="${url}/${row.id}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                `;
+                            if (row.status === 'pin') {
+                                btn += `
+                                        <a class="btn btn-secondary btn-sm btn-status" href="${url}/${row.id}/change-status">
+                                            <i class="fas fa-thumbtack"></i>
+                                        </a>
+                                    `;
+                            } else {
+                                btn += `
+                                        <a class="btn btn-secondary btn-sm btn-status" href="${url}/${row.id}/change-status">
+                                            <i class="fas fa-thumbtack"></i>
+                                        </a>
+                                    `;
+                            }
+                            btn += '</div>';
+                            return btn;
                         },
                         width: '15%'
                     }
@@ -123,6 +150,15 @@
                                     table.ajax.reload();
                                 });
                         }
+                    });
+            });
+
+            $('#announcement_datatable').on('click', '.btn-status', function(e) {
+                e.preventDefault();
+                const url = $(this).attr('href');
+                handleAction(url, 'PUT', 'Announcement status has been updated!',
+                    'Failed to update announcement status!', {}, null, () => {
+                        table.ajax.reload();
                     });
             });
         });
