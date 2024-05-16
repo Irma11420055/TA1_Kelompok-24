@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class LogLending extends Model
 {
     use HasFactory;
-    protected $guarded = [];
 
-    public function books()
+    protected $guarded = ['id'];
+
+    public function lending()
     {
-        return $this->hasMany(Book::class);
+        return $this->belongsTo(Lending::class);
     }
 }

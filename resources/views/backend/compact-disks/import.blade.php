@@ -1,11 +1,12 @@
 <!-- modal import book -->
-<div class="modal fade" id="importBook" tabindex="-1" role="dialog" aria-labelledby="importBookLabel" aria-hidden="true">
+<div class="modal fade" id="importCompactDisks" tabindex="-1" role="dialog" aria-labelledby="importCompactDisksLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ route('backend.books.import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('backend.compact-disks.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importBookLabel">Import Buku</h5>
+                    <h5 class="modal-title" id="importCompactDisksLabel">Import CD/DVD</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

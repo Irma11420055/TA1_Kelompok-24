@@ -16,6 +16,7 @@
                     <tr>
                         <th>No</th>
                         <th>Judul Penghargaan</th>
+                        <th>Isi Penghargaan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -24,8 +25,10 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $libraryArchive->title }}</td>
+                            <td>{{ $libraryArchive->excerpt }}</td>
                             <td>
-                                <a href="" class="btn btn-primary btn-sm">Lihat</a>
+                                <a href="{{ route('library-archives.achievements.show', $libraryArchive->slug) }}"
+                                    class="btn btn-primary btn-sm">Lihat</a>
                             </td>
                         </tr>
                     @empty

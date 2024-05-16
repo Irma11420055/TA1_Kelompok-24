@@ -80,6 +80,17 @@
                             <input type="text" name="year" id="year" class="form-control"
                                 value="{{ $compactDisk->year }}" readonly>
                         </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            @if ($compactDisk->status == 1)
+                                <input type="text" name="status" id="status" class="form-control" value="Tersedia"
+                                    readonly>
+                            @else
+                                <input type="text" name="status" id="status" class="form-control"
+                                    value="Tidak Tersedia" readonly>
+                            @endif
+                        </div>
                     </div>
                     <!-- /.card -->
                 </div>
@@ -90,19 +101,19 @@
 @endsection
 @push('scripts')
     <script>
-        let fileUrl = '{{ $compactDisk->cover }}';
-        if (fileUrl.includes('drive.google.com')) {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
+        let images = document.querySelectorAll('img');
+        images.forEach((img) => {
+            let fileUrl = img.src;
+            if (fileUrl.includes('drive.google.com')) {
                 var fileId = fileUrl.split('=')[1];
                 fileId = fileId.split('&')[0];
-                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
-            });
-        } else {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                file.src = fileUrl;
-            });
-        }
+                img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+            }
+        });
+
+        // on enter key
+        $(document).on('keyup', function(e) {
+            console.log(e.key);
+        });
     </script>
 @endpush

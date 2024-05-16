@@ -2,7 +2,7 @@
 @section('title', 'List Buku')
 @section('content')
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Buku</h1>
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Buku</h1>
         <hr
             style="height: 4px;
             border-top-width: 1px;
@@ -53,7 +53,7 @@
                                                     <td colspan="2">
 
                                                         <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
+                                                            style="font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
                                                             {{ $book->title }}</p>
                                                     </td>
                                                 </tr>
@@ -63,8 +63,7 @@
                                                         <i class="fas fa-pencil-alt fa-sm" style="color: #000000;"></i>
                                                     </td>
                                                     <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
                                                             {{ $book->author }}</p>
                                                     </td>
                                                 </tr>
@@ -74,42 +73,22 @@
                                                         <i class="far fa-file-alt fa-sm" style="color: #000000;"></i>
                                                     </td>
                                                     <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
+                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
                                                             158 Hal</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                        style="text-align: center; align-items: center; justify-content: center;">
-                                                        <i class="fas fa-layer-group fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                            {{ $book->available }}</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><i>
                                                             <p
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
+                                                                style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
                                                                 {{ $book->publisher }}</p>
                                                         </i></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2"><i>
-                                                            <p
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 0;">
+                                                            <p style="font-size: 12px; font-weight: 500; margin: 0;">
                                                                 ISBN: {{ $book->isbn }}</p>
                                                         </i></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <p
-                                                            style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                            {{ $book->available }}</p>
-                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
@@ -119,7 +98,7 @@
                                                                     style="color: #FFD43B; margin-right: 2px;"></i>
                                                             @endfor
                                                             <h5
-                                                                style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; margin-top: 10px;">
+                                                                style="font-size: 12px; font-weight: 400; margin-top: 10px;">
                                                                 {{ $book->rating }}</h5>
                                                         </div>
                                                     </td>

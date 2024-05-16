@@ -9,6 +9,7 @@ use App\Models\Lending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\LogLending;
 use Illuminate\Support\Facades\Validator;
 
 class LendingController extends Controller
@@ -50,11 +51,16 @@ class LendingController extends Controller
                 ]);
             }
 
-            Lending::create([
+            $lending = Lending::create([
                 'book_id' => $book->id,
                 'user_id' => auth()->user()->id,
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
+            ]);
+
+            LogLending::create([
+                'lending_id' => $lending->id,
+                'status' => 'pending',
             ]);
 
             $user = User::find(auth()->user()->id);

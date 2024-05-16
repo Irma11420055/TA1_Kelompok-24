@@ -23,7 +23,10 @@ return new class extends Migration
             $table->string('major')->nullable();
             $table->string('category')->nullable();
             $table->integer('year')->nullable();
+            $table->string('cd_dvd')->nullable();
+            $table->integer('status')->default('1')->comment('1 = Available, 2 = Borrowed, 3 = Lost');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

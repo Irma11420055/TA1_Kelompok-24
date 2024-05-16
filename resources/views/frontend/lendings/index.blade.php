@@ -54,7 +54,7 @@
             </center>
         </div>
     </div>
-    <div class="card">
+    <div class="p-3">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

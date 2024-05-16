@@ -1,7 +1,7 @@
 @extends('layouts.frontend.master')
 @section('content')
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Layanan
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Layanan
             Perpustakaan IT DEL</h1>
         <div style="position: relative;">
             <hr
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="card-user">
+    <div class="container-fluid py-5" style="background-color: #e7e7e7;">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
@@ -28,17 +28,12 @@
                                 <h4>
                                     Melihat
                                     Bahan Pustaka</h4>
-                                {{-- <p class="h-2">
-                                    Melihat
-                                    Bahan Pustaka</p> --}}
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <p style="font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
                                     beberapa bahan pustaka
                                     yang dapat dilihat melalui sistem
                                     informasi OLIS, diantaranya :</p>
-                                <ul
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <ul style="font-size: 10px; font-weight: 400; margin: 0;">
                                     <li>Buku</li>
                                     <li>CD/DVD</li>
                                     <li>Artikel</li>
@@ -57,19 +52,17 @@
                                     class="img-fluid" style="width: 250px" height="250px" />
                             </div>
                             <div>
-                                <h4>  Layanan Peminjaman Buku                        
-                                    </h4>
+                                <h4> Layanan Peminjaman Buku
+                                </h4>
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <p style="font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
                                     beberapa bahan pustaka
                                     yang dapat dilihat melalui sistem
                                     informasi OLIS, diantaranya :</p>
-                                <ul
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <ul style="font-size: 10px; font-weight: 400; margin: 0;">
                                     <li>Buku</li>
                                     <li>CD/DVD</li>
                                     <li>Artikel</li>
@@ -93,14 +86,12 @@
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <p style="font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
-                                    layanan cetak dokumen 
+                                    layanan cetak dokumen
                                     di perpustakaan IT DEL, diantaranya untuk mencetak
                                     dokumen seperti:</p>
-                                <ul
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <ul style="font-size: 10px; font-weight: 400; margin: 0;">
                                     <li>Surat Izin Bermalam</li>
                                     <li>Surat Izin Keluar</li>
                                     <li>Dokumen PA/TA/KP</li>
@@ -120,17 +111,15 @@
                             </div>
                             <div>
                                 <h4>Memiliki
-                                   Ruang Diskusi</h4>
+                                    Ruang Diskusi</h4>
                                 {{-- <p class="h-2">
                                     Melihat
                                     Bahan Pustaka</p> --}}
-                                <p
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <p style="font-size: 10px; font-weight: 400; margin: 0;">
                                     Terdapat
                                     beberapa ruang diskusi yang nyaman dan
                                     memiliki fasilitas yang baik, diantaranya seperti:</p>
-                                <ul
-                                    style="font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 400; margin: 0;">
+                                <ul style="font-size: 10px; font-weight: 400; margin: 0;">
                                     <li>AC</li>
                                     <li>Komputer</li>
                                     <li>Papan Tulis</li>
@@ -144,7 +133,7 @@
     </div>
 
     <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Buku
+        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Buku
             Dengan
             Rating Tertinggi</h1>
         <div style="position: relative;">
@@ -179,7 +168,7 @@
                                                 </td>
                                                 <td style="width: 300px;">
                                                     <p
-                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        style="font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
                                                         {{ $book->title }}
                                                     </p>
                                                 </td>
@@ -193,7 +182,7 @@
                                                 </td>
                                                 <td style="width: 300px;">
                                                     <p
-                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        style="font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
                                                         {{ $book->author }}
                                                     </p>
                                                 </td>
@@ -207,7 +196,7 @@
                                                 </td>
                                                 <td style="width: 300px;">
                                                     <p
-                                                        style="font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
+                                                        style="font-size: 17px; font-weight: 400; margin-top: 14px; margin-left: 10px;">
                                                         Tersisa {{ $book->stock }}
                                                     </p>
                                                 </td>
@@ -232,8 +221,7 @@
                                     <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
                                     <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 5px;"></i>
                                     <i class="fas fa-star fa-lg" style="color: #FFD43B; margin-right: 10px;"></i>
-                                    <p
-                                        style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
+                                    <p style="font-size: 18px; font-weight: 400; color: darkgrey; margin-top: 16px;">
                                         5,0</p>
                                 </div>
                             </div>

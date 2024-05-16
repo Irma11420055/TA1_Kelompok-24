@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="cover">Cover</label>
                             <br>
-                            <img alt="{{ $book->title }}" class="img-fluid" id="file">
+                            <img alt="{{ $book->title }}" class="img-fluid" src="{{ $book->cover }}">
                         </div>
 
                         <div class="form-group">
@@ -119,19 +119,19 @@
 @endsection
 @push('scripts')
     <script>
-        let fileUrl = '{{ $book->cover }}';
-        if (fileUrl.includes('drive.google.com')) {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
+        let images = document.querySelectorAll('img');
+        images.forEach((img) => {
+            let fileUrl = img.src;
+            if (fileUrl.includes('drive.google.com')) {
                 var fileId = fileUrl.split('=')[1];
                 fileId = fileId.split('&')[0];
-                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
-            });
-        } else {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                file.src = fileUrl;
-            });
-        }
+                img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+            }
+        });
+
+        // on enter key
+        $(document).on('keyup', function(e) {
+            console.log(e.key);
+        });
     </script>
 @endpush

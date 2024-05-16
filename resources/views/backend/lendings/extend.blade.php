@@ -64,9 +64,17 @@
 </div>
 <script>
     $(document).ready(function() {
+        let maxDate = new Date();
+        let role = @json($lending->user->getRoleNames()->first());
+        if (role == 'student') {
+            maxDate = new Date(maxDate.setDate(maxDate.getDate() + 7));
+        } else {
+            maxDate = new Date(maxDate.setDate(maxDate.getDate() + 14));
+        }
         $('#extended_return_date').flatpickr({
             enableTime: false,
-            minDate: new Date()
+            minDate: new Date(),
+            maxDate: maxDate,
         });
     });
 </script>

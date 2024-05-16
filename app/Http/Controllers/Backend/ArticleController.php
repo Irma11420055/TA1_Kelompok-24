@@ -26,11 +26,6 @@ class ArticleController extends Controller
                 ->editColumn('id', function ($article) {
                     return encodeId($article->id);
                 })
-                ->editColumn('body', function ($article) {
-                    $dom = new DOMDocument();
-                    $dom->loadHTML($article->body);
-                    return $dom->textContent;
-                })
                 ->toJson();
         }
         return view('backend.articles.index');
@@ -125,10 +120,15 @@ class ArticleController extends Controller
             }
 
             DB::beginTransaction();
+
+            $excerpt = \Soundasleep\Html2Text::convert($request->body);
+            $excerpt = preg_replace('/\s+/', ' ', $excerpt);
+            $excerpt = Str::words($excerpt, 100, '');
             $article->update([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
                 'body' => $request->body,
+                'excerpt' => $excerpt,
             ]);
 
             if ($request->hasFile('image')) {

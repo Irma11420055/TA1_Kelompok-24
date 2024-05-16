@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Models\LibraryArchive;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
 class LibraryArchiveController extends Controller
 {
@@ -38,11 +34,23 @@ class LibraryArchiveController extends Controller
     /**
      * Display the specified resource.
      */
-    public function achivements()
+    public function achievements()
     {
-        $libraryArchives = LibraryArchive::where('type', 'achivements')
+        $libraryArchives = LibraryArchive::where('type', 'achievements')
             ->where('active', true)
             ->paginate(6);
-        return view('frontend.library-archives.achivements', compact('libraryArchives'));
+        return view('frontend.library-archives.achievements', compact('libraryArchives'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($slug)
+    {
+        $libraryArchive = LibraryArchive::where('slug', $slug)->where('active', true)->first();
+        if (!$libraryArchive) {
+            return redirect()->back()->with('error', 'File not found');
+        }
+        return view('frontend.library-archives.show', compact('libraryArchive'));
     }
 }

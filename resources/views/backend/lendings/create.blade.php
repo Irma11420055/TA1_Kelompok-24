@@ -22,21 +22,21 @@
                         <div class="card-body">
                             @if ($type == 'book')
                                 <div class="form-group">
-                                    <label for="book_id"
-                                        class="col-sm-2 col-form-label @error('book_id') text-danger @enderror">
+                                    <label for="book_slug"
+                                        class="col-sm-2 col-form-label @error('book_slug') text-danger @enderror">
                                         Buku
                                     </label>
-                                    <select class="form-control @error('book_id') is-invalid @enderror" id="book_id"
-                                        name="book_id">
+                                    <select class="form-control @error('book_slug') is-invalid @enderror" id="book_slug"
+                                        name="book_slug">
                                         <option value="">Pilih Buku</option>
                                         @foreach ($books as $book)
-                                            <option value="{{ $book->id }}"
-                                                {{ old('book_id') == $book->id ? 'selected' : '' }}>
+                                            <option value="{{ $book->slug }}"
+                                                {{ old('book_slug') == $book->id ? 'selected' : '' }}>
                                                 {{ $book->title }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('book_id')
+                                    @error('book_slug')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -73,6 +73,7 @@
                                     <option value="">Pilih User</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}"
+                                            data-role="{{ $user->getRoleNames()->first() }}"
                                             {{ old('user_id') == $user->id ? 'selected' : '' }}>
                                             {{ $user->name }}
                                         </option>
@@ -126,12 +127,24 @@
 
             // bs-custom-file-input
             bsCustomFileInput.init();
-
+            let maxDate = new Date();
             // flatpickr
-            $('#return_date').flatpickr({
+            let return_date = $('#return_date').flatpickr({
                 enableTime: false,
-                minDate: new Date()
+                minDate: new Date(),
+                maxDate: maxDate,
             });
+            // user onchange event
+            $('#user_id').on('change', function() {
+                let role = $(this).find(':selected').data('role');
+                if (role == 'student') {
+                    maxDate = new Date(maxDate.setDate(maxDate.getDate() + 7));
+                } else {
+                    maxDate = new Date(maxDate.setDate(maxDate.getDate() + 14));
+                }
+                return_date.set('maxDate', maxDate);
+            })
+
         });
     </script>
 @endpush

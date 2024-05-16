@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::role(['lecturer', 'student', 'staff'])->latest();
+            $users = User::latest()->get();
             return DataTables::of($users)
                 ->editColumn('id', function ($user) {
                     return encodeId($user->id);

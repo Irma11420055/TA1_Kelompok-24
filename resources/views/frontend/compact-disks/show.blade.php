@@ -2,11 +2,9 @@
 @section('title', $compactDisk->title)
 @section('content')
     <div class="title-container">
-        <h2
-            style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
+        <h2 style="font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
             {{ $compactDisk->title }}</h2>
-        <p
-            style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
+        <p style="font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
             {{ $compactDisk->author }}</p>
         <hr style="border-color: black; width: 95%; margin: 0 auto;">
     </div>
@@ -16,96 +14,64 @@
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img style="height: 362px; width: 259px" src="{{ $compactDisk->cover }}" alt="Deskripsi Gambar">
                 </div>
-                @auth
-                    <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
-                        <button class="btn"
-                            style="width: 200px; background-color: #00FF38; font-family: 'Poppins', sans-serif; font-weight: 600;"
-                            type="button" data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
-                    </div>
-                @endauth
             </div>
-
             <div class="col-4">
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ID</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Kode</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->code }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Judul</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Judul</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->title }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Bahasa</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->language }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Subjek</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Subjek</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->subject }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Pengarang</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Pengarang</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->author }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Penerbit</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->publisher }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->description }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Jenis</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Buku Teks</p>
                 </div>
             </div>
             <div class="col-4">
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Edisi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->edition }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ISBN</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->isbn }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">Jurusan</p>
+                    <p style="font-weight: 400; margin-top: 0;">
+                        {{ $compactDisk->major }}</p>
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->classification }}</p>
+                    <p style="font-weight: 700; margin-bottom: 3px;">CD/DVD</p>
+                    <p style="font-weight: 400; margin-top: 0;">
+                        {{ $compactDisk->type }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Lokasi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Perpustakaan Lt.1
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Copy/Original
-                    </p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">Original</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Tahun</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Tahun</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $compactDisk->year }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Id Master Buku
-                    </p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">-</p>
+                    <p style="font-weight: 700; margin-bottom: 3px;">Penerbit</p>
+                    <p style="font-weight: 400; margin-top: 0;">
+                        {{ $compactDisk->publisher }}</p>
+                </div>
+                <div style="margin: 0 0 8px auto;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Sumber</p>
+                    <p style="font-weight: 400; margin-top: 0;">
+                        {{ $compactDisk->source }}</p>
                 </div>
             </div>
         </div>
@@ -113,19 +79,21 @@
 @endsection
 @push('scripts')
     <script>
-        let fileUrl = '{{ $compactDisk->cover }}';
-        if (fileUrl.includes('drive.google.com')) {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                var fileId = fileUrl.split('=')[1];
-                fileId = fileId.split('&')[0];
-                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
             });
-        } else {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                file.src = fileUrl;
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
             });
-        }
+        });
     </script>
 @endpush

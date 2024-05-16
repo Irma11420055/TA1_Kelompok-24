@@ -2,11 +2,9 @@
 @section('title', $book->title)
 @section('content')
     <div class="title-container">
-        <h2
-            style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
+        <h2 style="font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
             {{ $book->title }}</h2>
-        <p
-            style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
+        <p style="font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
             {{ $book->author }}</p>
         <hr style="border-color: black; width: 95%; margin: 0 auto;">
     </div>
@@ -19,86 +17,85 @@
                 </div>
                 @auth
                     <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
-                        <button class="btn"
-                            style="width: 200px; background-color: #00FF38; font-family: 'Poppins', sans-serif; font-weight: 600;"
-                            type="button" data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
+                        <button class="btn" style="width: 200px; background-color: #00FF38; font-weight: 600;" type="button"
+                            data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
                     </div>
                 @endauth
             </div>
 
             <div class="col-4">
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ID</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">ID</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ encodeId($book->id) }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Judul</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->title }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">Judul</p>
+                    <p style="font-weight: 400; margin-top: 0;">{{ $book->title }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Bahasa</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Bahasa</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->language }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Subjek</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->subject }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">Subjek</p>
+                    <p style="font-weight: 400; margin-top: 0;">{{ $book->subject }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Pengarang</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->author }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">Pengarang</p>
+                    <p style="font-weight: 400; margin-top: 0;">{{ $book->author }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Penerbit</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Penerbit</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->publisher }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->description }}</p>
                 </div>
             </div>
             <div class="col-4">
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Status</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Status</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         @if ($book->status == 1)
-                            <span class="badge badge-success">Tersedia</span>
+                            <span class="badge bg-success">Tersedia</span>
                         @else
-                            <span class="badge badge-danger">Tidak Tersedia</span>
+                            <span class="badge bg-danger">Tidak Tersedia</span>
                         @endif
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Edisi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Edisi</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->edition }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">ISBN</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->isbn }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">ISBN</p>
+                    <p style="font-weight: 400; margin-top: 0;">{{ $book->isbn }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->classification }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Lokasi</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 700; margin-bottom: 3px;">Lokasi</p>
+                    <p style="font-weight: 400; margin-top: 0;">
                         {{ $book->location }}
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Copy/Original
+                    <p style="font-weight: 700; margin-bottom: 3px;">Copy/Original
                     </p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">
+                    <p style="font-weight: 400; margin-top: 0;">
                         @if ($book->cp_or == 'cp')
                             Copy
                         @else
@@ -107,8 +104,8 @@
                     </p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 3px;">Tahun</p>
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 400; margin-top: 0;">{{ $book->year }}
+                    <p style="font-weight: 700; margin-bottom: 3px;">Tahun</p>
+                    <p style="font-weight: 400; margin-top: 0;">{{ $book->year }}
                     </p>
                 </div>
             </div>
@@ -157,10 +154,20 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            let maxDate = new Date();
+            @role('student')
+                // if student then set max date to 7 days from now
+                maxDate.setDate(maxDate.getDate() + 7);
+            @else
+                // set max date to 14 days from now
+                maxDate.setDate(maxDate.getDate() + 14);
+            @endrole
+
             $('#return_date').flatpickr({
                 enableTime: false,
                 dateFormat: 'Y-m-d',
                 minDate: 'today',
+                maxDate: maxDate
             });
         });
 
@@ -180,19 +187,21 @@
         }
     </script>
     <script>
-        let fileUrl = '{{ $book->cover }}';
-        if (fileUrl.includes('drive.google.com')) {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                var fileId = fileUrl.split('=')[1];
-                fileId = fileId.split('&')[0];
-                file.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
             });
-        } else {
-            $(document).ready(function() {
-                var file = document.getElementById('file');
-                file.src = fileUrl;
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
             });
-        }
+        });
     </script>
 @endpush

@@ -60,8 +60,8 @@
                         name: 'title'
                     },
                     {
-                        data: 'body',
-                        name: 'body'
+                        data: 'excerpt',
+                        name: 'excerpt'
                     },
                     {
                         name: 'action',

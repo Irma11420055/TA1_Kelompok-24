@@ -21,16 +21,18 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="announcement_datatable" class="table table-head-fixed">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Judul Pengumuman</th>
-                                    <th>Isi Pengumuman</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="announcement_datatable" class="table table-head-fixed">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Judul Pengumuman</th>
+                                        <th>Isi Pengumuman</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -69,18 +71,25 @@
                     }
                 ],
                 columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    targets: 3,
-                    className: 'text-center',
-                    orderable: false,
-                    render: function(data, type, row) {
-                        return `
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        targets: 2,
+                        render: function(data) {
+                            return data.length > 100 ? data.substr(0, 100) : data;
+                        }
+                    },
+                    {
+                        targets: 3,
+                        className: 'text-center',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return `
                             <div class="btn-group">
                                 <a class="btn btn-info btn-sm" href="${url}/${row.id}">
                                     <i class="fas fa-eye"></i>
@@ -93,9 +102,10 @@
                                 </a>
                             </div>
                         `;
-                    },
-                    width: '15%'
-                }],
+                        },
+                        width: '15%'
+                    }
+                ],
                 searching: true,
                 order: [
                     [0, 'desc']

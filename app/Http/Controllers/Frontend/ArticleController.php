@@ -12,7 +12,7 @@ class ArticleController extends Controller
     {
         $search = $request->get('search');
         $articles = Article::where('title', 'like', '%' . $search . '%')
-            ->orWhere('content', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%')
             ->paginate(6);
         $articles->withPath(url()->current());
         $lastUpdated = Article::latest()->first();
@@ -25,6 +25,8 @@ class ArticleController extends Controller
         if (!$article) {
             return redirect()->route('articles.index')->with('error', 'Data tidak ditemukan');
         }
+
+        $article->increment('views');
         return view('frontend.articles.show', compact('article'));
     }
 }

@@ -35,7 +35,8 @@
             </div>
         </form>
     </div>
-    <div class="d-flex justify-content-end mb-3 py-3 px-5">
+    <div class="d-flex justify-content-between mb-3 py-3 px-5">
+        <p class="fw-bold">Jumlah Buku: {{ $books->total() }}</p>
         {{ $books->links('components.pagination') }}
     </div>
     <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">

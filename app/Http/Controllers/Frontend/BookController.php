@@ -16,6 +16,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        $total = Book::groupBy('slug')->count();
         $books = Book::where('title', 'like', '%' . $search . '%')
             ->orWhere('author', 'like', '%' . $search . '%')
             ->orWhere('publisher', 'like', '%' . $search . '%')
@@ -34,7 +35,7 @@ class BookController extends Controller
 
         // get last date updated book
         $lastUpdated = Book::latest()->first();
-        return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated'));
+        return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
     }
 
     /**

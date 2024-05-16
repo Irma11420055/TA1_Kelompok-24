@@ -85,7 +85,10 @@
             </div>
             {{-- Perbaiki Front End Nya --}}
         @else
-            <a class="login-link {{ Request::is('/login') ? 'active' : '' }}" href="/login">Login</a>
+            <a class="fw-bold text-decoration-none text-dark fs-4" href="{{ route('login') }}">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+            </a>
         @endauth
     </div>
 </div>

@@ -10,6 +10,7 @@ use App\Models\CompactDisk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\LogLending;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -86,10 +87,10 @@ class LendingController extends Controller
         $this->checkType($type);
         // if null, return 404
         if ($type != 'book' && $type != 'cd') {
-            abort(404);
+            return back()->with('error', 'Invalid type');
         }
         if ($type == 'book') {
-            $books = Book::groupBy('title')->get();
+            $books = Book::groupBy('title')->where('status', '1')->get();
             $compactDisks = [];
         } else {
             $books = [];
@@ -109,28 +110,40 @@ class LendingController extends Controller
             $validator = Validator::make($request->all(), [
                 'user_id' => 'required|integer',
                 'book_slug' => 'required_without:compact_disk_id|exists:books,slug',
-                'compact_disk_id' => 'required_without:book_id|integer|exists:compact_disks,id',
+                'compact_disk_id' => 'required_without:book_slug|integer|exists:compact_disks,id',
                 'return_date' => 'required|date',
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
-            $book = Book::where('slug', $request->slug)->where('status', '1')->first();
-            if (!$book) {
-                return redirect()->back()->with('error', 'Book not found');
+            if ($type == 'book') {
+                $book = Book::where('slug', $request->book_slug)->where('status', '1')->first();
+                if (!$book) {
+                    return redirect()->back()->with('error', 'Book not found');
+                }
             }
             DB::beginTransaction();
-            Lending::create([
+            $lending = Lending::create([
                 'user_id' => $request->user_id,
-                'book_id' => $request->book_id,
+                'book_id' => $book->id,
                 'compact_disk_id' => $request->compact_disk_id,
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
                 'status' => 'lent',
             ]);
 
-            $book->status = 2;
-            $book->save();
+            LogLending::create([
+                'lending_id' => $lending->id,
+                'status' => 'lent',
+            ]);
+            if ($type == 'book') {
+                $book->status = 2;
+                $book->save();
+            } else {
+                $compactDisk = CompactDisk::find($request->compact_disk_id);
+                $compactDisk->status = 2;
+                $compactDisk->save();
+            }
 
             $user = User::find($request->user_id);
             $user->lending_count = $user->lending_count + 1;
@@ -184,13 +197,13 @@ class LendingController extends Controller
             $validator = Validator::make($request->all(), [
                 'user_id' => 'required|integer',
                 'book_slug' => 'required_without:compact_disk_id|exists:books,slug',
-                'compact_disk_id' => 'required_without:book_id|integer|exists:compact_disks,id',
+                'compact_disk_id' => 'required_without:book_slug|integer|exists:compact_disks,id',
                 'return_date' => 'required|date',
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
-            $book = Book::where('slug', $request->slug)->where('status', '1')->first();
+            $book = Book::where('slug', $request->book_slug)->where('status', '1')->first();
             if (!$book) {
                 return redirect()->back()->with('error', 'Book not found');
             }

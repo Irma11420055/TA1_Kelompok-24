@@ -17,13 +17,17 @@ Route::prefix('backend')
         $ctrl = 'BookController';
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::post('/import', $ctrl . '@import')->name('books.import');
-            Route::get('/export', $ctrl . '@export')->name('books.export');
+            Route::post('/export', $ctrl . '@export')->name('books.export');
             Route::get('/list/{slug}', $ctrl . '@list')->name('books.list');
         });
         Route::resource($pref, $ctrl);
 
         $pref = 'compact-disks';
         $ctrl = 'CompactDiskController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::post('/import', $ctrl . '@import')->name('compact-disks.import');
+            Route::post('/export', $ctrl . '@export')->name('compact-disks.export');
+        });
         Route::resource($pref, $ctrl);
 
         $pref = 'articles';
@@ -150,7 +154,8 @@ Route::namespace('App\Http\Controllers\Frontend')
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/rules', $ctrl . '@rules')->name('library-archives.rules');
             Route::get('/guidelines', $ctrl . '@guidelines')->name('library-archives.guidelines');
-            Route::get('/achivements', $ctrl . '@achivements')->name('library-archives.achivements');
+            Route::get('/achievements', $ctrl . '@achievements')->name('library-archives.achievements');
+            Route::get('/achievements/{slug}', $ctrl . '@show')->name('library-archives.achievements.show');
         });
 
         $pref = 'profile';
