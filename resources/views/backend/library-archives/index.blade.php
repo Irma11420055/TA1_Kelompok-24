@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @if ($type == 'rules')
     @section('title', 'Peraturan Perpustakaan')

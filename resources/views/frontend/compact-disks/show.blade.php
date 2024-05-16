@@ -1,3 +1,4 @@
+
 @extends('layouts.frontend.master')
 @section('title', $compactDisk->title)
 @section('content')

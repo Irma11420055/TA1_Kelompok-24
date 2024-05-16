@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             // BookSeeder::class,
-            CompactDiskSeeder::class,
+            // CompactDiskSeeder::class,
             AnnouncementSeeder::class,
             ArticleSeeder::class,
             // LendingSeeder::class,
