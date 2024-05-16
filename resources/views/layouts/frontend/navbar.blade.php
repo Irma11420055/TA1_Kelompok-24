@@ -10,7 +10,7 @@
             <a class="dropdown-item" style="color: #333" href="{{ route('library-archives.rules') }}">Peraturan
                 Perpustakaan</a>
             <a class="dropdown-item" href="{{ route('library-archives.guidelines') }}">Panduan Pesan Pinjam</a>
-            <a class="dropdown-item" href="{{ route('library-archives.achivements') }}">Penghargaan Perpustakaan</a>
+            <a class="dropdown-item" href="{{ route('library-archives.achievements') }}">Penghargaan Perpustakaan</a>
         </div>
     </div>
 
