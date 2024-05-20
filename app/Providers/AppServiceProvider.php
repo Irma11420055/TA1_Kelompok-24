@@ -61,6 +61,10 @@ class AppServiceProvider extends ServiceProvider
     private function getAllAnnouncements()
     {
         // get all announcements
-        View::share('announcements', Announcement::latest()->take(5)->get());
+        $announcements = Announcement::where('status', 'pin')->latest()->take(5)->get();
+        if ($announcements->count() == 0) {
+            $announcements = Announcement::latest()->take(5)->get();
+        }
+        View::share('announcements', $announcements);
     }
 }

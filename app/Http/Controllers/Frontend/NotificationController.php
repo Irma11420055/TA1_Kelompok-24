@@ -23,7 +23,7 @@ class NotificationController extends Controller
     public function books(Request $request)
     {
         // get latest books
-        $books = Book::latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
+        $books = Book::groupBy('slug')->latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
         $books->withPath(url()->current());
         $lastUpdated = Book::latest()->first();
         return view('frontend.notifications.books', compact('books', 'lastUpdated'));

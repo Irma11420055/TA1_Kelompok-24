@@ -28,7 +28,7 @@
                 <div style="margin: 0 0 8px auto;">
                     <p style="font-weight: 700; margin-bottom: 3px;">ID</p>
                     <p style="font-weight: 400; margin-top: 0;">
-                        {{ encodeId($book->id) }}</p>
+                        {{ $book->code }}</p>
                 </div>
                 <div style="margin: 0 0 8px auto;">
                     <p style="font-weight: 700; margin-bottom: 3px;">Judul</p>

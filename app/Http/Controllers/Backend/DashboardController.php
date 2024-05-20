@@ -22,6 +22,9 @@ class DashboardController extends Controller
             ->whereDate('created_at', today())->count();
         $totalLending = $totalLendingByUser + $totalLendingByAdmin;
         $announcements = Announcement::where('status', 'pin')->latest()->limit(5)->get();
+        if ($announcements->count() == 0) {
+            $announcements = Announcement::latest()->limit(5)->get();
+        }
         return view('backend.dashboard.index', compact('announcements', 'visitorToday', 'totalLending', 'totalLendingByUser', 'totalLendingByAdmin'));
     }
 }
