@@ -62,9 +62,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // get all announcements
         $announcements = Announcement::where('status', 'pin')->latest()->take(5)->get();
-        if ($announcements->count() == 0) {
-            $announcements = Announcement::latest()->take(5)->get();
+        if ($announcements->count() < 5) {
+            // add more announcements
+            $announcements = $announcements->concat(Announcement::where('status', 'unpin')->latest()->take(5 - $announcements->count())->get());
         }
+
         View::share('announcements', $announcements);
     }
 }

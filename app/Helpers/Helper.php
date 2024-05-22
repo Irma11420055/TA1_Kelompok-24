@@ -35,14 +35,17 @@ if (!function_exists('decodeId')) {
 }
 
 if (!function_exists('generateCode')) {
-    function generateCode($book, $lastId, $idx)
+    function generateCode($lastId, $idx = null)
     {
         $year = date('Y');
         // only use 2 digits
         $year = substr($year, -2);
         $lastId = $lastId + 1;
-
-        return $year . "." . sprintf('%02s', $lastId) . "." . sprintf('%02s', $idx);
+        $code = $year . "." . sprintf('%02s', $lastId);
+        if ($idx) {
+            $code = $year . "." . sprintf('%02s', $lastId) . "." . sprintf('%02s', $idx);
+        }
+        return $code;
     }
 }
 

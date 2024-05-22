@@ -13,14 +13,6 @@
     </div>
     <div>
         <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
-            <div class="me-3">
-                <select class="form-select border rounded-pill" placeholder="Filter CD/DVD">
-                    <option selected>Filter CD/DVD</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
             <div class="ms-3">
                 <div class="input-group">
                     <input class="form-control border rounded-pill" type="text" placeholder="Cari CD/DVD">
@@ -48,7 +40,7 @@
                                 <div style="display: flex; flex-direction: column;">
                                     <div class="sub-card-container-book">
                                         <img src="{{ $cd->cover }}" alt={{ $cd->title }}
-                                            onerror="https://lancangkuning.com/image/NoImage.png">
+                                            onerror="this.onerror=null; this.src='{{ asset('frontend/dist/img/cd.png') }}'">
                                         <div>
                                             <table style="border-collapse: collapse;">
                                                 <tr>
@@ -101,71 +93,7 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
-            {{-- <div class="col-4">
-                <p style="font-weight: 700; font-size: 20px; color:#6F410B; margin-left: 30px;">
-                    Rating Tertinggi</p>
-                <table>
-                    <tr>
-                        <td style="text-align: center; align-items: center; justify-content: center;">
-                            <p style="font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
-                                1</p>
-                        </td>
-                        <td style="width: 300px;">
-                            <p style="font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
-                                Dilan 1990</p>
-                            <div class="text-book" style="margin: 5px 0 5px 20px;">
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <h5 style="font-size: 12px; font-weight: 400; margin-top: 10px;">
-                                    5,0</h5>
-                                <h5 style="font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
-                                    75/100</h5>
-                            </div>
-                            <p style="font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
-                                Menjadi Nomor 1 Sejak 10 November</p>
-                        </td>
-                        <td style="vertical-align: top;"><i>
-                                <p style="font-size: 12px; font-weight: 500; margin-top: 20px;">
-                                    Novel</p>
-                            </i></td>
-                    </tr>
-                </table>
-                <br>
-                <table>
-                    <tr>
-                        <td style="text-align: center; align-items: center; justify-content: center;">
-                            <p style="font-weight: 700; font-size: 50px; color:#6F410B; margin-left: 40px;">
-                                2</p>
-                        </td>
-                        <td style="width: 300px;">
-                            <p style="font-size: 16px; font-weight: 600; margin: 20px 0 5px 20px; color: #1C24E1;">
-                                Mengasah Logika untuk Anak 2-6 Tahun</p>
-                            <div class="text-book" style="margin: 5px 0 5px 20px;">
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 2px;"></i>
-                                <i class="fas fa-star fa-sm" style="color: #FFD43B; margin-right: 5px;"></i>
-                                <h5 style="font-size: 12px; font-weight: 400; margin-top: 10px;">
-                                    5,0</h5>
-                                <h5 style="font-size: 12px; font-weight: 400; margin: 10px 10px auto;">
-                                    75/100</h5>
-                            </div>
-                            <p style="font-size: 12px; font-weight: 500; margin: 5px 0 5px 20px;">
-                                Menjadi Nomor 2 Sejak 10 November</p>
-                        </td>
-                        <td style="vertical-align: top;"><i>
-                                <p style="font-size: 12px; font-weight: 500; margin-top: 20px;">
-                                    Psikologi Anak</p>
-                            </i></td>
-                    </tr>
-                </table>
-            </div> --}}
         </div>
     </div>
 @endsection

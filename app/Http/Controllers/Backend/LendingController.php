@@ -354,7 +354,7 @@ class LendingController extends Controller
         $fine = 0;
         if ($now->gt($returnDate)) {
             $diff = $now->diffInDays($returnDate);
-            $fine = $diff * 1000;
+            $fine = $diff * 2000;
         }
         $lending->update([
             'fine' => $fine

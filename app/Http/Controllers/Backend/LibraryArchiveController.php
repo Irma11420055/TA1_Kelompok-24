@@ -198,7 +198,7 @@ class LibraryArchiveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($libraryArchive, $type)
+    public function destroy($type, $libraryArchive)
     {
         try {
             $message = $this->setMessage($type);
@@ -218,7 +218,7 @@ class LibraryArchiveController extends Controller
         }
     }
 
-    public function toggleActive($type, $libraryArchive,)
+    public function toggleActive($type, $libraryArchive)
     {
         try {
             $message = $this->setMessage($type);

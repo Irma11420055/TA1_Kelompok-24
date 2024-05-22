@@ -32,6 +32,10 @@ Route::prefix('backend')
 
         $pref = 'articles';
         $ctrl = 'ArticleController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::post('/import', $ctrl . '@import')->name('articles.import');
+            Route::get('/export', $ctrl . '@export')->name('articles.export');
+        });
         Route::resource($pref, $ctrl);
 
         $pref = 'announcements';
@@ -82,7 +86,7 @@ Route::prefix('backend')
             Route::get('/{type}/{libraryArchive}', 'LibraryArchiveController@show')->name('library-archives.show');
             Route::get('/{type}/{libraryArchive}/edit', 'LibraryArchiveController@edit')->name('library-archives.edit');
             Route::put('/{type}/{libraryArchive}', 'LibraryArchiveController@update')->name('library-archives.update');
-            Route::get('/{type}/{libraryArchive}/delete', 'LibraryArchiveController@destroy')->name('library-archives.destroy');
+            Route::delete('/{type}/{libraryArchive}', 'LibraryArchiveController@destroy')->name('library-archives.destroy');
             Route::put('/{type}/{libraryArchive}/activate', 'LibraryArchiveController@toggleActive')->name('library-archives.toggle-active');
         });
 

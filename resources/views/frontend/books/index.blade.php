@@ -13,14 +13,6 @@
     </div>
     <div>
         <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
-            <div class="me-3">
-                <select class="form-select border rounded-pill" placeholder="Filter Buku">
-                    <option selected>Filter Buku</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
             <div class="ms-3">
                 <div class="input-group">
                     <input class="form-control border rounded-pill" type="text" name="search" placeholder="Cari Buku"

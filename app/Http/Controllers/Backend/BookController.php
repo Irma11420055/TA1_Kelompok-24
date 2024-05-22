@@ -90,7 +90,7 @@ class BookController extends Controller
                 $data['slug'] = generateSlug($data['title']);
                 $book = Book::create($data);
 
-                $book->code = generateCode($book, $lastId, $index);
+                $book->code = generateCode($lastId, $index);
 
                 if ($request->hasFile('cover')) {
                     $cover = $this->uploadFile($request->file('cover'), 'books');
@@ -217,7 +217,6 @@ class BookController extends Controller
 
     /**
      * Import data
-     *
      */
     public function import(Request $request)
     {

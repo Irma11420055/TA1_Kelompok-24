@@ -13,7 +13,7 @@
             <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img style="height: 362px; width: 259px" src="{{ $compactDisk->cover }}" alt={{ $compactDisk->title }}
-                        onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
+                        onerror="this.onerror=null; this.src='{{ asset('frontend/dist/img/cd.png') }}'">
                 </div>
             </div>
             <div class="col-4">

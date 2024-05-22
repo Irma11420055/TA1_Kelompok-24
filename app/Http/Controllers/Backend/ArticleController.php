@@ -7,8 +7,11 @@ use App\Traits\Upload;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\ArticleExport;
+use App\Imports\ArticlesImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -162,5 +165,38 @@ class ArticleController extends Controller
             DB::rollBack();
             return response()->json(['status' => 'error', 'message' => 'Failed to delete article']);
         }
+    }
+
+    /**
+     * Import data
+     */
+    public function import(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'file' => 'required|file|mimes:csv,xlsx,xls',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->with('error', $validator->errors()->first('file'));
+            }
+
+            DB::beginTransaction();
+            $file = $request->file('file');
+            Excel::import(new ArticlesImport, $file);
+            DB::commit();
+            return redirect()->route('backend.articles.index')->with('success', 'Data imported successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to import data');
+        }
+    }
+
+    /**
+     * Export data
+     */
+    public function export(Request $request)
+    {
+        return Excel::download(new ArticleExport, 'articles.xlsx');
     }
 }

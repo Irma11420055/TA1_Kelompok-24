@@ -88,35 +88,6 @@ class LendingController extends Controller
 
     private function checkLendingLimit()
     {
-        $user = auth()->user();
-        $lendingLimit = 0;
-
-        if ($user->role == 'lecturer') {
-            $lendingLimit = 12;
-
-            $lendings = Lending::where('user_id', $user->id)
-                ->where('status', 'lent')
-                ->where('lending_date', '>=', Carbon::now()->subWeeks(2))
-                ->count();
-            return $lendings >= $lendingLimit;
-        } elseif ($user->role == 'staff') {
-            $lendingLimit = 8;
-
-            $lendings = Lending::where('user_id', $user->id)
-                ->where('status', 'lent')
-                ->where('lending_date', '>=', Carbon::now()->subWeeks(2))
-                ->count();
-
-            return $lendings >= $lendingLimit;
-        } elseif ($user->role == 'student') {
-            $lendingLimit = 4;
-
-            $lendings = Lending::where('user_id', $user->id)
-                ->where('status', 'lent')
-                ->where('lending_date', '>=', Carbon::now()->subWeeks(1))
-                ->count();
-
-            return $lendings >= $lendingLimit;
-        }
+        return auth()->user()->lending_count >= auth()->user()->lending_limit;
     }
 }

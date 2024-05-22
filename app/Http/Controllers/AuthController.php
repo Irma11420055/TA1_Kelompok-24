@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Traits\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -21,7 +22,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if ($request->isMethod('post')) {
-
             $validator = Validator::make($request->all(), [
                 'id_member' => 'required|exists:users,id_member',
                 'password' => 'required'
@@ -31,11 +31,9 @@ class AuthController extends Controller
                 return redirect()->back()->with('error', $validator->errors()->first());
             }
 
-
-
             $credentials = $request->only('id_member', 'password');
 
-            if (auth()->attempt($credentials, $request->remember ?? false)) {
+            if (Auth::attempt($credentials, $request->has('remember'))) {
                 if (auth()->user()->hasRole('admin')) {
                     return redirect()->intended('/backend/dashboard');
                 }

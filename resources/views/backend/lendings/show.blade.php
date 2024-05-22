@@ -46,7 +46,7 @@
                         @endif
                         <tr>
                             <td class="text-muted">Denda:</td>
-                            <td>{{ $lending->fine }}</td>
+                            <td id="fine"></td>
                         </tr>
                     </table>
                 </div>
@@ -72,3 +72,18 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var returnDate = '{{ $lending->extend_date ? $lending->extend_date : $lending->return_date }}';
+        var now = new Date();
+        var returnDateObj = new Date(returnDate);
+        var fine = 0;
+        if (now > returnDateObj) {
+            var diff = now - returnDateObj;
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            fine = days * 2000;
+        }
+        var fineText = fine > 0 ? 'Rp. ' + fine.toLocaleString('id-ID') : 'Tidak ada denda';
+        $('#fine').text(fineText);
+    });
+</script>

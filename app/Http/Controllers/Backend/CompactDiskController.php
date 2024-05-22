@@ -65,9 +65,10 @@ class CompactDiskController extends Controller
             }
 
             $cover = $this->uploadFile($request->file('cover'), 'CompactDisks');
-
+            $lastId = CompactDisk::latest()->first()->id ?? 0;
             $data = $request->except('_token', 'cover');
             $data['cover'] = $cover;
+            $data['code'] = generateCode($lastId);
 
             CompactDisk::create($data);
 

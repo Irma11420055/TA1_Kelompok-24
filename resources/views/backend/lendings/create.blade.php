@@ -1,3 +1,4 @@
+
 @extends('layouts.backend.master')
 @section('title', 'Tambah Peminjaman')
 @section('breadcrumb')
@@ -26,8 +27,8 @@
                                         class="col-sm-2 col-form-label @error('book_slug') text-danger @enderror">
                                         Buku
                                     </label>
-                                    <select class="form-control @error('book_slug') is-invalid @enderror" id="book_slug"
-                                        name="book_slug">
+                                    <select class="form-control select2 @error('book_slug') is-invalid @enderror"
+                                        id="book_slug" name="book_slug">
                                         <option value="">Pilih Buku</option>
                                         @foreach ($books as $book)
                                             <option value="{{ $book->slug }}"
@@ -47,7 +48,7 @@
                                         class="col-sm-2 col-form-label @error('compact_disk_id') text-danger @enderror">
                                         CD/DVD
                                     </label>
-                                    <select class="form-control @error('compact_disk_id') is-invalid @enderror"
+                                    <select class="form-control select2 @error('compact_disk_id') is-invalid @enderror"
                                         id="compact_disk_id" name="compact_disk_id">
                                         <option value="">Pilih CD</option>
                                         @foreach ($compactDisks as $cd)
@@ -68,7 +69,7 @@
                                     class="col-sm-2 col-form-label @error('user_id') text-danger @enderror">
                                     User
                                 </label>
-                                <select class="form-control @error('user_id') is-invalid @enderror" id="user_id"
+                                <select class="form-control select2 @error('user_id') is-invalid @enderror" id="user_id"
                                     name="user_id">
                                     <option value="">Pilih User</option>
                                     @foreach ($users as $user)
@@ -119,7 +120,7 @@
     <script>
         $(document).ready(function() {
             // select2
-            $('#category_id').select2({
+            $('.select2').select2({
                 theme: 'bootstrap4',
                 placeholder: 'Pilih Kategori',
                 allowClear: true
