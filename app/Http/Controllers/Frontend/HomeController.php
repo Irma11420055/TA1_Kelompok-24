@@ -18,6 +18,9 @@ class HomeController extends Controller
             ->get()
             ->sortByDesc('rating')
             ->take(4);
-        return view('frontend.home.index', compact('bestBooks'));
+        // dd($bestBooks);
+        // return view('frontend.home.index', compact('bestBooks'));
+        return view('frontend_revisi.home.index', compact('bestBooks'));
+        // return view('layouts.frontend_revisi.master', compact('bestBooks'));
     }
 }

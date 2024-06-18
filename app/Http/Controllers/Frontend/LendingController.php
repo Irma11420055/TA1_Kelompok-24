@@ -19,7 +19,8 @@ class LendingController extends Controller
         $lendings = Lending::where('user_id', auth()->user()->id)
             ->orderBy('lending_date', 'desc')
             ->paginate(5);
-        return view('frontend.lendings.index', compact('lendings'));
+        // return view('frontend.lendings.index', compact('lendings'));
+        return view('frontend_revisi.lendings.index', compact('lendings'));
     }
     public function store(Request $request)
     {

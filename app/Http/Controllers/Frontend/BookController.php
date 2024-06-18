@@ -35,7 +35,10 @@ class BookController extends Controller
 
         // get last date updated book
         $lastUpdated = Book::latest()->first();
-        return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
+
+        // DD($books);
+        // return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
+        return view('frontend_revisi.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
     }
 
     /**
@@ -52,7 +55,9 @@ class BookController extends Controller
         if (!$book) {
             $book = Book::where('slug', $slug)->first();
         }
-        return view('frontend.books.show', compact('book'));
+        $book_copies = Book::where('slug', $slug)->get();
+        // return view('frontend.books.show', compact('book'));
+        return view('frontend_revisi.books.show', compact('book', 'book_copies'));
     }
 
     /**

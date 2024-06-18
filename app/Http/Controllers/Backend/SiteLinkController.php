@@ -17,7 +17,7 @@ class SiteLinkController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $siteLinks = SiteLink::query();
+            $siteLinks = SiteLink::latest();
             return DataTables::of($siteLinks)
                 ->editColumn('id', function ($siteLink) {
                     return encodeId($siteLink->id);

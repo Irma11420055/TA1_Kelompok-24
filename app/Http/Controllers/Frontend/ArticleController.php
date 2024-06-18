@@ -16,7 +16,10 @@ class ArticleController extends Controller
             ->paginate(6);
         $articles->withPath(url()->current());
         $lastUpdated = Article::latest()->first();
-        return view('frontend.articles.index', compact('articles', 'lastUpdated'));
+
+        // dd($articles);
+        // return view('frontend.articles.index', compact('articles', 'lastUpdated'));
+        return view('frontend_revisi.articles.index', compact('articles', 'lastUpdated'));
     }
 
     public function show($article)
@@ -27,6 +30,9 @@ class ArticleController extends Controller
         }
 
         $article->increment('views');
-        return view('frontend.articles.show', compact('article'));
+
+        // dd($article);
+        // return view('frontend.articles.show', compact('article'));
+        return view('frontend_revisi.articles.show', compact('article'));
     }
 }

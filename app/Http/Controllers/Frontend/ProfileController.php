@@ -9,7 +9,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('frontend.profile.index');
+        // return view('frontend.profile.index');
+        return view('frontend_revisi.profile.index');
     }
 
     public function edit()

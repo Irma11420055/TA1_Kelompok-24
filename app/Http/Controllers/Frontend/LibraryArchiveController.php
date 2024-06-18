@@ -13,10 +13,11 @@ class LibraryArchiveController extends Controller
     public function rules()
     {
         $libraryArchive = LibraryArchive::where('type', 'rules')->where('active', true)->first();
-        if (!$libraryArchive) {
-            return redirect()->back()->with('error', 'File not found');
-        }
-        return view('frontend.library-archives.rules', compact('libraryArchive'));
+        // if (!$libraryArchive) {
+        //     return redirect()->back()->with('error', 'File not found');
+        // }
+        // return view('frontend.library-archives.rules', compact('libraryArchive'));
+        return view('frontend_revisi.library-archives.rules', compact('libraryArchive'));
     }
 
     /**
@@ -25,10 +26,11 @@ class LibraryArchiveController extends Controller
     public function guidelines()
     {
         $libraryArchive = LibraryArchive::where('type', 'guidelines')->where('active', true)->first();
-        if (!$libraryArchive) {
-            return redirect()->back()->with('error', 'File not found');
-        }
-        return view('frontend.library-archives.guidelines', compact('libraryArchive'));
+        // if (!$libraryArchive) {
+        //     return redirect()->back()->with('error', 'File not found');
+        // }
+        // return view('frontend.library-archives.guidelines', compact('libraryArchive'));
+        return view('frontend_revisi.library-archives.guidelines', compact('libraryArchive'));
     }
 
     /**
@@ -39,7 +41,9 @@ class LibraryArchiveController extends Controller
         $libraryArchives = LibraryArchive::where('type', 'achievements')
             ->where('active', true)
             ->paginate(6);
-        return view('frontend.library-archives.achievements', compact('libraryArchives'));
+        // dd($libraryArchives);
+        // return view('frontend.library-archives.achievements', compact('libraryArchives'));
+        return view('frontend_revisi.library-archives.achievements', compact('libraryArchives'));
     }
 
     /**
@@ -51,6 +55,8 @@ class LibraryArchiveController extends Controller
         if (!$libraryArchive) {
             return redirect()->back()->with('error', 'File not found');
         }
-        return view('frontend.library-archives.show', compact('libraryArchive'));
+        // dd($libraryArchive);
+        // return view('frontend.library-archives.show', compact('libraryArchive'));
+        return view('frontend_revisi.library-archives.show', compact('libraryArchive'));
     }
 }

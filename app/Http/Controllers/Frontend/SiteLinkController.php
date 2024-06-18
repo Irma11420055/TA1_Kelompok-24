@@ -11,6 +11,7 @@ class SiteLinkController extends Controller
     public function index()
     {
         $siteLinks = SiteLink::all();
-        return view('frontend.site-links.index', compact('siteLinks'));
+        // return view('frontend.site-links.index', compact('siteLinks'));
+        return view('frontend_revisi.site-links.index', compact('siteLinks'));
     }
 }

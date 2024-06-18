@@ -16,7 +16,8 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('auth.login');
+        // return view('auth.login');
+        return view('auth_revisi.login');
     }
 
     public function login(Request $request)
