@@ -43,7 +43,7 @@ class LibraryArchiveController extends Controller
             ->paginate(6);
         // dd($libraryArchives);
         // return view('frontend.library-archives.achievements', compact('libraryArchives'));
-        return view('frontend_revisi.library-archives.achievements', compact('libraryArchives'));
+        return view('frontend_revisi\library-archives\achivements', compact('libraryArchives'));
     }
 
     /**
