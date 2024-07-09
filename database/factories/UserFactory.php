@@ -2,28 +2,19 @@
 
 namespace Database\Factories;
 
-<<<<<<< HEAD
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-=======
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
->>>>>>> aa867f62850738522b91d16cea9683c58f5c2260
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
-<<<<<<< HEAD
-=======
     /**
      * The current password being used by the factory.
      */
->>>>>>> aa867f62850738522b91d16cea9683c58f5c2260
     protected static ?string $password;
 
     /**
@@ -36,10 +27,6 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-<<<<<<< HEAD
-            'email_verified_at' => now(),
-=======
->>>>>>> aa867f62850738522b91d16cea9683c58f5c2260
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
@@ -54,8 +41,6 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Indicate that the model's role is admin.
@@ -89,5 +74,4 @@ class UserFactory extends Factory
     {
         return $this->afterCreating(fn (User $user) => $user->syncRoles($roles));
     }
->>>>>>> aa867f62850738522b91d16cea9683c58f5c2260
 }
