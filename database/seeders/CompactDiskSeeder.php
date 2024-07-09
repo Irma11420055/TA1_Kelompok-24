@@ -13,8 +13,8 @@ class CompactDiskSeeder extends Seeder
      */
     public function run(): void
     {
-        // CompactDisk::factory()
-        //     ->count(100)
-        //     ->create();
+        CompactDisk::factory()
+            ->count(100)
+            ->create();
     }
 }
