@@ -38,3 +38,12 @@
 
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            var file = document.getElementById('file');
+            var fileUrl = '{{ $libraryArchive->file }}';
+            file.src = 'https://drive.google.com/viewerng/viewer?embedded=true&url=' + fileUrl;
+        });
+    </script>
+@endpush

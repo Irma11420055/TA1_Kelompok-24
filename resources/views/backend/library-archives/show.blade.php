@@ -5,6 +5,10 @@
     @section('title', 'Panduan Pesan Pinjam')
 @elseif($type == 'achievements')
     @section('title', 'Penghargaan')
+@elseif($type == 'history')
+    @section('title', 'Sejarah Perpustakaan')
+    @elseif($type == 'visimisi')
+    @section('title', 'Visi Misi Perpustakaan')
 @endif
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
@@ -16,6 +20,10 @@
                     Panduan Pesan Pinjam
                 @elseif($type == 'achievements')
                     Penghargaan
+                @elseif($type == 'history')
+                    Sejarah Perpustakaan
+                @elseif($type == 'visimisi')
+                    Visi Misi Perpustakaan
                 @endif
             </a>
         </li>
@@ -27,6 +35,10 @@
                 Panduan Pesan Pinjam
             @elseif($type == 'achievements')
                 Penghargaan
+            @elseif($type == 'history')
+                Sejarah Perpustakaan
+            @elseif($type == 'visimisi')
+                Visi Misi Perpustakaan
             @endif
         </li>
     </ol>
@@ -45,6 +57,10 @@
                                 Panduan Pesan Pinjam
                             @elseif($type == 'achievements')
                                 Penghargaan
+                            @elseif($type == 'history')
+                                Sejarah Perpustakaan
+                            @elseif($type == 'visimisi')
+                            Visi Misi Perpustakaan
                             @endif
                         </h3>
                         <div class="card-tools">

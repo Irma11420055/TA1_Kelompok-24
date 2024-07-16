@@ -11,10 +11,10 @@ class CompactDiskSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        CompactDisk::factory()
-            ->count(100)
-            ->create();
-    }
+    // public function run(): void
+    // {
+    //     CompactDisk::factory()
+    //         ->count(100)
+    //         ->create();
+    // }
 }

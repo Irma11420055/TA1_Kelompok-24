@@ -44,11 +44,11 @@
                                 @elseif($type == 'guidelines')
                                     Panduan
                                 @elseif($type == 'achievements')
-                                    Penghargaan Perpustakaan
+                                    Penghargaan 
                                 @elseif($type == 'history')
-                                    Sejarah Perustakaan
+                                    Sejarah 
                                 @elseif($type == 'visimisi')
-                                    Visi Misi Perustakaan
+                                    Visi Misi 
                                 @endif
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                             <table id="archive_datatable" class="table table-head-fixed">
                                 <thead>
                                     <tr>
-                                        @if ($type == 'rules' || $type == 'guidelines')
+                                    @if ($type == 'rules' || $type == 'guidelines' || $type == 'history' || $type == 'visimisi')
                                             <th>#</th>
                                             <th>No. Dokumen</th>
                                             <th>Judul</th>
@@ -98,7 +98,7 @@
                         orderable: false,
                         searchable: false
                     },
-                    @if ($type == 'rules' || $type == 'guidelines')
+                    @if ($type == 'rules' || $type == 'guidelines' || $type == 'history' || $type == 'visimisi')
                         {
                             data: 'number',
                             name: 'number'
@@ -135,7 +135,7 @@
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
                     },
-                    @if ($type == 'rules' || $type == 'guidelines')
+                    @if ($type == 'rules' || $type == 'guidelines' || $type == 'history' || $type == 'visimisi')
                         {
                             targets: 4,
                             className: 'text-center',
