@@ -124,6 +124,21 @@
                             <p>Penghargaan</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.library-archives.index', 'history') }}"
+                            class="nav-link {{ 'library-archives/history' == request()->path() ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Sejarah perpustakaan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('backend.library-archives.index', 'visimisi') }}"
+                            class="nav-link {{ 'library-archives/visimisi' == request()->path() ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Visi Misi Perpustakaan</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </li>
 

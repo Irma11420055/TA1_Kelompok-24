@@ -162,7 +162,9 @@ Route::
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/rules', $ctrl . '@rules')->name('library-archives.rules');
             Route::get('/guidelines', $ctrl . '@guidelines')->name('library-archives.guidelines');
-            Route::get('/achievements', $ctrl . '@achievements')->name('library-archives.achievements');
+            Route::get('/achievements', $ctrl . '@achievements')->name('library-archives.achievements');            
+            Route::get('/history', $ctrl . '@history')->name('library-archives.history');
+            Route::get('/visimisi', $ctrl . '@visimisi')->name('library-archives.visimisi');
             Route::get('/achievements/{slug}', $ctrl . '@show')->name('library-archives.achievements.show');
         });
 

@@ -224,8 +224,8 @@
                                 <li><a href="{{ route('library-archives.rules') }}">Peraturan Perpustakaan</a></li>
                                 <li><a href="{{ route('library-archives.guidelines') }}">Panduan Pesan Pinjam</a></li>
                                 <li><a href="{{ route('library-archives.achievements') }}">Penghargaan Perpustakaan</a></li>
-                                <li><a href="{{ route('library-archives.rules') }}">Sejarah Perpustakaan</a></li>
-                                <li><a href="{{ route('library-archives.rules') }}">Visi Misi Perpustakaan</a></li>
+                                <li><a href="{{ route('library-archives.history') }}">Sejarah Perpustakaan</a></li>
+                                <li><a href="{{ route('library-archives.visimisi') }}">Visi Misi Perpustakaan</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu-down"><a href="javascript:void(0);"><span>Bahan Pustaka</span></a>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique()->index('library_archives_slug_index');
             $table->string('file')->nullable();
             $table->boolean('active')->default(false)->comment('0: Inactive, 1: Active');
-            $table->enum('type', ['rules', 'guidelines', 'achievements', 'others'])->default('rules');
+            $table->enum('type', ['rules', 'guidelines', 'achievements', 'history', 'visimisi', 'others'])->default('rules');
             $table->longText('body');
             $table->string('excerpt');
             $table->string('image');

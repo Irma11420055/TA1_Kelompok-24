@@ -174,7 +174,7 @@
         <section class="content-inner-2">
             <div class="container">
                 <div class="section-head book-align">
-                    <h2 class="title mb-0">Layanan Perpustakaan IT DEL</h2>
+                    <h2 class="title mb-0">Informasi Layanan Perpustakaan IT DEL</h2>
                     <div class="pagination-align style-1">
                         <div class="book-button-prev swiper-button-prev"><i class="fa-solid fa-angle-left"></i>
                         </div>
@@ -191,16 +191,8 @@
                                         alt="Melihat Pustaka">
                                 </div>
                                 <div class="dz-info">
-                                    <h4 class="dz-title">Melihat Pustaka</h4>
-                                    <p class="dz-description">Terdapat beberapa bahan pustaka yang dapat dilihat melalui
-                                        sistem informasi OLIS, diantaranya :</p>
-                                    <div class="dz-meta">
-                                        <ul class="dz-tags">
-                                            <li><a class="disabed">BUKU</a></li>
-                                            <li><a class="disabed">CD/DVD</a></li>
-                                            <li><a class="disabed">ARTIKEL</a></li>
-                                        </ul>
-                                    </div>
+                                    <h4 class="dz-title">Layanan Referensi</h4>
+                                    <p class="dz-description">Perpustakaan menyediakan bantuan kepada anggota perpustakaan dalam mencari informasi dan sumber referensi untuk keperluan penelitian, pembelajaran, atau kegiatan lainnya. Layanan ini mencakup bantuan dalam melakukan pencarian informasi dalam katalog perpustakaan.</p>
                                 </div>
                             </div>
                         </div>
@@ -212,16 +204,8 @@
                                         alt="Layanan Peminjaman Buku">
                                 </div>
                                 <div class="dz-info">
-                                    <h4 class="dz-title">Layanan Peminjaman Buku</h4>
-                                    <p class="dz-description">Terdapat beberapa bahan pustaka yang dapat dilihat melalui
-                                        sistem informasi OLIS, diantaranya :</p>
-                                    <div class="dz-meta">
-                                        <ul class="dz-tags">
-                                            <li><a class="disabed">BUKU</a></li>
-                                            <li><a class="disabed">CD/DVD</a></li>
-                                            <li><a class="disabed">ARTIKEL</a></li>
-                                        </ul>
-                                    </div>
+                                    <h4 class="dz-title">Layanan Cek Plagiarism</h4>
+                                    <p class="dz-description"> Perpustakaan menyediakan layanan yang memungkinkan anggota perpustakaan, untuk memeriksa keaslian karya tulis. Layanan ini bertujuan untuk mencegah plagiarisme, petugas perpustakaan akan membantu pengguna dalam menggunakan alat cek plagiarisme, dan menjelaskan hasil laporan.</p>
                                 </div>
                             </div>
                         </div>
@@ -234,15 +218,7 @@
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Cetak Dokumen</h4>
-                                    <p class="dz-description">Terdapat layanan cetak dokumen di perpustakaan IT DEL,
-                                        diantaranya untuk mencetak dokumen seperti:</p>
-                                    <div class="dz-meta">
-                                        <ul class="dz-tags">
-                                            <li><a class="disabed">SURAT IZIN BERMALAM</a></li>
-                                            <li><a class="disabed">SURAT IZIN KELUAR</a></li>
-                                            <li><a class="disabed">DOKUMEN PA/TA/KP</a></li>
-                                        </ul>
-                                    </div>
+                                    <p class="dz-description">Perpustakaan menyediakan mesin pencetak seperti printer untuk mencetak berbagai jenis dokumen bagi anggota perpustakaan, contohnya dokumen Sidang Project Akhir, Tugas Akhir, Skripsi, Kerja praktik dan kebutuhan dokumen yang lain seperti Surat Izin Keluar Kampus, Izin Bermalam,  dan lainnya.</p>
                                 </div>
                             </div>
                         </div>
@@ -254,20 +230,102 @@
                                         alt="Memiliki Ruang Diskusi">
                                 </div>
                                 <div class="dz-info">
-                                    <h4 class="dz-title">Memiliki Ruang Diskusi</h4>
-                                    <p class="dz-description">Terdapat beberapa ruang diskusi yang nyaman dan memiliki
-                                        fasilitas yang baik, diantaranya seperti:</p>
-                                    <div class="dz-meta">
-                                        <ul class="dz-tags">
-                                            <li><a class="disabed">AC</a></li>
-                                            <li><a class="disabed">KOMPUTER</a></li>
-                                            <li><a class="disabed">PAPAN TULIS</a></li>
-                                        </ul>
-                                    </div>
+                                    <h4 class="dz-title">Layanan Grammarly</h4>
+                                    <p class="dz-description">Perpustakaan menyediakan layanan yang dapat membantu anggota perpustakaan dalam meningkatkan tata bahasa, dan gaya penulisan dalam penelitian sebelum di publikasikan. Petugas akan memberikan panduan kepada anggota perpustakaan agar dapat mengakses premiumke Grammarly.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}"
+                                        alt="Layanan Peminjaman Buku">
+                                </div>
+                                
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Ruang Audio Visual</h4>
+                                    <p class="dz-description">Perpustakaan menyediakan akses dan penggunaan perangkat teknologi untuk memutar dan menonton konten audio dan visua. Anggota Perpustakaan dapat memanfaatkan layanan ini untuk latihan listening Toefl, presentasi multimedia, atau melakukan penelitian terkait dengan media audio visual.</p>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
+                                        alt="Memiliki Ruang Diskusi">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Sirkulasi</h4>
+                                    <p class="dz-description">Layanan ini mencakup proses peminjaman buku, CD/DVD, dan materi lainnya. Anggota dapat memanfaatkan koleksi tersebut untuk jangka waktu tertentu sesuai dengan kebijakan perpustakaan. Layanan ini juga mencakup penagihan denda atas bahan pustakan yang terlambat dikembalikan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}"
+                                        alt="Layanan Peminjaman Buku">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Baca Ditempat</h4>
+                                    <p class="dz-description">Anggota perpustakaan dapat menggunakan koleksi buku, jurnal, majalah, dan materi lainnya yang tersedia di perpustakaan untuk tujuan studi, penelitian, atau membaca untuk kesenangan. Perpustakaan juga menyediakan akses internet gerati bari para pembaca yang berada di perpustakaan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}"
+                                        alt="Layanan Cetak Dokumen">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Exit Clearance</h4>
+                                    <p class="dz-description">Layanan ini mencakup pemeriksaan terhadap semua pinjaman yang masih berstatus aktif, penyelesaian denda atau biaya terkait yang belum diselesaikan, dan pengembalian semua bahan pustaka yang dipinjam. Prosedur ini bertujuan untuk memastikan bahwa koleksi perpustakaan terjaga dengan baik.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
+                                        alt="Memiliki Ruang Diskusi">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Gray Literature</h4>
+                                    <p class="dz-description">Perpustakaan menyediakan layanan gray litratur, gray literatur merupakan dokumen yang tidak di terbitkan secara komersial seperti dokumen Tugas Akhir, Project Akhir dan Kerja Praktik. Dokumen ini hanya dapat di gunakan di dalam perpustakaan tidak untuk di pinjamkan dan di bawa keluar dari area perpustakaan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}"
+                                        alt="Layanan Cetak Dokumen">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Literasi Informasi</h4>
+                                    <p class="dz-description">Layanan ini mencakup pelatihan dan pendidikan mengenai bagaimana cara mencari dan menilai sumber-sumber informasi yang akurat dan dapat dipercaya, serta bagaimana cara menghindari plagiarisme dan menghormati hak cipta. Biasanya di lakukan seperti webinar, dan pelatihan lainnya.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
+                                        alt="Memiliki Ruang Diskusi">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Ekstensi</h4>
+                                    <p class="dz-description">Layanan ekstensi yang dilakukan perpustakaan IT DEL salah satunya adalah perpustakaan keliling. Tujuannya adalah untuk meningkatkan akses bahan pustaka kepada orang orang diluar anggota perpuskataan yang membutuhkan namun tidak dapat langsung datang ke gedung perpustakaan.</p>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

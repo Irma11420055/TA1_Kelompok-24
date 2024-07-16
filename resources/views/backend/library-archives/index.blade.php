@@ -5,7 +5,11 @@
 @elseif($type == 'guidelines')
     @section('title', 'Panduan Pesan Pinjam')
 @elseif($type == 'achievements')
-    @section('title', 'Penghargaan')
+    @section('title', 'Penghargaan Perpustakaan')
+@elseif($type == 'history')
+    @section('title', 'Sejarah Perpustakaan')
+@elseif($type == 'visimisi')
+    @section('title', 'Visi Misi Perpustakaan')
 @endif
 @section('breadcrumb')
     <ol class="breadcrumb float-sm-right">
@@ -16,7 +20,11 @@
             @elseif($type == 'guidelines')
                 Panduan Pesan Pinjam
             @elseif($type == 'achievements')
-                Penghargaan
+                Penghargaan Perpustakaan
+            @elseif($type == 'history')
+                Sejarah Perpustakaan
+            @elseif($type == 'visimisi')
+                Visi Misi Perpustakaan
             @endif
         </li>
     </ol>
@@ -36,7 +44,11 @@
                                 @elseif($type == 'guidelines')
                                     Panduan
                                 @elseif($type == 'achievements')
-                                    Penghargaan
+                                    Penghargaan Perpustakaan
+                                @elseif($type == 'history')
+                                    Sejarah Perustakaan
+                                @elseif($type == 'visimisi')
+                                    Visi Misi Perustakaan
                                 @endif
                             </a>
                         </div>

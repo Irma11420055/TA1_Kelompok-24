@@ -49,6 +49,32 @@ class LibraryArchiveController extends Controller
     /**
      * Display the specified resource.
      */
+    public function history()
+    {
+        $libraryArchive = LibraryArchive::where('type', 'history')->where('active', true)->first();
+        // if (!$libraryArchive) {
+        //     return redirect()->back()->with('error', 'File not found');
+        // }
+        // return view('frontend.library-archives.history', compact('libraryArchive'));
+        return view('frontend_revisi.library-archives.history', compact('libraryArchive'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function visimisi()
+    {
+        $libraryArchive = LibraryArchive::where('type', 'visimisi')->where('active', true)->first();
+        // if (!$libraryArchive) {
+        //     return redirect()->back()->with('error', 'File not found');
+        // }
+        // return view('frontend.library-archives.visimisi', compact('libraryArchive'));
+        return view('frontend_revisi.library-archives.visimisi', compact('libraryArchive'));
+    }
+
+    /**
+     * Display the specified resource.
+     */
     public function show($slug)
     {
         $libraryArchive = LibraryArchive::where('slug', $slug)->where('active', true)->first();
