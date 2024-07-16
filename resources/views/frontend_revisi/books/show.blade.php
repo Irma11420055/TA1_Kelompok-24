@@ -39,8 +39,6 @@
                                         <ul class="book-info">
                                             <li>
                                                 <div class="writer-info">
-                                                    <img src="{{ asset('frontend_revisi/images/profile2.jpg') }}"
-                                                        alt="book">
                                                     <div>
                                                         <span>Pengarang </span>{{ $book->author }}
                                                     </div>
