@@ -1,48 +1,51 @@
 @extends('layouts.frontend.master')
 @section('title', 'Penghargaan')
 @section('content')
-    <div class="container-fluid">
-        <div class="title-container">
-            <h2 style="color: #6F410B; text-align: center; padding-top: 1px;">Penghargaan</h2>
-            <center>
-                <hr style="border-color: #6F410B; margin-bottom: 30px; width: 20%;" />
-            </center>
-        </div>
-    </div>
-    <div class="p-3">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul Penghargaan</th>
-                        <th>Isi Penghargaan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($libraryArchives as $libraryArchive)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $libraryArchive->title }}</td>
-                            <td>{{ $libraryArchive->excerpt }}</td>
-                            <td>
-                                <a href="{{ route('library-archives.achievements.show', $libraryArchive->slug) }}"
-                                    class="btn btn-primary btn-sm">Lihat</a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">Tidak ada data</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        @if ($libraryArchives->hasPages())
-            <div class="d-flex justify-content-center">
-                {{ $announcements->links('components.pagination') }}
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>PENGHARGAAN PERPUSTAKAAN</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">PENGHARGAAN PERPUSTAKAAN</li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        @endif
+        </div>
+        <!-- inner page banner End-->
+
+        <!-- PENGHARGAAN PERPUSTAKAAN -->
+        <section class="content-inner bg-white">
+            <div class="container">
+                <div class="row">
+                    @forelse ($libraryArchives as $libraryArchive)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="content-box style-1 m-b30">
+                                <div class="dz-info">
+                                    <h4 class="title">{{ $libraryArchive->title }}</h4>
+                                    <p>{{ $libraryArchive->excerpt }}</p>
+                                </div>
+                                <div class="dz-bottom">
+                                    <a href="{{ route('library-archives.achievements.show', $libraryArchive->slug) }}"
+                                        class="btn-link btnhover3">Baca Selengkapnya<i
+                                            class="fas fa-arrow-right m-l10"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="d-flex justify-content-center mt-4">
+                            <h1>TIDAK ADA DATA</h1>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+        <!-- PENGHARGAAN PERPUSTAKAAN -->
+
     </div>
 @endsection

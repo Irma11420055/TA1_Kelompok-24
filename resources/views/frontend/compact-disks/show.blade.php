@@ -1,84 +1,139 @@
 @extends('layouts.frontend.master')
 @section('title', $compactDisk->title)
 @section('content')
-    <div class="title-container">
-        <h2 style="font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
-            {{ $compactDisk->title }}</h2>
-        <p style="font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
-            {{ $compactDisk->author }}</p>
-        <hr style="border-color: black; width: 95%; margin: 0 auto;">
-    </div>
-    <div class="container-fluid py-5" style="background-color: #E7E7E7;">
-        <div class="row">
-            <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img style="height: 362px; width: 259px" src="{{ $compactDisk->cover }}" alt={{ $compactDisk->title }}
-                        onerror="this.onerror=null; this.src='{{ asset('frontend/dist/img/cd.png') }}'">
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Kode</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->code }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Judul</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->title }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Subjek</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->subject }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Pengarang</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->author }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->description }}</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Jurusan</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->major }}</p>
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">CD/DVD</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->type }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Tahun</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->year }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Penerbit</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->publisher }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Sumber</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $compactDisk->source }}</p>
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>CD/DVD</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('compact-disks.index') }}">CD/DVD</a></li>
+                            <li class="breadcrumb-item">{{ $compactDisk->title }}</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <!-- inner page banner End-->
+
+        <section class="content-inner-1">
+            <div class="container">
+                <div class="row book-grid-row style-4 m-b60">
+                    <div class="col">
+                        <div class="">
+                            <div class="dz-content">
+                                <div class="dz-header">
+                                    <h3 class="title">{{ $compactDisk->title }}</h3>
+                                </div>
+                            </div>
+                            <div class="dz-media d-flex justify-content-center align-items-center">
+                                <img style="height: 300px; width: 300px;" src="{{ $compactDisk->cover }}"
+                                    alt={{ $compactDisk->title }}>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="product-description tabs-site-button">
+                            <ul class="nav nav-tabs">
+                                <li><a data-bs-toggle="tab" href="#graphic-design-1" class="active">Details CD/DVD</a></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div id="graphic-design-1" class="tab-pane show active">
+                                    <table class="table border book-overview">
+                                        <tr>
+                                            <th>Kode</th>
+                                            <td>{{ $compactDisk->code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Judul</th>
+                                            <td>{{ $compactDisk->title }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Subjek</th>
+                                            <td>{{ $compactDisk->subject }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pengarang</th>
+                                            <td>{{ $compactDisk->author }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Deskripsi</th>
+                                            <td>{{ $compactDisk->description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jurusan</th>
+                                            <td>{{ $compactDisk->major }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>CD/DVD</th>
+                                            <td>{{ $compactDisk->cd_dvd }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tahun</th>
+                                            <td>{{ $compactDisk->year }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Penerbit</th>
+                                            <td>{{ $compactDisk->publisher }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sumber</th>
+                                            <td>{{ $compactDisk->source }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 @endsection
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            let maxDate = new Date();
+            @role('student')
+                // if student then set max date to 7 days from now
+                maxDate.setDate(maxDate.getDate() + 7);
+            @else
+                // set max date to 14 days from now
+                maxDate.setDate(maxDate.getDate() + 14);
+            @endrole
+
+            $('#return_date').flatpickr({
+                enableTime: false,
+                dateFormat: 'Y-m-d',
+                minDate: 'today',
+                maxDate: maxDate
+            });
+        });
+
+        function lendBook(id) {
+            showConfirmationDialog('Pinjam Buku', 'Apakah Anda yakin ingin meminjam buku ini?', 'warning', 'Ya, pinjam',
+                function(result) {
+                    if (result.isConfirmed) {
+                        handleAction('{{ route('lendings.store') }}', 'POST',
+                            'Buku berhasil dipinjam', 'Gagal meminjam buku', {
+                                book_id: id,
+                                return_date: $('#return_date').val()
+                            }, null, () => {
+                                window.location.reload();
+                            });
+                    }
+                });
+        }
+    </script>
     <script>
         $(document).ready(function() {
             let images = document.querySelectorAll('img');

@@ -19,7 +19,7 @@ class ArticleController extends Controller
 
         // dd($articles);
         // return view('frontend.articles.index', compact('articles', 'lastUpdated'));
-        return view('frontend_revisi.articles.index', compact('articles', 'lastUpdated'));
+        return view('frontend.articles.index', compact('articles', 'lastUpdated'));
     }
 
     public function show($article)
@@ -33,6 +33,6 @@ class ArticleController extends Controller
 
         // dd($article);
         // return view('frontend.articles.show', compact('article'));
-        return view('frontend_revisi.articles.show', compact('article'));
+        return view('frontend.articles.show', compact('article'));
     }
 }

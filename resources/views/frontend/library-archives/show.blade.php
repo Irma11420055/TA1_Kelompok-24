@@ -1,49 +1,48 @@
 @extends('layouts.frontend.master')
 @section('title', $libraryArchive->title)
 @section('content')
-    <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Penghargaan
-            Perpustakaan</h1>
-        <div style="position: relative;">
-            <hr
-                style="height: 4px;
-        border-top-width: 1px;
-        border-color: 3px solid #6F410B;
-        margin: 20px auto;
-        border-radius: 20px;
-        width: 17%;">
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="px-2 py-1">
-            <!-- breadcrumb -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-decoration-none"
-                            href="{{ route('library-archives.achievements') }}">Penghargaan Perpustakaan</a></li>
-                    <li class="breadcrumb-item active text-dark" aria-current="page">{{ $libraryArchive->title }}</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="row px-2 py-1">
-            <div class="col-12">
-                <h2 class="card-title">{{ $libraryArchive->title }}</h2>
-            </div>
-        </div>
-    </div>
-    <div class="row py-1">
-        <div class="col-12">
-            <div style="background-color: #E7E7E7" class="p-4 text-white">
-                {!! $libraryArchive->body !!}
-                <div class="row mt-3">
-                    <!-- image -->
-                    <img id="file" src="{{ $libraryArchive->image }}" class="img-fluid"
-                        style="width: 200px; height: 200px;" alt="{{ $libraryArchive->title }}"
-                        onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>PENGHARGAAN PERPUSTAKAAN</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('library-archives.achievements') }}"> PENGHARGAAN
+                                    PERPUSTAKAAN</a></li>
+                            <li class="breadcrumb-item">{{ $libraryArchive->title }}</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <!-- inner page banner End-->
+
+        <!-- PENGHARGAAN PERPUSTAKAAN -->
+        <section class="content-inner-1 bg-light">
+            <div class="container">
+                <div class="row pricingtable-wraper">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="pricingtable-wrapper style-1 m-b30">
+                            <div class="pricingtable-inner">
+                                <div class="pricingtable-title">
+                                    <h3 class="title">{{ $libraryArchive->title }}</h3>
+                                </div>
+                                <p class="text">{!! $libraryArchive->body !!}</p>
+
+                                <img id="file" src="{{ $libraryArchive->image }}" class="w-100 rounded"
+                                    alt="{{ $libraryArchive->title }}"
+                                    onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png';">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- PENGHARGAAN PERPUSTAKAAN -->
     </div>
 @endsection
 @push('scripts')

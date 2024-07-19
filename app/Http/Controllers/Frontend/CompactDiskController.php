@@ -17,14 +17,14 @@ class CompactDiskController extends Controller
         $compactDisks->withPath(url()->current());
         $lastUpdated = CompactDisk::latest()->first();
         // return view('frontend.compact-disks.index', compact('compactDisks', 'lastUpdated'));
-        return view('frontend_revisi.compact-disks.index', compact('compactDisks', 'lastUpdated'));
+        return view('frontend.compact-disks.index', compact('compactDisks', 'lastUpdated'));
     }
 
     public function show($compactDisk)
     {
         $compactDisk = CompactDisk::find(decodeId($compactDisk));
         // dd($compactDisk);
-        return view('frontend_revisi.compact-disks.show', compact('compactDisk'));
+        return view('frontend.compact-disks.show', compact('compactDisk'));
         // return view('frontend.compact-disks.show', compact('compactDisk'));
     }
 }

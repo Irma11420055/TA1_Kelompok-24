@@ -2,62 +2,129 @@
 <html lang="en">
 
 <head>
+
+    <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="keywords" content="" />
+    <meta name="author" content="DexignZone" />
+    <meta name="robots" content="" />
+    <meta name="description" content="Bookland-Book Store Ecommerce Website" />
+    <meta property="og:title" content="Bookland-Book Store Ecommerce Website" />
+    <meta property="og:description" content="Bookland-Book Store Ecommerce Website" />
+    <meta property="og:image" content="../../makaanlelo.com/tf_products_007/bookland/xhtml/social-image.html" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('frontend/images/olis.png') }}" />
+
+    <!-- PAGE TITLE HERE -->
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- STYLESHEETS -->
+    {{-- Boostrap Select --}}
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('frontend/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
+    {{-- FontAwesome --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/icons/fontawesome/css/all.min.css') }}">
+    {{-- Swiper --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/vendor/swiper/swiper-bundle.min.css') }}">
+    {{-- Animate --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/vendor/animate/animate.css') }}">
+    {{-- Custom CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}">
+    {{-- Datatables --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
+
+
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Righteous&display=swap"
         rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="{{ asset('dist/css/notification.css') }}">
+
+
+
+    <!-- GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+
+    <style>
+        a.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
     @stack('styles')
 </head>
 
 <body>
-    @include('layouts.frontend.header')
 
-    <!-- Gambar header dengan menu navigasi -->
-    <div class="header-image">
-        <img src="{{ asset('frontend/dist/img/header.PNG') }}" style="width:100%">
-        <div class="header-image-text">
-
-            <!-- Navbar dengan font Righteous -->
-            <div class="header-navigation">
-                @include ('layouts.frontend.navbar')
+    <div class="page-wraper">
+        <!-- LOADER -->
+        <div id="loading-area" class="preloader-wrapper-1">
+            <div class="preloader-inner">
+                <div class="preloader-shade"></div>
+                <div class="preloader-wrap"></div>
+                <div class="preloader-wrap wrap2"></div>
+                <div class="preloader-wrap wrap3"></div>
+                <div class="preloader-wrap wrap4"></div>
+                <div class="preloader-wrap wrap5"></div>
             </div>
         </div>
+
+        <!-- Header -->
+        <header class="site-header mo-left header style-1">
+            <!-- Main Navbar 1-->
+            @include('layouts.frontend.navbar')
+            <!-- Main Header End -->
+
+            <!-- Main Navbar 2-->
+            {{-- @include('layouts.frontend_revisi.navbar_2') --}}
+            <!-- Main Header End -->
+        </header>
+        <!-- Header End -->
+
+        @yield('content')
+
+        <!-- Footer -->
+        @include('layouts.frontend.footer')
+        <!-- Footer End -->
+
+        <button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
     </div>
-
-    <!-- Content -->
-    @yield('content')
-
-
-    <!-- Footer -->
-
-    <div class="copyright">
-        &copy; 2023 Kelompok 24 TA Sarjana Terapan Teknologi Rekayasa Perangkat Lunak. Hak Cipta Dilindungi.
-    </div>
-
-    @include('layouts.frontend.footer')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- JAVASCRIPT FILES ========================================= -->
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
+    <script src="{{ asset('frontend/js/jquery.min.js') }}"></script><!-- JQUERY MIN JS -->
+    <script src="{{ asset('frontend/vendor/wow/wow.min.js') }}"></script><!-- WOW JS -->
+    <script src="{{ asset('frontend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script><!-- BOOTSTRAP MIN JS -->
+    <script src="{{ asset('frontend/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script><!-- BOOTSTRAP SELECT MIN JS -->
+    <script src="{{ asset('frontend/vendor/counter/waypoints-min.js') }}"></script><!-- WAYPOINTS JS -->
+    <script src="{{ asset('frontend/vendor/counter/counterup.min.js') }}"></script><!-- COUNTERUP JS -->
+    <script src="{{ asset('frontend/vendor/swiper/swiper-bundle.min.js') }}"></script><!-- SWIPER JS -->
+    <script src="{{ asset('frontend/js/dz.carousel.js') }}"></script><!-- DZ CAROUSEL JS -->
+    <script src="{{ asset('frontend/js/dz.ajax.js') }}"></script><!-- AJAX -->
+    <script src="{{ asset('frontend/js/custom.js') }}"></script><!-- CUSTOM JS -->
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    {{-- Sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('backend/js/method.js') }}"></script>
+    {{-- Logout --}}
     <script>
         function logout() {
             Swal.fire({

@@ -18,7 +18,7 @@ class NotificationController extends Controller
         // ambil tanggal perubahan terakhir
         $lastUpdated = Article::latest()->first();
         // return view('frontend.notifications.articles', compact('articles', 'lastUpdated'));
-        return view('frontend_revisi.notifications.articles', compact('articles', 'lastUpdated'));
+        return view('frontend.notifications.articles', compact('articles', 'lastUpdated'));
     }
 
     public function books(Request $request)
@@ -29,7 +29,7 @@ class NotificationController extends Controller
         $lastUpdated = Book::latest()->first();
         // return view('frontend.notifications.books', compact('books', 'lastUpdated'));
         // dd($books);
-        return view('frontend_revisi.notifications.books', compact('books', 'lastUpdated'));
+        return view('frontend.notifications.books', compact('books', 'lastUpdated'));
     }
 
     public function compactDisks(Request $request)
@@ -38,7 +38,7 @@ class NotificationController extends Controller
         $compactDisks = CompactDisk::latest()->where('created_at', '>=', now()->subDays(7))->paginate(6);
         $compactDisks->withPath(url()->current());
         $lastUpdated = CompactDisk::latest()->first();
-        return view('frontend_revisi.notifications.compact-disks', compact('compactDisks', 'lastUpdated'));
+        return view('frontend.notifications.compact-disks', compact('compactDisks', 'lastUpdated'));
         // return view('frontend.notifications.compact-disks', compact('compactDisks', 'lastUpdated'));
     }
 }

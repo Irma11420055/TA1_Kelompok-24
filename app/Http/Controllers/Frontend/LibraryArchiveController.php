@@ -17,7 +17,7 @@ class LibraryArchiveController extends Controller
         //     return redirect()->back()->with('error', 'File not found');
         // }
         // return view('frontend.library-archives.rules', compact('libraryArchive'));
-        return view('frontend_revisi.library-archives.rules', compact('libraryArchive'));
+        return view('frontend.library-archives.rules', compact('libraryArchive'));
     }
 
     /**
@@ -30,7 +30,7 @@ class LibraryArchiveController extends Controller
         //     return redirect()->back()->with('error', 'File not found');
         // }
         // return view('frontend.library-archives.guidelines', compact('libraryArchive'));
-        return view('frontend_revisi.library-archives.guidelines', compact('libraryArchive'));
+        return view('frontend.library-archives.guidelines', compact('libraryArchive'));
     }
 
     /**
@@ -43,7 +43,7 @@ class LibraryArchiveController extends Controller
             ->paginate(6);
         // dd($libraryArchives);
         // return view('frontend.library-archives.achievements', compact('libraryArchives'));
-        return view('frontend_revisi\library-archives\achivements', compact('libraryArchives'));
+        return view('frontend\library-archives\achivements', compact('libraryArchives'));
     }
 
     /**
@@ -56,7 +56,7 @@ class LibraryArchiveController extends Controller
         //     return redirect()->back()->with('error', 'File not found');
         // }
         // return view('frontend.library-archives.history', compact('libraryArchive'));
-        return view('frontend_revisi.library-archives.history', compact('libraryArchive'));
+        return view('frontend.library-archives.history', compact('libraryArchive'));
     }
 
     /**
@@ -69,7 +69,7 @@ class LibraryArchiveController extends Controller
         //     return redirect()->back()->with('error', 'File not found');
         // }
         // return view('frontend.library-archives.visimisi', compact('libraryArchive'));
-        return view('frontend_revisi.library-archives.visimisi', compact('libraryArchive'));
+        return view('frontend.library-archives.visimisi', compact('libraryArchive'));
     }
 
     /**
@@ -83,6 +83,6 @@ class LibraryArchiveController extends Controller
         }
         // dd($libraryArchive);
         // return view('frontend.library-archives.show', compact('libraryArchive'));
-        return view('frontend_revisi.library-archives.show', compact('libraryArchive'));
+        return view('frontend.library-archives.show', compact('libraryArchive'));
     }
 }

@@ -1,155 +1,247 @@
 @extends('layouts.frontend.master')
 @section('title', $book->title)
+
 @section('content')
-    <div class="title-container">
-        <h2 style="font-size: 20px; font-weight: 700; line-height: 36px; margin-left: 41px; margin-bottom: 3px;">
-            {{ $book->title }}</h2>
-        <p style="font-size: 20px; font-weight: 500; line-height: 30px; margin-left: 41px; color: #494646; margin-top: 0;">
-            {{ $book->author }}</p>
-        <hr style="border-color: black; width: 95%; margin: 0 auto;">
-    </div>
-    </div>
-    <div class="container-fluid py-5" style="background-color: #E7E7E7;">
-        <div class="row">
-            <div class="col-4" style="display: flex; flex-direction: column; align-items: center;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img style="height: 362px; width: 259px" src="{{ $book->cover }}" alt={{ $book->title }}
-                        onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
-                </div>
-                @auth
-                    <div style="display: flex; flex-direction: column; align-items: center; margin-top: auto;">
-                        <button class="btn" style="width: 200px; background-color: #00FF38; font-weight: 600;" type="button"
-                            data-bs-toggle="modal" data-bs-target="#myModal">Pinjam</button>
-                    </div>
-                @endauth
-            </div>
-
-            <div class="col-4">
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">ID</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->code }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Judul</p>
-                    <p style="font-weight: 400; margin-top: 0;">{{ $book->title }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Bahasa</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->language }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Subjek</p>
-                    <p style="font-weight: 400; margin-top: 0;">{{ $book->subject }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Pengarang</p>
-                    <p style="font-weight: 400; margin-top: 0;">{{ $book->author }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Penerbit</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->publisher }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Deskipsi</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->description }}</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Status</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        @if ($book->status == 1)
-                            <span class="badge bg-success">Tersedia</span>
-                        @else
-                            <span class="badge bg-danger">Tidak Tersedia</span>
-                        @endif
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Edisi</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->edition }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">ISBN</p>
-                    <p style="font-weight: 400; margin-top: 0;">{{ $book->isbn }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Klasifikasi</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->classification }}</p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Lokasi</p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        {{ $book->location }}
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Copy/Original
-                    </p>
-                    <p style="font-weight: 400; margin-top: 0;">
-                        @if ($book->cp_or == 'cp')
-                            Copy
-                        @else
-                            Original
-                        @endif
-                    </p>
-                </div>
-                <div style="margin: 0 0 8px auto;">
-                    <p style="font-weight: 700; margin-bottom: 3px;">Tahun</p>
-                    <p style="font-weight: 400; margin-top: 0;">{{ $book->year }}
-                    </p>
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>BUKU</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('books.index') }}">BUKU</a></li>
+                            <li class="breadcrumb-item"> {{ $book->title }}</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        <!-- inner page banner End-->
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="background-color: #C9AC98">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Pinjam Buku</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
+        <section class="content-inner-1">
+            <div class="container">
+                <div class="row book-grid-row style-4 m-b60">
+                    <div class="col">
+                        <div class="dz-box">
+                            <div class="dz-media d-flex justify-content-center align-items-center">
+                                <img src="{{ $book->cover }}" alt="{{ $book->title }}" style="height: 200px; width: 200px"
+                                    onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png';">
+                            </div>
+                            <div class="dz-content">
+                                <div class="dz-header">
+                                    <h3 class="title">{{ $book->title }}</h3>
+                                </div>
+                                <div class="dz-body">
+                                    <div class="book-detail">
+                                        <ul class="book-info">
+                                            <li>
+                                                <div class="writer-info">
+                                                    <div>
+                                                        <span>Pengarang </span>{{ $book->author }}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li><span>Penerbit</span>{{ $book->publisher }}</li>
+                                            <li><span>Tahun</span>{{ $book->year }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                @auth
+                                    <div class="book-footer">
+                                        <div class="product-num">
+                                            <a data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                                aria-expanded="false" aria-controls="collapseExample"
+                                                class="btn btn-primary btnhover btnhover2"><span>Pinjam
+                                                    Buku</span></a>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="card card-body">
+                                                    <table class="table border book-overview">
+                                                        <tr>
+                                                            <th> <label for="return_date" class="form-label">Tanggal
+                                                                    Pengembalian</label></th>
+                                                            <td colspan="2"> <input type="text" class="form-control"
+                                                                    id="return_date" placeholder="Pilih Tanggal"
+                                                                    name="return_date"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <div class="d-flex justify-content-end">
+                                                                    @if (auth()->check())
+                                                                        @if ($book->status == 1)
+                                                                            <button type="button" class="btn btn-success"
+                                                                                onclick="lendBook('{{ encodeId($book->id) }}')">Pinjam</button>
+                                                                        @else
+                                                                            <span class="text-danger">Buku tidak tersedia</span>
+                                                                        @endif
+                                                                    @else
+                                                                        <span class="text-danger">Anda harus login terlebih
+                                                                            dahulu</span>
+                                                                    @endif
+                                                                </div>
+                                                            </td>
+                                                        </tr>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="return_date" class="form-label">Tanggal Pengembalian Buku</label>
-                        <input type="text" class="form-control" id="return_date" placeholder="Pilih Tanggal"
-                            name="return_date" style="background-color: #C9AC98">
+
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endauth
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    @if (auth()->check())
-                        @if ($book->status == 1)
-                            <button type="button" class="btn btn-success"
-                                onclick="lendBook('{{ encodeId($book->id) }}')">Pinjam</button>
-                        @else
-                            <span class="text-danger">Buku tidak tersedia</span>
-                        @endif
-                    @else
-                        <span class="text-danger">Anda harus login terlebih dahulu</span>
-                    @endif
-                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="product-description tabs-site-button">
+                            <ul class="nav nav-tabs">
+                                <li><a data-bs-toggle="tab" href="#graphic-design-1" class="active">Details
+                                        Books</a></li>
+                                <li><a data-bs-toggle="tab" href="#list_copies">List Copies</a></li>
+                            </ul>
 
+                            <div class="tab-content">
+                                {{-- Details Books --}}
+                                <div id="graphic-design-1" class="tab-pane show active">
+                                    <table class="table border book-overview">
+                                        <tr>
+                                            <th>Code Buku</th>
+                                            <td>{{$book->code }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Judul Buku</th>
+                                            <td>{{ $book->title }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Bahasa Buku</th>
+                                            <td>{{ $book->language }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Subjek</th>
+                                            <td>{{ $book->subject }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pengarang</th>
+                                            <td>{{ $book->author }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Penerbit</th>
+                                            <td>{{ $book->publisher }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Deskripsi</th>
+                                            <td>{{ $book->description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>
+                                                @if ($book->status == 1)
+                                                    <span class="badge bg-success">Tersedia</span>
+                                                @else
+                                                    <span class="badge bg-danger">Tidak Tersedia</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Edisi</th>
+                                            <td>{{ $book->edition }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>ISBN</th>
+                                            <td>{{ $book->isbn }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Klasifikasi</th>
+                                            <td>{{ $book->classification }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Lokasi</th>
+                                            <td>{{ $book->location }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Copy/Original</th>
+                                            <td>
+                                                @if ($book->cp_or == 'cp')
+                                                    Copy
+                                                @else
+                                                    Original
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tahun</th>
+                                            <td>{{ $book->year }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                {{-- List Copies --}}
+                                <div id="list_copies" class="tab-pane">
+                                    <table id="book_datatable" class="table border book-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Kode Buku</th>
+                                                <th>Judul Buku</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($book_copies as $book)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $book->code }}</td>
+                                                    <td>{{ $book->title }}</td>
+                                                    <td>
+                                                        @if ($book->status == 1)
+                                                            <p class="badge bg-success">Tersedia</p>
+                                                        @else
+                                                            <p class="badge bg-danger">Tidak Tersedia</p>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- Pinjam Buku --}}
+                                <div id="pinjam_buku" class="tab-pane">
+                                    <table class="table border book-overview">
+                                        <tr>
+                                            <th> <label for="return_date" class="form-label">Tanggal Pengembalian</label>
+                                            </th>
+                                            <td> <input type="text" class="form-control" id="return_date"
+                                                    placeholder="Pilih Tanggal" name="return_date"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <td>
+                                                @if (auth()->check())
+                                                    @if ($book->status == 1)
+                                                        <button type="button" class="btn btn-success"
+                                                            onclick="lendBook('{{ encodeId($book->id) }}')">Pinjam</button>
+                                                    @else
+                                                        <span class="text-danger">Buku tidak tersedia</span>
+                                                    @endif
+                                                @else
+                                                    <span class="text-danger">Anda harus login terlebih dahulu</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 @push('scripts')

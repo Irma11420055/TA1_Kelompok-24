@@ -38,7 +38,7 @@ class BookController extends Controller
 
         // DD($books);
         // return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
-        return view('frontend_revisi.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
+        return view('frontend.books.index', compact('books', 'bestBooks', 'lastUpdated', 'total'));
     }
 
     /**
@@ -57,7 +57,7 @@ class BookController extends Controller
         }
         $book_copies = Book::where('slug', $slug)->get();
         // return view('frontend.books.show', compact('book'));
-        return view('frontend_revisi.books.show', compact('book', 'book_copies'));
+        return view('frontend.books.show', compact('book', 'book_copies'));
     }
 
     /**

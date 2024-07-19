@@ -30,8 +30,8 @@ class HomeController extends Controller
         // $peminjamanChartPerrole = $this->PrivatepeminjamanChartPerrole();
         $peminjamanChartPerprodi = $this->PrivatepeminjamanChartPerprodi();
         // dd($peminjamanChartPerrole);
-        return view('frontend_revisi.home.index', compact('bestBooks', 'pengunjungChartPerhari', 'pengunjungChartProdi', 'peminjamanChartPerhari', 'peminjamanChartPerprodi'));
-        // return view('layouts.frontend_revisi.master', compact('bestBooks'));
+        return view('frontend.home.index', compact('bestBooks', 'pengunjungChartPerhari', 'pengunjungChartProdi', 'peminjamanChartPerhari', 'peminjamanChartPerprodi'));
+        // return view('layouts.frontend.master', compact('bestBooks'));
     }
 
     private function PrivatepengunjungChartPerhari()

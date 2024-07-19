@@ -1,17 +1,17 @@
-@extends('layouts.frontend_revisi.master')
-@section('title', 'Peraturan Perpustakaan')
+@extends('layouts.frontend.master')
+@section('title', 'Sejarah Perpustakaan')
 @section('content')
     <div class="page-content bg-white">
         <!-- inner page banner -->
         <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
-            style="background-image:url('{{ asset('frontend_revisi/images/header_2.jpg') }}');">
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
             <div class="container">
                 <div class="dz-bnr-inr-entry">
-                    <h1>PERATURAN PERPUSTAKAAN</h1>
+                    <h1>SEJARAH PERPUSTAKAAN</h1>
                     <nav aria-label="breadcrumb" class="breadcrumb-row">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
-                            <li class="breadcrumb-item">Peraturan Perpustakaan</li>
+                            <li class="breadcrumb-item">Sejarah Perpustakaan</li>
                         </ul>
                     </nav>
                 </div>

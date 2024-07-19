@@ -14,7 +14,7 @@ class AnnouncementController extends Controller
         $announcements->withPath(url()->current());
         // return view('frontend.announcements.index', compact('announcements'));
         // dd($announcements);
-        return view('frontend_revisi.announcements.index', compact('announcements'));
+        return view('frontend.announcements.index', compact('announcements'));
     }
 
     public function show($slug)
@@ -22,6 +22,6 @@ class AnnouncementController extends Controller
         $announcement = Announcement::where('slug', $slug)->firstOrFail();
         // return view('frontend.announcements.show', compact('announcement'));
         // dd($announcement);
-        return view('frontend_revisi.announcements.show', compact('announcement'));
+        return view('frontend.announcements.show', compact('announcement'));
     }
 }

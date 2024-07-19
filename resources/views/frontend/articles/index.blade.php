@@ -1,99 +1,98 @@
 @extends('layouts.frontend.master')
 @section('title', 'List Artikel')
 @section('content')
-    <div class="title-container">
-        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Artikel</h1>
-        <div style="position: relative;">
-            <hr
-                style="height: 4px;
-            border-top-width: 1px;
-            border-color: 3px solid #6F410B;
-            margin: 20px auto;
-            border-radius: 20px;
-            width: 17%;">
-        </div>
-    </div>
-    <div>
-        <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
-            <div class="ms-3">
-                <div class="input-group">
-                    <input class="form-control border rounded-pill" type="text" placeholder="Cari Artikel">
-                    <span class="input-group-append" style="margin-left: -40px;">
-                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
-                            type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>ARTIKEL</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">Artikel</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="d-flex justify-content-end mb-3 p-3">
-        {{ $articles->links('components.pagination') }}
-    </div>
-    <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">
-        <div class="row justify-content-center mx-5">
-            @foreach ($articles as $article)
-                <div class="col-4">
-                    <a href="{{ route('articles.show', $article->slug) }}" style="text-decoration: none; color: black;">
-                        <div style="display: flex; flex-direction: column;">
-                            <div class="sub-card-container-book">
-                                <img src="{{ $article->image }}" alt={{ $article->image }} class="img-fluid"
-                                    onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png'">
-                                <div>
-                                    <table style="border-collapse: collapse;">
-                                        <tr>
-                                            <td colspan="2">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
-                                                    {{ $article->title }}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center; align-items: center; justify-content: center;">
-                                                <i class="fas fa-user-alt fa-sm" style="color: #000000;"></i>
-                                            </td>
-                                            <td style="width: 300px;">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                    {{ $article->author }}</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"><i>
-                                                    <p
-                                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                        Artikel</p>
-                                                </i></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2"><i>
-                                                    <p
-                                                        style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 0;">
-                                                        Dibuat pada {{ $article->created_at->format('d M Y H:i') }} WIB
-                                                    </p>
-                                                </i></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <p
-                                                    style="font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                    Dilihat Sebanyak {{ $article->views }} Kali</p>
-                                            </td>
-                                        </tr>
-                                    </table>
+        </div>
+        <!-- inner page banner End-->
+
+        <!-- Blog Large -->
+        <section class="content-inner-1 bg-img-fix">
+            <div class="container">
+                <div class="row">
+                    {{-- Page Ke Dua --}}
+                    <div class="col-xl-12 col-lg-12">
+                        <aside class="side-bar sticky-top mt-lg-0 mt-md-5 mb-4">
+                            <div class="widget">
+                                <div class="search-bx">
+                                    <form role="search" action="" method="get">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="search"
+                                                placeholder="Cari Artikel" value="{{ request('search') }}">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-primary"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-search">
+                                                        <circle cx="11" cy="11" r="8"></circle>
+                                                        <line x1="21" y1="21" x2="16.65" y2="16.65">
+                                                        </line>
+                                                    </svg></button>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div style="position: relative;">
-                                <p
-                                    style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; position: absolute; bottom: -10px; margin-left: 30px;">
-                                    {{ $article->code }}</p>
+                        </aside>
+                    </div>
+
+                    {{-- PAGE PERTAMA --}}
+                    <div class="col-xl-12 col-lg-12">
+                        {{-- BOOKS --}}
+                        @foreach ($articles as $article)
+                            <div class="dz-blog style-1 bg-white m-b30 blog-half">
+                                <div class="dz-media dz-img-effect zoom">
+                                    <img src="{{ $article->image }}" alt={{ $article->image }}>
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">
+                                        <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
+                                    </h4>
+                                    <p>{{ $article->excerpt }}</p>
+                                    <div class="dz-meta meta-bottom">
+                                        <ul class="border-0 pt-0">
+                                            {{-- <li class="post-date"><i
+                                                    class="fas fa-pencil-alt fa-fw m-r10"></i>{{ $article->author }}</li> --}}
+                                            <li class="post-author"><i
+                                                    class="fa-solid fa-calendar m-r10"></i>{{ $article->created_at->format('d M Y H:i') }}
+                                                WIB
+                                            </li>
+                                            <li class="post-date"><i class="fas fa-eye fa-fw m-r10"></i>
+                                                {{ $article->views }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        @endforeach
+
+                        {{-- PAGINATION --}}
+                        <nav aria-label="Blog Pagination">
+                            <ul class="pagination text-center p-t20 style-1 m-b30">
+                                {{ $articles->links('components.pagination') }}
+                            </ul>
+                        </nav>
+                    </div>
+
+
+
                 </div>
-            @endforeach
-        </div>
+            </div>
+        </section>
+
     </div>
 @endsection
 @push('scripts')

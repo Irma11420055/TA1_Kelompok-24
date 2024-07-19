@@ -20,7 +20,7 @@ class LendingController extends Controller
             ->orderBy('lending_date', 'desc')
             ->paginate(5);
         // return view('frontend.lendings.index', compact('lendings'));
-        return view('frontend_revisi.lendings.index', compact('lendings'));
+        return view('frontend.lendings.index', compact('lendings'));
     }
     public function store(Request $request)
     {

@@ -1,48 +1,56 @@
 @extends('layouts.frontend.master')
-@section('title', 'Pengumuman')
+@section('title', 'List Pengumuman')
 @section('content')
-    <div class="container-fluid">
-        <div class="title-container">
-            <h2 style="color: #6F410B; text-align: center; padding-top: 1px;">Pengumuman</h2>
-            <center>
-                <hr style="border-color: #6F410B; margin-bottom: 30px; width: 20%;" />
-            </center>
-        </div>
-    </div>
-    <div class="p-3">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul Pengumuman</th>
-                        <th>Isi Pengumuman</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($announcements as $announcement)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $announcement->title }}</td>
-                            <td>{{ \Str::limit($announcement->content, 100) }}</td>
-                            <td>
-                                <a href="{{ route('announcements.show', $announcement->slug) }}"
-                                    class="btn btn-primary btn-sm">Lihat</a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">Tidak ada data</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        @if ($announcements->hasPages())
-            <div class="d-flex justify-content-center">
-                {{ $announcements->links('components.pagination') }}
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>PENGUMUMAN</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">PENGUMUMAN</li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        @endif
+        </div>
+        <!-- inner page banner End-->
+
+        <!-- Blog Large -->
+        <section class="content-inner-1 bg-img-fix">
+            <div class="container">
+                <div class="row">
+
+
+                    {{-- PAGE PERTAMA --}}
+                    <div class="col-xl-12 col-lg-12">
+                        {{-- PENGUMUMAN --}}
+                        @foreach ($announcements as $announcement)
+                            <div class="dz-blog style-1 bg-white m-b30 blog-half">
+                                <div class="dz-info">
+                                    <h4 class="dz-title">
+                                        <a
+                                            href="{{ route('announcements.show', $announcement->slug) }}">{{ $announcement->title }}</a>
+                                    </h4>
+                                    <p>{{ $announcement->content }}</p>
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                        {{-- PAGINATION --}}
+                        <nav aria-label="Blog Pagination">
+                            <ul class="pagination text-center p-t20 style-1 m-b30">
+                                {{ $announcements->links('components.pagination') }}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 @endsection

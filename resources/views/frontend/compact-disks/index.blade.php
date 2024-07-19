@@ -1,100 +1,96 @@
 @extends('layouts.frontend.master')
 @section('title', 'List CD/DVD')
 @section('content')
-    <div class="title-container">
-        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">CD/DVD</h1>
-        <hr
-            style="height: 4px;
-        border-top-width: 1px;
-        border-color: 3px solid #6F410B;
-        margin: 20px auto;
-        border-radius: 20px;
-        width: 17%;">
-    </div>
-    <div>
-        <form action="" class="d-flex justify-content-end align-items-center px-3" method="GET">
-            <div class="ms-3">
-                <div class="input-group">
-                    <input class="form-control border rounded-pill" type="text" placeholder="Cari CD/DVD">
-                    <span class="input-group-append" style="margin-left: -40px;">
-                        <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
-                            type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="d-flex justify-content-end mb-3 p-3">
-        {{ $compactDisks->links('components.pagination') }}
-    </div>
-    <div class="container-fluid py-5 px-5" style="background-color: #E7E7E7;">
-        <div class="row justify-content-center mx-5">
-            <div class="col-12">
-                <div class="row">
-                    @foreach ($compactDisks as $cd)
-                        <div class="col-md-6">
-                            <a href="{{ route('compact-disks.show', encodeId($cd->id)) }}"
-                                style="text-decoration: none; color: black;">
-                                <div style="display: flex; flex-direction: column;">
-                                    <div class="sub-card-container-book">
-                                        <img src="{{ $cd->cover }}" alt={{ $cd->title }}
-                                            onerror="this.onerror=null; this.src='{{ asset('frontend/dist/img/cd.png') }}'">
-                                        <div>
-                                            <table style="border-collapse: collapse;">
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <p
-                                                            style="font-size: 16px; font-weight: 600; margin-top: 5px; margin-bottom:5px; color: #1C24E1;">
-                                                            {{ $cd->title }}</p>
-                                                    </td>
-                                                </tr>
-                                                <tr style="margin-top: 3px;">
-                                                    <td
-                                                        style="text-align: center; align-items: center; justify-content: center; margin-top: 5px;">
-                                                        <i class="fas fa-calendar-alt fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                            {{ $cd->year }}</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <i class="fas fa-user fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                            {{ $cd->author }}</p>
-                                                    </td>
-                                                    <p style="font-size: 14px; font-weight: 400; margin: 0 5px auto;">
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <!-- cd/dvd -->
-                                                        <i class="fas fa-compact-disc fa-sm" style="color: #000000;"></i>
-                                                    </td>
-                                                    <td style="width: 300px;">
-                                                        <p style="font-size: 12px; font-weight: 500; margin: 15px 0 auto;">
-                                                            {{ $cd->cd_dvd }}</p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div style="position: relative;">
-                                        <p
-                                            style="font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 400; position: absolute; bottom: -10px; margin-left: 30px;">
-                                            {{ $cd->code }}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>CD/DVD</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">CD/DVD</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <!-- inner page banner End-->
+
+        <!-- Blog Large -->
+        <section class="content-inner-1 bg-img-fix">
+            <div class="container">
+                <div class="row">
+
+                    {{-- Search --}}
+                    <div class="col-xl-12 col-lg-12">
+                        <aside class="side-bar sticky-top mt-lg-0 mt-md-5 mb-4">
+                            <div class="widget">
+                                <div class="search-bx">
+                                    <form role="search" action="" method="get">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="search"
+                                                placeholder="Cari CD/DVD" value="{{ request('search') }}">
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-primary"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-search">
+                                                        <circle cx="11" cy="11" r="8"></circle>
+                                                        <line x1="21" y1="21" x2="16.65" y2="16.65">
+                                                        </line>
+                                                    </svg></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+
+                    {{-- Content --}}
+                    @foreach ($compactDisks as $cd)
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="dz-blog style-1 bg-white m-b30">
+                                <div class="dz-media dz-img-effect zoom d-flex justify-content-center align-items-center">
+                                    <img src="{{ $cd->cover }}" alt="{{ $cd->title }}"
+                                        onerror="this.onerror=null; this.src='{{ asset('frontend/dist/img/cd.png') }}';"
+                                        style="height: 100px;width: 100px;">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">
+                                        <a
+                                            href="{{ route('compact-disks.show', encodeId($cd->id)) }}">{{ $cd->title }}</a>
+                                    </h4>
+                                    <div class="dz-meta meta-bottom">
+                                        <ul class="border-0 pt-0">
+                                            <li class="post-date"><i class="fas fa-calendar-alt"></i>{{ $cd->year }}
+                                            </li>
+                                            <li class="post-author"><i class="fas fa-user"></i>{{ $cd->author }}</li>
+                                            <li class="post-date"><i class="fas fa-compact-disc"></i>{{ $cd->cd_dvd }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+                {{-- PAGINATION --}}
+                <nav aria-label="Blog Pagination">
+                    <ul class="pagination text-center p-t20 style-1 m-b30">
+                        {{ $compactDisks->links('components.pagination') }}
+                    </ul>
+                </nav>
+            </div>
+
+        </section>
+
     </div>
 @endsection
 @push('scripts')

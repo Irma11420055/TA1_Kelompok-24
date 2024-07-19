@@ -1,47 +1,46 @@
 @extends('layouts.frontend.master')
 @section('title', $article->title)
 @section('content')
-    <div class="title-container">
-        <h1 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; line-height: 36px;">Artikel</h1>
-        <div style="position: relative;">
-            <hr
-                style="height: 4px;
-        border-top-width: 1px;
-        border-color: 3px solid #6F410B;
-        margin: 20px auto;
-        border-radius: 20px;
-        width: 17%;">
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="px-2 py-1">
-            <!-- breadcrumb -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-decoration-none"
-                            href="{{ route('articles.index') }}">Articles</a></li>
-                    <li class="breadcrumb-item active text-dark" aria-current="page">{{ $article->title }}</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="row px-2 py-1">
-            <div class="col-12">
-                <h2 class="card-title">{{ $article->title }}</h2>
-            </div>
-        </div>
-    </div>
-    <div class="row py-1">
-        <div class="col-12">
-            <div style="background-color: #E7E7E7" class="p-4">
-                {!! $article->body !!}
-                <div class="row mt-3">
-                    <!-- image -->
-                    <img id="file" src="{{ $article->image }}" class="img-fluid" style="width: 200px; height: 200px;"
-                        alt="{{ $article->title }}">
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>ARTIKEL</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('articles.index') }}">Artikel</a></li>
+                            <li class="breadcrumb-item">{{ $article->title }}</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <!-- inner page banner End-->
+        <section class="content-inner-1 bg-img-fix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12">
+                        <!-- blog start -->
+                        <div class="dz-blog blog-single style-1">
+                            <div class="dz-media rounded-md">
+                                <img id="file" src="{{ $article->image }}" alt="{{ $article->title }}">
+                            </div>
+                            <div class="dz-info">
+                                <h4 class="dz-title">{{ $article->title }}</h4>
+                                <div class="dz-post-text">
+                                    <p> {!! $article->body !!}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- blog END -->
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 @endsection
 @push('scripts')

@@ -1,23 +1,39 @@
-
 @extends('layouts.frontend.master')
 @section('title', 'Panduan Pesan Pinjam')
 @section('content')
-    <div class="title-container">
-        <h1 style="font-size: 20px; font-weight: 700; line-height: 36px;">Panduan Pesan
-            Pinjam</h1>
-        <div style="position: relative;">
-            <hr
-                style="height: 4px;
-        border-top-width: 1px;
-        border-color: 3px solid #6F410B;
-        margin: 20px auto;
-        border-radius: 20px;
-        width: 17%;">
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>PANDUAN PESAN PINJAM</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">PANDUAN PESAN PINJAM</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
+        <!-- inner page banner End-->
 
-    <div class="card" style="background-color: #E7E7E7; padding: 40px;">
-        <embed type="application/pdf" width="100%" height="600px" id="file">
+        <!-- PANDUAN PESAN PINJAM -->
+        <section class="content-inner-1 bg-light">
+            <div class="container">
+                <div class="row pricingtable-wraper">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="pricingtable-wrapper style-1 m-b30">
+                            <div class="pricingtable-inner">
+                                <embed type="application/pdf" width="100%" height="600px" id="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- PANDUAN PESAN PINJAM -->
     </div>
 @endsection
 @push('scripts')

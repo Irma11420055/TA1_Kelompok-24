@@ -63,6 +63,9 @@
                                     <input type="text" name="end_month" id="end_month" class="form-control end_month">
                                 </div>
                             </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
+                            </div>
                         </form>
                     </div>
                 </div>

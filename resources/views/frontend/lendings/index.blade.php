@@ -44,85 +44,191 @@
             color: #c59b08;
         }
     </style>
+    <style>
+        <style>#customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #20146c;
+            color: white;
+        }
+    </style>
 @endpush
 @section('content')
-    <div class="container-fluid">
-        <div class="title-container">
-            <h2 style="color: #6F410B; text-align: center; padding-top: 1px;">Riwayat Peminjaman</h2>
-            <center>
-                <hr style="border-color: #6F410B; margin-bottom: 30px; width: 20%;" />
-            </center>
-        </div>
-    </div>
-    <div class="p-3">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul Buku</th>
-                        <th>Pengarang</th>
-                        <th>Tahun</th>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Tanggal Pengembalian</th>
-                        <th>Denda</th>
-                        <th>Status</th>
-                        <th>Rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($lendings as $lending)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $lending->book->title }}</td>
-                            <td>{{ $lending->book->author }}</td>
-                            <td>{{ $lending->book->year }}</td>
-                            <td>{{ $lending->lending_date }}</td>
-                            <td>{{ $lending->return_date }}</td>
-                            <td>{{ $lending->fine }}</td>
-                            <td>
-                                @if ($lending->status == 'pending')
-                                    <span style="color: #FFC107;" class="fw-bold">Menunggu</span>
-                                @elseif ($lending->status == 'lent')
-                                    <span style="color: #28A745;" class="fw-bold">Dipinjam</span>
-                                @elseif ($lending->status == 'returned')
-                                    <span style="color: #007BFF;" class="fw-bold">Dikembalikan</span>
-                                @elseif ($lending->status == 'extended')
-                                    <span style="color: #17A2B8;" class="fw-bold">Diperpanjang</span>
-                                @elseif ($lending->status == 'rejected')
-                                    <span style="color: #DC3545;" class="fw-bold">Ditolak</span>
-                                @elseif($lending->status == 'overdue')
-                                    <span style="color: #DC3545;" class="fw-bold">Terlambat</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if ($lending->status == 'returned')
-                                    @if ($lending->book->hasReviewed(auth()->user()))
-                                        @for ($i = 0; $i < $lending->book->rating; $i++)
-                                            <i class="fas fa-star text-warning"></i>
-                                        @endfor
-                                    @else
-                                        <a href="{{ route('books.review', $lending->book->slug) }}"
-                                            class="btn btn-primary btn-rate">Beri Rating</a>
-                                    @endif
-                                @endif
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">Tidak ada data</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        @if ($lendings->hasPages())
-            <div class="d-flex justify-content-center">
-                {{ $lendings->links('components.pagination') }}
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
+            <div class="container">
+                <div class="dz-bnr-inr-entry">
+                    <h1>RIWAYAT PEMINJAMAN</h1>
+                    <nav aria-label="breadcrumb" class="breadcrumb-row">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> Beranda</a></li>
+                            <li class="breadcrumb-item">Riwayat Peminjaman</li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        @endif
-    </div>
+        </div>
+        <!-- inner page banner End-->
 
+        <!-- PENGUMUMAN -->
+        <section class="content-inner-1 bg-img-fix">
+            <div class="container">
+                <div class="row">
+                    {{-- CONTENT --}}
+                    {{-- @forelse ($lendings as $lending)
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="dz-blog style-1 bg-white m-b30">
+                                <div class="dz-info">
+                                    <h4 class="dz-title">
+                                        {{ $lending->book->title }}
+                                    </h4>
+                                    <ul>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Pengarang :
+                                            {{ $lending->book->author }}</li>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Tahun : {{ $lending->book->year }}
+                                        </li>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Tanggal Peminjaman :
+                                            {{ $lending->lending_date }}</li>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Tanggal Pengembalian :
+                                            {{ $lending->return_date }}</li>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Denda : {{ $lending->fine }}</li>
+                                        <li><i class="fa-solid fa-circle fa-2xs"></i> Status :
+                                            @if ($lending->status == 'pending')
+                                                <span style="color: #FFC107;" class="fw-bold">Menunggu</span>
+                                            @elseif ($lending->status == 'lent')
+                                                <span style="color: #28A745;" class="fw-bold">Dipinjam</span>
+                                            @elseif ($lending->status == 'returned')
+                                                <span style="color: #007BFF;" class="fw-bold">Dikembalikan</span>
+                                            @elseif ($lending->status == 'extended')
+                                                <span style="color: #17A2B8;" class="fw-bold">Diperpanjang</span>
+                                            @elseif ($lending->status == 'rejected')
+                                                <span style="color: #DC3545;" class="fw-bold">Ditolak</span>
+                                            @elseif($lending->status == 'overdue')
+                                                <span style="color: #DC3545;" class="fw-bold">Terlambat</span>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                    @if ($lending->status == 'returned')
+                                        @if ($lending->book->hasReviewed(auth()->user()))
+                                            <div class="dz-meta meta-bottom">
+                                                <ul class="border-0 pt-0">
+                                                    <li class="post-date d-flex justify-content-center align-items-center">
+                                                        @for ($i = 0; $i < $lending->book->rating; $i++)
+                                                            <i class="fas fa-star text-warning"></i>
+                                                        @endfor
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @else
+                                            <div class="dz-meta meta-bottom">
+                                                <ul class="border-0 pt-0">
+                                                    <li class="post-date d-flex justify-content-center align-items-center">
+                                                        <a href="{{ route('books.review', $lending->book->slug) }}"
+                                                            class="btn btn-primary btn-rate">Beri Rating</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                    
+                    @endforelse --}}
+                    <div class="card " style="overflow-x: auto;width: 100%">
+                        <table id="customers" class="display">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Judul Buku</th>
+                                    <th>Pengarang</th>
+                                    <th>Tahun</th>
+                                    <th>Tanggal Peminjaman</th>
+                                    <th>Tanggal Pengembalian</th>
+                                    <th>Denda</th>
+                                    <th>Status</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($lendings as $lending)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $lending->book->title }}</td>
+                                        <td>{{ $lending->book->author }}</td>
+                                        <td>{{ $lending->book->year }}</td>
+                                        <td>{{ $lending->lending_date }}</td>
+                                        <td>{{ $lending->return_date }}</td>
+                                        <td>{{ $lending->fine }}</td>
+                                        <td>
+                                            @if ($lending->status == 'pending')
+                                                <span style="color: #FFC107;" class="fw-bold">Menunggu</span>
+                                            @elseif ($lending->status == 'lent')
+                                                <span style="color: #28A745;" class="fw-bold">Dipinjam</span>
+                                            @elseif ($lending->status == 'returned')
+                                                <span style="color: #007BFF;" class="fw-bold">Dikembalikan</span>
+                                            @elseif ($lending->status == 'extended')
+                                                <span style="color: #17A2B8;" class="fw-bold">Diperpanjang</span>
+                                            @elseif ($lending->status == 'rejected')
+                                                <span style="color: #DC3545;" class="fw-bold">Ditolak</span>
+                                            @elseif($lending->status == 'overdue')
+                                                <span style="color: #DC3545;" class="fw-bold">Terlambat</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($lending->status == 'returned')
+                                                @if ($lending->book->hasReviewed(auth()->user()))
+                                                    @for ($i = 0; $i < $lending->book->rating; $i++)
+                                                        <i class="fas fa-star text-warning"></i>
+                                                    @endfor
+                                                @else
+                                                    <a href="{{ route('books.review', $lending->book->slug) }}"
+                                                        class="btn btn-primary btn-rate">Beri Rating</a>
+                                                @endif
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <nav aria-label="Blog Pagination">
+                    <ul class="pagination text-center p-t20 style-1 m-b30">
+                        {{ $lendings->links('components.pagination') }}
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </div>
     <!-- Modal -->
     @include('frontend.lendings.rate')
 @endsection
@@ -135,7 +241,7 @@
                 $('#rateModal').on('show.bs.modal', function(e) {
                     const modal = $(this);
                     modal.find('form').attr('action', url);
-                })
+                });
                 $('#rateModal').modal('show');
             });
 
@@ -151,6 +257,10 @@
                 const url = form.attr('action');
                 const method = form.attr('method');
                 const data = form.serialize();
+
+                // Hide modal before showing SweetAlert
+                $('#rateModal').modal('hide');
+
                 showConfirmationDialog('Are you sure?', 'You won\'t be able to revert this!', 'warning',
                     'Yes, rate it!', (result) => {
                         if (result.isConfirmed) {
@@ -163,6 +273,11 @@
                         }
                     });
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#customers').DataTable();
         });
     </script>
 @endpush
