@@ -46,6 +46,9 @@
                                 <div class="mr-2">
                                     <!-- filter dropdown -->
                                     <div class="dropdown">
+                                        <!-- export button -->
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#exportBook"><i class="fas fa-download"></i> Export</button>
                                         <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">

@@ -13,7 +13,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form action="{{ route('backend.site-links.update', $siteLink->id) }}" method="post">
+                    <form action="{{ route('backend.site-links.update', encodeId($siteLink->id)) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -39,6 +40,22 @@
                                 <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
                                     name="url" value="{{ old('url', $siteLink->url) }}">
                                 @error('url')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image" class="col-sm-2 col-form-label @error('image') text-danger @enderror">
+                                    Gambar
+                                </label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                            id="image" name="image" accept="image/*">
+                                        <label class="custom-file-label" for="image">Choose file</label>
+                                    </div>
+                                </div>
+                                @error('image')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

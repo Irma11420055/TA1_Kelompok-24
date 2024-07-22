@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Models\LogVisitor;
 use Illuminate\Http\Request;
@@ -14,7 +14,8 @@ class LogVisitorController extends Controller
     public function index(Request $request)
     {
         $visitorToday = LogVisitor::whereDate('visited_at', today())->count();
-        return view('backend.log-visitors.index', compact('visitorToday'));
+        // return view('backend.log-visitors.index', compact('visitorToday'));
+        return view('log_visitor.index', compact('visitorToday'));
     }
 
     public function data(Request $request)

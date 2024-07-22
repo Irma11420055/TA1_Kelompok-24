@@ -9,10 +9,6 @@ Route::prefix('backend')
     ->group(function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-        $pref = 'categories';
-        $ctrl = 'CategoryController';
-        Route::resource($pref, $ctrl);
-
         $pref = 'books';
         $ctrl = 'BookController';
         Route::prefix($pref)->group(function () use ($ctrl) {
@@ -194,9 +190,9 @@ Route::namespace('App\Http\Controllers\Frontend')
     });
 
 // Log Pengunjung
-Route::get('/log-visitors', '\App\Http\Controllers\Backend\LogVisitorController@index')->name('log-visitors.index');
-Route::get('/log-visitors/data', '\App\Http\Controllers\Backend\LogVisitorController@data')->name('log-visitors.data');
-Route::post('/', '\App\Http\Controllers\Backend\LogVisitorController@store')->name('log-visitors.store');
+Route::get('/log-visitors', '\App\Http\Controllers\Frontend\LogVisitorController@index')->name('log-visitors.index');
+Route::get('/log-visitors/data', '\App\Http\Controllers\Frontend\LogVisitorController@data')->name('log-visitors.data');
+Route::post('/', '\App\Http\Controllers\Frontend\LogVisitorController@store')->name('log-visitors.store');
 
 
 // login

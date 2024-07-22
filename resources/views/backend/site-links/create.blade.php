@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form action="{{ route('backend.site-links.store') }}" method="post">
+                    <form action="{{ route('backend.site-links.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h3 class="card-title">Tambah Link Lainnya</h3>
@@ -41,6 +41,23 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="image" class="col-sm-2 col-form-label @error('image') text-danger @enderror">
+                                    Gambar
+                                </label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                            id="image" name="image" accept="image/*">
+                                        <label class="custom-file-label" for="image">Choose file</label>
+                                    </div>
+                                </div>
+                                @error('image')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

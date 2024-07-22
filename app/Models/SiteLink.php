@@ -12,5 +12,6 @@ class SiteLink extends Model
     protected $fillable = [
         'name',
         'url',
+        'image',
     ];
 }

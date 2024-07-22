@@ -25,6 +25,7 @@
                 <div class="row d-flex justify-content-start">
                     @foreach ($siteLinks as $siteLink)
                         <div class="col-6 col-md-6 col-lg-6 mb-2 d-flex justify-content-start">
+                            <img src="{{ $siteLink->image }}" class="w-50">
                             <a href="{{ $siteLink->url }}" class="btn btn-primary w-100"
                                 target="_blank">{{ $siteLink->name }}</a>
                         </div>
@@ -35,3 +36,23 @@
 
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
+            });
+        });
+    </script>
+@endpush

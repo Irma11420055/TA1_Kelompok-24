@@ -27,6 +27,7 @@
                                     <th>#</th>
                                     <th>Nama Link</th>
                                     <th>URL</th>
+                                    <th>Ikon</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -63,39 +64,58 @@
                         name: 'url'
                     },
                     {
+                        data: 'image',
+                        name: 'image',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
                         name: 'action',
                         orderable: false,
                         searchable: false
                     }
                 ],
                 columnDefs: [{
-                    targets: 0,
-                    className: 'text-center',
-                    width: '5%',
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                }, {
-                    targets: 3,
-                    className: 'text-center',
-                    orderable: false,
-                    render: function(data, type, row) {
-                        return `
-                            <div class="btn-group">
-                                <a class="btn btn-info btn-sm" href="${row.url}" target="_blank">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </div>
-                        `;
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
                     },
-                    width: '15%'
-                }],
+                    {
+                        targets: 3,
+                        className: 'text-center',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return row.image ?
+                                `<img src="${row.image}" alt="Gambar" style="max-width: 100px; max-height: 100px;">` :
+                                'Tidak ada gambar';
+                        },
+                        width: '15%'
+                    },
+                    {
+                        targets: 4,
+                        className: 'text-center',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return `
+                                <div class="btn-group">
+                                    <a class="btn btn-info btn-sm" href="${row.url}" target="_blank">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-warning btn-sm" href="${url}/${row.id}/edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-delete" href="${url}/${row.id}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            `;
+                        },
+                        width: '15%'
+                    }
+                ],
                 order: [
                     [0, 'asc']
                 ]
@@ -113,6 +133,24 @@
                                 });
                         }
                     });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            let images = document.querySelectorAll('img');
+            images.forEach((img) => {
+                let fileUrl = img.src;
+                if (fileUrl.includes('drive.google.com')) {
+                    var fileId = fileUrl.split('=')[1];
+                    fileId = fileId.split('&')[0];
+                    img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
+                }
+            });
+
+            // on enter key
+            $(document).on('keyup', function(e) {
+                console.log(e.key);
             });
         });
     </script>
