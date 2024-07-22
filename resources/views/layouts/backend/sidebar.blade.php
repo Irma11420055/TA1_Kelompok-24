@@ -75,13 +75,13 @@
                             <p>Peminjaman CD/DVD</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ route('backend.reports.index') }}"
                             class="nav-link {{ 'reports' == request()->path() ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Laporan</p>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
 
@@ -138,7 +138,7 @@
                             <p>Visi Misi Perpustakaan</p>
                         </a>
                     </li>
-                    
+
                 </ul>
             </li>
 
@@ -151,7 +151,7 @@
                     </p>
                 </a>
 
-                <!-- {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a href="{{ route('backend.log-visitors.index') }}"
                     class="nav-link {{ 'log-visitors' == request()->path() ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user"></i>
@@ -159,7 +159,7 @@
                         Log Pengunjung
                     </p>
                 </a>
-            </li> --}} -->
+            </li>
         </ul>
     </nav>
 </aside>

@@ -191,8 +191,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/melihatbahanpustaka.PNG') }}"
-                                        alt="Melihat Pustaka">
+                                    <img src="{{ asset('frontend/dist/img/pinjam.PNG') }}"
+                                        alt="Layanan Referensi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Referensi</h4>
@@ -204,8 +204,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}"
-                                        alt="Layanan Peminjaman Buku">
+                                    <img src="{{ asset('frontend/dist/img/cek.PNG') }}"
+                                        alt="Layanan Cek Plagiarism">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Cek Plagiarism</h4>
@@ -217,7 +217,7 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}"
+                                    <img src="{{ asset('frontend/dist/img/scan.PNG') }}"
                                         alt="Layanan Cetak Dokumen">
                                 </div>
                                 <div class="dz-info">
@@ -230,8 +230,21 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
-                                        alt="Memiliki Ruang Diskusi">
+                                    <img src="{{ asset('frontend/dist/img/cetak.PNG') }}"
+                                        alt="Layanan Scan Dokumen">
+                                </div>
+                                <div class="dz-info">
+                                    <h4 class="dz-title">Layanan Scan Dokumen</h4>
+                                    <p class="dz-description">Perpustakaan menyediakan mesin scan dokumen untuk mencetak berbagai jenis dokumen bagi anggota perpustakaan, seperti dokumen, Tugas Akhir, Skripsi, Kerja Praktik, dan kebutuhan dokumen lainnya. Anda dapat memanfaatkan mesin scan ini untuk menghasilkan salinan elektronik dokumen-dokumen tersebut.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="dz-media">
+                                    <img src="{{ asset('frontend/dist/img/grammar.PNG') }}"
+                                        alt="Layanan Grammarly">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Grammarly</h4>
@@ -242,8 +255,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}"
-                                        alt="Layanan Peminjaman Buku">
+                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
+                                        alt="Ruang Audio Visual">
                                 </div>
                                 
                                 <div class="dz-info">
@@ -256,8 +269,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
-                                        alt="Memiliki Ruang Diskusi">
+                                    <img src="{{ asset('frontend/dist/img/sirkulasi.PNG') }}"
+                                        alt="Layanan Sirkulasi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Sirkulasi</h4>
@@ -269,8 +282,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/meminjambuku.PNG') }}"
-                                        alt="Layanan Peminjaman Buku">
+                                    <img src="{{ asset('frontend/dist/img/perpus.PNG') }}"
+                                        alt="Layanan Baca Ditempat">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Baca Ditempat</h4>
@@ -282,8 +295,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}"
-                                        alt="Layanan Cetak Dokumen">
+                                    <img src="{{ asset('frontend/dist/img/exit.PNG') }}"
+                                        alt="Layanan Exit Clearance">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Exit Clearance</h4>
@@ -295,8 +308,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
-                                        alt="Memiliki Ruang Diskusi">
+                                    <img src="{{ asset('frontend/dist/img/ruang.PNG') }}"
+                                        alt="Layanan Gray Literature">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Gray Literature</h4>
@@ -308,8 +321,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/cetakdokumen.PNG') }}"
-                                        alt="Layanan Cetak Dokumen">
+                                    <img src="{{ asset('frontend/dist/img/webinar.PNG') }}"
+                                        alt="Layanan Literasi Informasi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Literasi Informasi</h4>
@@ -321,8 +334,8 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
-                                        alt="Memiliki Ruang Diskusi">
+                                    <img src="{{ asset('frontend/dist/img/keliling.PNG') }}"
+                                        alt="Layanan ekstensi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Ekstensi</h4>

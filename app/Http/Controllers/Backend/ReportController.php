@@ -17,18 +17,20 @@ class ReportController extends Controller
         return view('backend.reports.index');
     }
 
-    public function exportLendingBook(Request $request, $status)
+    public function exportLendingBook(Request $request)
     {
         $start_month = $request->start_month;
         $end_month = $request->end_month;
+        $status = $request->status;
 
         return Excel::download(new LendingBookExport($start_month, $end_month, $status, 'book'), 'LendingBook.xlsx');
     }
 
-    public function exportLendingCD(Request $request, $status)
+    public function exportLendingCD(Request $request)
     {
         $start_month = $request->start_month;
         $end_month = $request->end_month;
+        $status = $request->status;
 
         return Excel::download(new LendingBookExport($start_month, $end_month, $status, 'cd_dvd'), 'LendingCD.xlsx');
     }

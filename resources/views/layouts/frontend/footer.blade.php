@@ -23,10 +23,7 @@
                         </p>
                         <p class="text text-white">
                             NPP :
-                            <span class="fw-bold">00162/LAP.PT/VIII.2020</span>
-                            <br>
-                            Akreditasi :
-                            <span class="fw-bold">B</span>
+                            <span class="fw-bold">1206042F02000001</span>
                         </p>
                         <div class="dz-social-icon style-1">
                             <ul>
@@ -49,38 +46,39 @@
 
     <!-- Footer Bottom -->
     <div class="footer-bottom">
-    <div class="container">
-        <div class="row fb-inner">
-            <div class="col-lg-6 col-md-12 text-start">
-                <p class="copyright-text text-white">© {{ date('Y') }} Kelompok 24 TA Sarjana Terapan Teknologi
-                    Rekayasa
-                    Perangkat Lunak</p>
-            </div>
-            <div class="col-lg-6 col-md-12 text-end">
-                <p class="visitor-count text-white">Jumlah Pengunjung:</p>
+        <div class="container">
+            <div class="row fb-inner">
+                <div class="col-lg-6 col-md-12 text-start">
+                    <p class="copyright-text text-white">© {{ date('Y') }} Kelompok 24 TA Sarjana Terapan Teknologi
+                        Rekayasa
+                        Perangkat Lunak</p>
+                </div>
+                <div class="col-lg-6 col-md-12 text-end">
+                    <p class="visitor-count text-white">Jumlah Pengunjung: {{ $visitorCount }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        function getVisitorCount() {
-            fetch('path/to/visitor/count/endpoint') // Ganti dengan URL atau endpoint yang sesuai
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelector('.visitor-count').textContent = `Jumlah Pengunjung: ${data.count}`;
-                })
-                .catch(error => {
-                    console.error('Error fetching visitor count:', error);
-                });
-        }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function getVisitorCount() {
+                fetch('path/to/visitor/count/endpoint') // Ganti dengan URL atau endpoint yang sesuai
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('.visitor-count').textContent =
+                            `Jumlah Pengunjung: ${data.count}`;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching visitor count:', error);
+                    });
+            }
 
-        getVisitorCount(); // Panggil fungsi untuk pertama kali saat halaman dimuat
+            getVisitorCount(); // Panggil fungsi untuk pertama kali saat halaman dimuat
 
-        setInterval(getVisitorCount, 60000); // Update setiap 1 menit (60000 milidetik)
-    });
-</script>
+            setInterval(getVisitorCount, 60000); // Update setiap 1 menit (60000 milidetik)
+        });
+    </script>
 
     <!-- Footer Bottom End -->
 </footer>

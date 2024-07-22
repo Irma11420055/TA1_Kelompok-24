@@ -66,8 +66,8 @@ Route::prefix('backend')
         $ctrl = 'ReportController';
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/index', $ctrl . '@index')->name('reports.index');
-            Route::post('/export-lending-book/{status}', $ctrl . '@exportLendingBook')->name('reports.export-lending-book');
-            Route::post('/export-lending-cd-dvd/{status}', $ctrl . '@exportLendingCD')->name('reports.export-lending-cd-dvd');
+            Route::post('/export-lending-book', $ctrl . '@exportLendingBook')->name('reports.export-lending-book');
+            Route::post('/export-lending-cd-dvd', $ctrl . '@exportLendingCD')->name('reports.export-lending-cd-dvd');
             Route::post('/export-visitor', $ctrl . '@exportVisitor')->name('reports.export-visitor');
             Route::get('/view-lending-book/{status}', $ctrl . '@viewLendingBook')->name('reports.view-lending-book');
             Route::get('/view-lending-cd-dvd/{status}', $ctrl . '@viewLendingCD')->name('reports.view-lending-cd');
@@ -105,18 +105,18 @@ Route::prefix('backend')
         });
 
         // log visitor
-            // $pref = 'log-visitors';
-            // $ctrl = 'LogVisitorController';
-            // Route::prefix($pref)->group(function () use ($ctrl) {
-            //     Route::get('/', $ctrl . '@index')->name('log-visitors.index');
-            //     Route::get('/data', $ctrl . '@data')->name('log-visitors.data');
-            //     Route::post('/', $ctrl . '@store')->name('log-visitors.store');
-            // });
+        $pref = 'log-visitors';
+        $ctrl = 'LogVisitorController';
+        Route::prefix($pref)->group(function () use ($ctrl) {
+            Route::get('/', $ctrl . '@index')->name('log-visitors.index');
+            Route::get('/data', $ctrl . '@data')->name('log-visitors.data');
+            Route::post('/', $ctrl . '@store')->name('log-visitors.store');
+        });
     });
 
 //User
-Route::
-        namespace('App\Http\Controllers\Frontend')
+Route::namespace('App\Http\Controllers\Frontend')
+    ->middleware('track.visitors')
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
 
@@ -162,7 +162,7 @@ Route::
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/rules', $ctrl . '@rules')->name('library-archives.rules');
             Route::get('/guidelines', $ctrl . '@guidelines')->name('library-archives.guidelines');
-            Route::get('/achievements', $ctrl . '@achievements')->name('library-archives.achievements');            
+            Route::get('/achievements', $ctrl . '@achievements')->name('library-archives.achievements');
             Route::get('/history', $ctrl . '@history')->name('library-archives.history');
             Route::get('/visimisi', $ctrl . '@visimisi')->name('library-archives.visimisi');
             Route::get('/achievements/{slug}', $ctrl . '@show')->name('library-archives.achievements.show');

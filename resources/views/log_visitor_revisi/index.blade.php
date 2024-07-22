@@ -9,13 +9,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend_revisi/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}">
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="{{ asset('frontend_revisi/images/olis.png') }}" width="30" height="30" class="mr-2"
+            <img src="{{ asset('frontend/images/olis.png') }}" width="30" height="30" class="mr-2"
                 alt="">
             <span class="font-weight-bold d-none d-md-block" style="color: #1a1668">INSTITUT TEKNOLOGI DEL</span>
         </a>

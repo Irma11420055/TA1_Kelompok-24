@@ -93,7 +93,7 @@
             <!-- Main Header End -->
 
             <!-- Main Navbar 2-->
-            {{-- @include('layouts.frontend_revisi.navbar_2') --}}
+            {{-- @include('layouts.frontend.navbar_2') --}}
             <!-- Main Header End -->
         </header>
         <!-- Header End -->

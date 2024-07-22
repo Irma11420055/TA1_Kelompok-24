@@ -10,8 +10,8 @@ class LendingSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    // public function run(): void
-    // {
-    //     Lending::factory()->count(100)->create();
-    // }
+    public function run(): void
+    {
+        // Lending::factory()->count(100)->create();
+    }
 }

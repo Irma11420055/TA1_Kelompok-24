@@ -27,16 +27,8 @@
 
                     {{-- Search --}}
                     <div class="col-xl-4 col-lg-4">
-                        <aside class="side-bar sticky-top mt-lg-0 mt-md-5 mb-4">
-                            <select class="form-select border rounded" placeholder="Filter CD/DVD Baru">
-                                <option selected>Filter CD/DVD Baru</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </aside>
                     </div>
-                    <div class="col-xl-8 col-lg-8">
+                    <div class="col-xl-12 col-lg-12">
                         <aside class="side-bar sticky-top mt-lg-0 mt-md-5 mb-4">
                             <div class="widget">
                                 <div class="search-bx">

@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('site_links', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('name')->nullable()->index('name_idx');
-            $table->string('url')->nullable()->index('url_idx');
-            $table->string('image')->nullable();
+        Schema::create('visitors', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip_address');
+            $table->string('user_agent');
+            $table->timestamp('visited_at');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('site_links');
+        Schema::dropIfExists('visitors');
     }
 };

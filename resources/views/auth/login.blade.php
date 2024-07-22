@@ -1,10 +1,10 @@
-@extends('layouts.frontend_revisi.master')
+@extends('layouts.frontend.master')
 @section('title', 'OLIS | Login')
 @section('content')
     <div class="page-content bg-white">
         <!-- inner page banner -->
         <div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm"
-            style="background-image:url('{{ asset('frontend_revisi/images/header_2.jpg') }}');">
+            style="background-image:url('{{ asset('frontend/images/header_2.jpg') }}');">
             <div class="container">
                 <div class="dz-bnr-inr-entry">
                     <h1>LOGIN</h1>
