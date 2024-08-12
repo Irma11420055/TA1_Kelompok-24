@@ -69,11 +69,11 @@ class UserController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            if ($request->role == 'lecturer') {
+            if ($request->role == 'Dosen') {
                 $user->lending_limit = 12;
-            } elseif ($request->role == 'staff') {
+            } elseif ($request->role == 'Staff') {
                 $user->lending_limit = 8;
-            } elseif ($request->role == 'student') {
+            } elseif ($request->role == 'Mahasiswa') {
                 $user->lending_limit = 4;
             }
             $user->save();
@@ -149,11 +149,11 @@ class UserController extends Controller
                 ]);
             }
 
-            if ($request->role == 'lecturer') {
+            if ($request->role == 'Dosen') {
                 $user->lending_limit = 12;
-            } elseif ($request->role == 'staff') {
+            } elseif ($request->role == 'Staff') {
                 $user->lending_limit = 8;
-            } elseif ($request->role == 'student') {
+            } elseif ($request->role == 'Mahasiswa') {
                 $user->lending_limit = 4;
             }
 

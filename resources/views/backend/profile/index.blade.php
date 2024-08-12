@@ -45,8 +45,6 @@
                                 <b>Status</b> <a class="float-right">{{ auth()->user()->status }}</a>
                             </li>
                         </ul>
-                        <a href="{{ route('profile.edit', auth()->user()->id) }}" class="btn btn-primary btn-block"><b>Edit
-                                Profile</b></a>
                     </div>
                 </div>
             </div>

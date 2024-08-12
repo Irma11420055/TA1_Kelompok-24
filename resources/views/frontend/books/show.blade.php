@@ -248,7 +248,7 @@
     <script>
         $(document).ready(function() {
             let maxDate = new Date();
-            @role('student')
+            @role('Mahasiswa')
                 // if student then set max date to 7 days from now
                 maxDate.setDate(maxDate.getDate() + 7);
             @else

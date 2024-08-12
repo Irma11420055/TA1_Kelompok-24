@@ -66,7 +66,7 @@
     $(document).ready(function() {
         let maxDate = new Date();
         let role = @json($lending->user->getRoleNames()->first());
-        if (role == 'student') {
+        if (role == 'Mahasiswa) {
             maxDate = new Date(maxDate.setDate(maxDate.getDate() + 7));
         } else {
             maxDate = new Date(maxDate.setDate(maxDate.getDate() + 14));

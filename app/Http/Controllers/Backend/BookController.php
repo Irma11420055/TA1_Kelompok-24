@@ -246,10 +246,23 @@ class BookController extends Controller
      */
     public function export(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'start_year' => 'nullable|integer',
+            'end_year' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+        $startYear = $request->start_year;
+        $endYear = $request->end_year;
+
         $columns = $request->input('columns', []);
         if (empty($columns)) {
             return redirect()->back()->with('error', 'Please select at least one column to export.');
         }
-        return Excel::download(new BooksExport($columns), 'books.xlsx');
+
+        return Excel::download(new BooksExport($columns, $startYear, $endYear), 'books.xlsx');
     }
 }

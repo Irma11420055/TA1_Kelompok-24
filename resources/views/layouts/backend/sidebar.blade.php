@@ -98,7 +98,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-question-circle"></i>
                     <p>
-                        Tentang perpus
+                        Tentang Perpustakaan
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>

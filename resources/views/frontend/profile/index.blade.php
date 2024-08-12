@@ -14,8 +14,7 @@
                                     <div class="account-detail text-center">
                                         <div class="my-image">
                                             <a href="javascript:void(0);">
-                                                <img alt=""
-                                                    src="{{ asset('frontend/images/profile3.jpg') }}">
+                                                <img alt="" src="{{ asset('frontend/images/profile3.jpg') }}">
                                             </a>
                                         </div>
                                         <div class="account-title">
@@ -44,20 +43,25 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12">
                                             <div class="mb-3">
-                                                <label for="formcontrolinput6" class="form-label">NIM:</label>
+                                                @role('Mahasiswa')
+                                                    <label for="formcontrolinput6" class="form-label">NIM:</label>
+                                                @else
+                                                    <label for="formcontrolinput6" class="form-label">NIP:</label>
+                                                @endrole
                                                 <input type="text" class="form-control" id="formcontrolinput6"
                                                     placeholder="{{ auth()->user()->id_member }}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="mb-3">
-                                                <label for="formcontrolinput7" class="form-label">Program Studi:</label>
-                                                <input type="text" class="form-control" id="formcontrolinput7"
-                                                    placeholder="{{ auth()->user()->major }}">
+                                        @role('Mahasiswa')
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="mb-3">
+                                                    <label for="formcontrolinput7" class="form-label">Program Studi:</label>
+                                                    <input type="text" class="form-control" id="formcontrolinput7"
+                                                        placeholder="{{ auth()->user()->major }}">
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endrole
                                     </div>
-                                    <button class="btn btn-primary btnhover">Save Setting</button>
                                 </form>
                             </div>
                         </div>

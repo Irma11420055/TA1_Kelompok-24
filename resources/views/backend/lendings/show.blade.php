@@ -24,11 +24,12 @@
                         </tr>
                         <tr>
                             <td class="text-muted">ID {{ $type == 'book' ? 'Buku' : 'CD/DVD' }}:</td>
-                            <td>{{ $type == 'book' ? $lending->book->code : $lending->cd_dvd->code }}</td>
+                            <td>{{ $type == 'book' ? $lending->book->code : $lending->compactDisk->code }}</td>
                         </tr>
                         <tr>
                             <td class="text-muted">{{ $type == 'book' ? 'Judul Buku' : 'Judul CD/DVD' }}:</td>
-                            <td>{{ $type == 'book' ? $lending->book->title : $lending->cd_dvd->title }}</td>
+                            <td>{{ $type == 'book' ? ($lending->book ? $lending->book->title : 'Tidak ada data') : ($lending->compactDisk ? $lending->compactDisk->title : 'Tidak ada data') }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-muted">Tanggal Pinjam:</td>
@@ -55,14 +56,27 @@
         <div class="modal-footer">
             @if ($type == 'book')
                 <a href="javascript:void(0)"
-                    onclick="openModal('{{ route('backend.lendings.extend', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', '#modalListResult')"class="btn btn-primary">Perpanjang</a>
+                    onclick="openModal('{{ route('backend.lendings.extend', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', '#modalListResult')"
+                    class="btn btn-primary">Perpanjang</a>
                 <a href="javascript:void(0)"
                     onclick="showConfirmationDialog('Kembalikan Buku', 'Apakah Anda yakin ingin mengembalikan Buku ini?', 'warning', 'Ya, kembalikan', function(result) {
                     if (result.isConfirmed) {
                         handleAction('{{ route('backend.lendings.return', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', 'PUT', 'Peminjaman berhasil dikembalikan', 'Gagal mengembalikan peminjaman', null, null, () => {
                             $('#modalListResult').modal('hide');
                             lendingTable.ajax.reload();
-                            table.ajax.reload();
+                            returnedBooksTable.ajax.reload();
+                        });
+                    }
+                })"
+                    class="btn btn-success">Kembalikan</a>
+            @else
+                <a href="javascript:void(0)"
+                    onclick="showConfirmationDialog('Kembalikan CD/DVD', 'Apakah Anda yakin ingin mengembalikan CD/DVD ini?', 'warning', 'Ya, kembalikan', function(result) {
+                    if (result.isConfirmed) {
+                        handleAction('{{ route('backend.lendings.return', ['type' => $type, 'lending' => encodeId($lending->id)]) }}', 'PUT', 'Peminjaman berhasil dikembalikan', 'Gagal mengembalikan peminjaman', null, null, () => {
+                            $('#modalListResult').modal('hide');
+                            lendingTable.ajax.reload();
+                            returnedCompactDisksTable.ajax.reload();
                         });
                     }
                 })"

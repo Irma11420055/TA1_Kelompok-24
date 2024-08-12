@@ -74,7 +74,7 @@ class BookController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'rating' => 'required|numeric|min:1|max:5',
-                'comment' => 'required',
+                // 'comment' => 'required',
             ]);
             if ($validator->fails()) {
                 return response()->json([
@@ -87,7 +87,7 @@ class BookController extends Controller
             $book->reviews()->create([
                 'user_id' => auth()->user()->id,
                 'rating' => $request->rating,
-                'comment' => $request->comment,
+                // 'comment' => $request->comment,
             ]);
             DB::commit();
             return response()->json([

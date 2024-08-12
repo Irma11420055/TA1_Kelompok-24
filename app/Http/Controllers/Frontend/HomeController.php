@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Book;
 use App\Models\Lending;
 use App\Models\LogVisitor;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -21,17 +21,13 @@ class HomeController extends Controller
             ->get()
             ->sortByDesc('rating')
             ->take(4);
-        // dd($bestBooks);
-        // return view('frontend.home.index', compact('bestBooks'));
 
         $pengunjungChartPerhari = $this->PrivatepengunjungChartPerhari();
         $pengunjungChartProdi = $this->PrivatepengunjungChartProdi();
         $peminjamanChartPerhari = $this->PrivatepeminjamanChartPerhari();
-        // $peminjamanChartPerrole = $this->PrivatepeminjamanChartPerrole();
+        $peminjamanChartPerrole = $this->PrivatepeminjamanChartPerrole();
         $peminjamanChartPerprodi = $this->PrivatepeminjamanChartPerprodi();
-        // dd($peminjamanChartPerrole);
-        return view('frontend.home.index', compact('bestBooks', 'pengunjungChartPerhari', 'pengunjungChartProdi', 'peminjamanChartPerhari', 'peminjamanChartPerprodi'));
-        // return view('layouts.frontend.master', compact('bestBooks'));
+        return view('frontend.home.index', compact('bestBooks', 'pengunjungChartPerhari', 'pengunjungChartProdi', 'peminjamanChartPerhari', 'peminjamanChartPerrole', 'peminjamanChartPerprodi'));
     }
 
     private function PrivatepengunjungChartPerhari()
@@ -157,7 +153,6 @@ class HomeController extends Controller
         ];
 
         return $data;
-
     }
 
     private function PrivatepeminjamanChartPerprodi()
@@ -218,15 +213,69 @@ class HomeController extends Controller
         return $data;
     }
 
+    private function PrivatepeminjamanChartPerrole()
+    {
+        $startDate = now()->subMonths(12)->startOfMonth();
 
+        // Get all roles except 'admin'
+        $roles = Role::where('name', '!=', 'admin')->get()->pluck('name')->toArray();
 
+        // Join lendings with users and roles
+        $lendings = Lending::select('lendings.updated_at', 'roles.name as role')
+            ->join('users', 'users.id', '=', 'lendings.user_id')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->where('lendings.updated_at', '>=', $startDate)
+            ->where('lendings.status', 'lent')
+            ->whereIn('roles.name', $roles)
+            ->get();
 
+        $lendingCounts = [];
+        foreach ($lendings as $lending) {
+            $bulan = Carbon::parse($lending->updated_at)->translatedFormat('F');
+            $role = $lending->role;
+            if (!isset($lendingCounts[$role][$bulan])) {
+                $lendingCounts[$role][$bulan] = 0;
+            }
+            $lendingCounts[$role][$bulan]++;
+        }
 
+        $labels = collect($lendingCounts)->flatMap(function ($roleData) {
+            return array_keys($roleData);
+        })->unique()->sort()->values()->toArray();
+        $colors = [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+        ];
 
+        $datasets = [];
+        $colorIndex = 0;
+        foreach ($lendingCounts as $role => $data) {
+            $dataArr = [];
+            foreach ($labels as $bulan) {
+                $count = isset($data[$bulan]) ? $data[$bulan] : 0;
+                $dataArr[] = $count;
+            }
 
+            $datasets[] = [
+                'label' => $role,
+                'data' => $dataArr,
+                'backgroundColor' => $colors[$colorIndex % count($colors)],
+                'borderColor' => rtrim($colors[$colorIndex % count($colors)], '0.2') . '1',
+                'borderWidth' => 1,
+            ];
 
+            $colorIndex++;
+        }
 
+        $data = [
+            'labels' => $labels,
+            'datasets' => $datasets,
+        ];
 
-
-
+        return $data;
+    }
 }

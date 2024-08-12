@@ -110,7 +110,6 @@ class CompactDiskController extends Controller
         try {
             DB::beginTransaction();
             $validator = Validator::make($request->all(), [
-                'code' => 'required|string|unique:compact_disks,code,' . $compact_disk,
                 'title' => 'required|string',
                 'subject' => 'required|string',
                 'author' => 'required|string',
@@ -205,10 +204,22 @@ class CompactDiskController extends Controller
      */
     public function export(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'start_year' => 'nullable|integer',
+            'end_year' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+        $startYear = $request->input('start_year');
+        $endYear = $request->input('end_year');
+
         $columns = $request->input('columns', []);
         if (empty($columns)) {
             return redirect()->back()->with('error', 'Please select at least one column to export.');
         }
-        return Excel::download(new CompactDisksExport($columns), 'compact_disks.xlsx');
+        return Excel::download(new CompactDisksExport($columns, $startYear, $endYear), 'compact_disks.xlsx');
     }
 }

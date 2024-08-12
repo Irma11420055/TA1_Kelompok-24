@@ -60,25 +60,5 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function getVisitorCount() {
-                fetch('path/to/visitor/count/endpoint') // Ganti dengan URL atau endpoint yang sesuai
-                    .then(response => response.json())
-                    .then(data => {
-                        document.querySelector('.visitor-count').textContent =
-                            `Jumlah Pengunjung: ${data.count}`;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching visitor count:', error);
-                    });
-            }
-
-            getVisitorCount(); // Panggil fungsi untuk pertama kali saat halaman dimuat
-
-            setInterval(getVisitorCount, 60000); // Update setiap 1 menit (60000 milidetik)
-        });
-    </script>
-
     <!-- Footer Bottom End -->
 </footer>

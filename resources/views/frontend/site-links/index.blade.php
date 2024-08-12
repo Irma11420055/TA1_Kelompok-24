@@ -25,7 +25,7 @@
                 <div class="row d-flex justify-content-start">
                     @foreach ($siteLinks as $siteLink)
                         <div class="col-6 col-md-6 col-lg-6 mb-2 d-flex justify-content-start">
-                            <img src="{{ $siteLink->image }}" class="w-50">
+                            <img src="{{ $siteLink->image }}" class="img-fluid" style="max-width: 80px; height: 80px;">
                             <a href="{{ $siteLink->url }}" class="btn btn-primary w-100"
                                 target="_blank">{{ $siteLink->name }}</a>
                         </div>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable()->index('reviews_user_id_index');
             $table->string('book_slug')->nullable()->index('reviews_book_slug_index');
-            $table->text('comment');
+            // $table->text('comment');
             $table->integer('rating');
             $table->timestamps();
         });

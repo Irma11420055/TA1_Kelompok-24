@@ -28,7 +28,7 @@
                                     Kode
                                 </label>
                                 <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                    id="code" name="code" value="{{ old('code', $compact_disk->code) }}">
+                                    id="code" name="code" value="{{ old('code', $compact_disk->code) }}" readonly>
                                 @error('code')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

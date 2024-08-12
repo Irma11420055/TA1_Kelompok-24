@@ -152,11 +152,13 @@
                             {{-- UNTUK MOBILE --}}
                             <style>
                                 .d-block.d-md-none p {
-                                    font-size:8px; /* Ubah ukuran font sesuai kebutuhan */
+                                    font-size: 8px;
+                                    /* Ubah ukuran font sesuai kebutuhan */
                                 }
                             </style>
                             <div class="d-block d-md-none">
-                                <p>Senin s/d Jumat : 08.00 WIB s/d 17.00 WIB<p>
+                                <p>Senin s/d Jumat : 08.00 WIB s/d 17.00 WIB
+                                <p>
                                 <p>19.00 WIB s/d 21.30 WIB</p>
                                 <p>Sabtu : 08.00 WIB s/d 12.00 WIB</p>
                             </div>
@@ -191,12 +193,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/pinjam.PNG') }}"
-                                        alt="Layanan Referensi">
+                                    <img src="{{ asset('frontend/dist/img/pinjam.PNG') }}" alt="Layanan Referensi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Referensi</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan bantuan kepada anggota perpustakaan dalam mencari informasi dan sumber referensi untuk keperluan penelitian, pembelajaran, atau kegiatan lainnya. Layanan ini mencakup bantuan dalam melakukan pencarian informasi dalam katalog perpustakaan.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan bantuan kepada anggota perpustakaan
+                                        dalam mencari informasi dan sumber referensi untuk keperluan penelitian,
+                                        pembelajaran, atau kegiatan lainnya. Layanan ini mencakup bantuan dalam melakukan
+                                        pencarian informasi dalam katalog perpustakaan.</p>
                                 </div>
                             </div>
                         </div>
@@ -204,12 +208,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/cek.PNG') }}"
-                                        alt="Layanan Cek Plagiarism">
+                                    <img src="{{ asset('frontend/dist/img/cek.PNG') }}" alt="Layanan Cek Plagiarism">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Cek Plagiarism</h4>
-                                    <p class="dz-description"> Perpustakaan menyediakan layanan yang memungkinkan anggota perpustakaan, untuk memeriksa keaslian karya tulis. Layanan ini bertujuan untuk mencegah plagiarisme, petugas perpustakaan akan membantu pengguna dalam menggunakan alat cek plagiarisme, dan menjelaskan hasil laporan.</p>
+                                    <p class="dz-description"> Perpustakaan menyediakan layanan yang memungkinkan anggota
+                                        perpustakaan, untuk memeriksa keaslian karya tulis. Layanan ini bertujuan untuk
+                                        mencegah plagiarisme, petugas perpustakaan akan membantu pengguna dalam menggunakan
+                                        alat cek plagiarisme, dan menjelaskan hasil laporan.</p>
                                 </div>
                             </div>
                         </div>
@@ -217,12 +223,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/scan.PNG') }}"
-                                        alt="Layanan Cetak Dokumen">
+                                    <img src="{{ asset('frontend/dist/img/scan.PNG') }}" alt="Layanan Cetak Dokumen">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Cetak Dokumen</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan mesin pencetak seperti printer untuk mencetak berbagai jenis dokumen bagi anggota perpustakaan, contohnya dokumen Sidang Project Akhir, Tugas Akhir, Skripsi, Kerja praktik dan kebutuhan dokumen yang lain seperti Surat Izin Keluar Kampus, Izin Bermalam,  dan lainnya.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan mesin pencetak seperti printer untuk
+                                        mencetak berbagai jenis dokumen bagi anggota perpustakaan, contohnya dokumen Sidang
+                                        Project Akhir, Tugas Akhir, Skripsi, Kerja praktik dan kebutuhan dokumen yang lain
+                                        seperti Surat Izin Keluar Kampus, Izin Bermalam, dan lainnya.</p>
                                 </div>
                             </div>
                         </div>
@@ -230,12 +238,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/cetak.PNG') }}"
-                                        alt="Layanan Scan Dokumen">
+                                    <img src="{{ asset('frontend/dist/img/cetak.PNG') }}" alt="Layanan Scan Dokumen">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Scan Dokumen</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan mesin scan dokumen untuk mencetak berbagai jenis dokumen bagi anggota perpustakaan, seperti dokumen, Tugas Akhir, Skripsi, Kerja Praktik, dan kebutuhan dokumen lainnya. Anda dapat memanfaatkan mesin scan ini untuk menghasilkan salinan elektronik dokumen-dokumen tersebut.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan mesin scan dokumen untuk mencetak
+                                        berbagai jenis dokumen bagi anggota perpustakaan, seperti dokumen, Tugas Akhir,
+                                        Skripsi, Kerja Praktik, dan kebutuhan dokumen lainnya. Anda dapat memanfaatkan mesin
+                                        scan ini untuk menghasilkan salinan elektronik dokumen-dokumen tersebut.</p>
                                 </div>
                             </div>
                         </div>
@@ -243,25 +253,29 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/grammar.PNG') }}"
-                                        alt="Layanan Grammarly">
+                                    <img src="{{ asset('frontend/dist/img/grammar.PNG') }}" alt="Layanan Grammarly">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Grammarly</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan layanan yang dapat membantu anggota perpustakaan dalam meningkatkan tata bahasa, dan gaya penulisan dalam penelitian sebelum di publikasikan. Petugas akan memberikan panduan kepada anggota perpustakaan agar dapat mengakses premiumke Grammarly.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan layanan yang dapat membantu anggota
+                                        perpustakaan dalam meningkatkan tata bahasa, dan gaya penulisan dalam penelitian
+                                        sebelum di publikasikan. Petugas akan memberikan panduan kepada anggota perpustakaan
+                                        agar dapat mengakses premiumke Grammarly.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}"
-                                        alt="Ruang Audio Visual">
+                                    <img src="{{ asset('frontend/dist/img/ruangdiskusi.PNG') }}" alt="Ruang Audio Visual">
                                 </div>
-                                
+
                                 <div class="dz-info">
                                     <h4 class="dz-title">Ruang Audio Visual</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan akses dan penggunaan perangkat teknologi untuk memutar dan menonton konten audio dan visua. Anggota Perpustakaan dapat memanfaatkan layanan ini untuk latihan listening Toefl, presentasi multimedia, atau melakukan penelitian terkait dengan media audio visual.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan akses dan penggunaan perangkat
+                                        teknologi untuk memutar dan menonton konten audio dan visua. Anggota Perpustakaan
+                                        dapat memanfaatkan layanan ini untuk latihan listening Toefl, presentasi multimedia,
+                                        atau melakukan penelitian terkait dengan media audio visual.</p>
                                 </div>
                             </div>
                         </div>
@@ -269,12 +283,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/sirkulasi.PNG') }}"
-                                        alt="Layanan Sirkulasi">
+                                    <img src="{{ asset('frontend/dist/img/sirkulasi.PNG') }}" alt="Layanan Sirkulasi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Sirkulasi</h4>
-                                    <p class="dz-description">Layanan ini mencakup proses peminjaman buku, CD/DVD, dan materi lainnya. Anggota dapat memanfaatkan koleksi tersebut untuk jangka waktu tertentu sesuai dengan kebijakan perpustakaan. Layanan ini juga mencakup penagihan denda atas bahan pustakan yang terlambat dikembalikan.</p>
+                                    <p class="dz-description">Layanan ini mencakup proses peminjaman buku, CD/DVD, dan
+                                        materi lainnya. Anggota dapat memanfaatkan koleksi tersebut untuk jangka waktu
+                                        tertentu sesuai dengan kebijakan perpustakaan. Layanan ini juga mencakup penagihan
+                                        denda atas bahan pustakan yang terlambat dikembalikan.</p>
                                 </div>
                             </div>
                         </div>
@@ -282,12 +298,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/perpus.PNG') }}"
-                                        alt="Layanan Baca Ditempat">
+                                    <img src="{{ asset('frontend/dist/img/perpus.PNG') }}" alt="Layanan Baca Ditempat">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Baca Ditempat</h4>
-                                    <p class="dz-description">Anggota perpustakaan dapat menggunakan koleksi buku, jurnal, majalah, dan materi lainnya yang tersedia di perpustakaan untuk tujuan studi, penelitian, atau membaca untuk kesenangan. Perpustakaan juga menyediakan akses internet gerati bari para pembaca yang berada di perpustakaan.</p>
+                                    <p class="dz-description">Anggota perpustakaan dapat menggunakan koleksi buku, jurnal,
+                                        majalah, dan materi lainnya yang tersedia di perpustakaan untuk tujuan studi,
+                                        penelitian, atau membaca untuk kesenangan. Perpustakaan juga menyediakan akses
+                                        internet gerati bari para pembaca yang berada di perpustakaan.</p>
                                 </div>
                             </div>
                         </div>
@@ -295,12 +313,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/exit.PNG') }}"
-                                        alt="Layanan Exit Clearance">
+                                    <img src="{{ asset('frontend/dist/img/exit.PNG') }}" alt="Layanan Exit Clearance">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Exit Clearance</h4>
-                                    <p class="dz-description">Layanan ini mencakup pemeriksaan terhadap semua pinjaman yang masih berstatus aktif, penyelesaian denda atau biaya terkait yang belum diselesaikan, dan pengembalian semua bahan pustaka yang dipinjam. Prosedur ini bertujuan untuk memastikan bahwa koleksi perpustakaan terjaga dengan baik.</p>
+                                    <p class="dz-description">Layanan ini mencakup pemeriksaan terhadap semua pinjaman yang
+                                        masih berstatus aktif, penyelesaian denda atau biaya terkait yang belum
+                                        diselesaikan, dan pengembalian semua bahan pustaka yang dipinjam. Prosedur ini
+                                        bertujuan untuk memastikan bahwa koleksi perpustakaan terjaga dengan baik.</p>
                                 </div>
                             </div>
                         </div>
@@ -308,12 +328,15 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/ruang.PNG') }}"
-                                        alt="Layanan Gray Literature">
+                                    <img src="{{ asset('frontend/dist/img/ruang.PNG') }}" alt="Layanan Gray Literature">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Gray Literature</h4>
-                                    <p class="dz-description">Perpustakaan menyediakan layanan gray litratur, gray literatur merupakan dokumen yang tidak di terbitkan secara komersial seperti dokumen Tugas Akhir, Project Akhir dan Kerja Praktik. Dokumen ini hanya dapat di gunakan di dalam perpustakaan tidak untuk di pinjamkan dan di bawa keluar dari area perpustakaan.</p>
+                                    <p class="dz-description">Perpustakaan menyediakan layanan gray litratur, gray
+                                        literatur merupakan dokumen yang tidak di terbitkan secara komersial seperti dokumen
+                                        Tugas Akhir, Project Akhir dan Kerja Praktik. Dokumen ini hanya dapat di gunakan di
+                                        dalam perpustakaan tidak untuk di pinjamkan dan di bawa keluar dari area
+                                        perpustakaan.</p>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +349,10 @@
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Literasi Informasi</h4>
-                                    <p class="dz-description">Layanan ini mencakup pelatihan dan pendidikan mengenai bagaimana cara mencari dan menilai sumber-sumber informasi yang akurat dan dapat dipercaya, serta bagaimana cara menghindari plagiarisme dan menghormati hak cipta. Biasanya di lakukan seperti webinar, dan pelatihan lainnya.</p>
+                                    <p class="dz-description">Layanan ini mencakup pelatihan dan pendidikan mengenai
+                                        bagaimana cara mencari dan menilai sumber-sumber informasi yang akurat dan dapat
+                                        dipercaya, serta bagaimana cara menghindari plagiarisme dan menghormati hak cipta.
+                                        Biasanya di lakukan seperti webinar, dan pelatihan lainnya.</p>
                                 </div>
                             </div>
                         </div>
@@ -334,12 +360,14 @@
                         <div class="swiper-slide">
                             <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="dz-media">
-                                    <img src="{{ asset('frontend/dist/img/keliling.PNG') }}"
-                                        alt="Layanan ekstensi">
+                                    <img src="{{ asset('frontend/dist/img/keliling.PNG') }}" alt="Layanan ekstensi">
                                 </div>
                                 <div class="dz-info">
                                     <h4 class="dz-title">Layanan Ekstensi</h4>
-                                    <p class="dz-description">Layanan ekstensi yang dilakukan perpustakaan IT DEL salah satunya adalah perpustakaan keliling. Tujuannya adalah untuk meningkatkan akses bahan pustaka kepada orang orang diluar anggota perpuskataan yang membutuhkan namun tidak dapat langsung datang ke gedung perpustakaan.</p>
+                                    <p class="dz-description">Layanan ekstensi yang dilakukan perpustakaan IT DEL salah
+                                        satunya adalah perpustakaan keliling. Tujuannya adalah untuk meningkatkan akses
+                                        bahan pustaka kepada orang orang diluar anggota perpuskataan yang membutuhkan namun
+                                        tidak dapat langsung datang ke gedung perpustakaan.</p>
                                 </div>
                             </div>
                         </div>
@@ -367,17 +395,27 @@
                         @foreach ($bestBooks as $book)
                             <div class="swiper-slide">
                                 <div class="dz-card style-2 wow fadeInUp" data-wow-delay="0.1s">
-                                    <a href="{{ route('books.show', $book->slug) }}" class="dz-media d-flex justify-content-center align-items-center">
-                                        <img src="{{ $book->cover }}" alt="Deskripsi Gambar" class="w-100" onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png';">
+                                    <a href="{{ route('books.show', $book->slug) }}"
+                                        class="dz-media d-flex justify-content-center align-items-center">
+                                        <img src="{{ $book->cover }}" alt="Deskripsi Gambar" class="w-100"
+                                            onerror="this.onerror=null; this.src='https://lancangkuning.com/image/NoImage.png';">
                                     </a>
                                     <div class="dz-info">
-                                        <h4 class="dz-title"><a href="{{ route('books.show', $book->slug) }}">{{ $book->title }}</a></h4>
+                                        <h4 class="dz-title"><a
+                                                href="{{ route('books.show', $book->slug) }}">{{ $book->title }}</a>
+                                        </h4>
                                         <p class="dz-description">{{ $book->description }}</p>
                                         <div class="dz-meta">
                                             <ul class="dz-tags">
-                                                <li><i class="fas fa-fire fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->subject }}</li>
-                                                <li><i class="fas fa-star fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->rating }}</li>
-                                                <li><i class="fas fa-pencil fa-lg" style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->author }}</li>
+                                                <li><i class="fas fa-fire fa-lg"
+                                                        style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->subject }}
+                                                </li>
+                                                <li><i class="fas fa-star fa-lg"
+                                                        style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->rating }}
+                                                </li>
+                                                <li><i class="fas fa-pencil fa-lg"
+                                                        style="color: #ff9d33; margin-right: 10px;"></i>{{ $book->author }}
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -495,33 +533,7 @@
         const ctxPeminjamanPerrolePerbulan = document.getElementById('peminjamanChartPerrole').getContext('2d');
         const peminjamanChartPerrole = new Chart(ctxPeminjamanPerrolePerbulan, {
             type: 'bar',
-            data: {
-                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
-                    'Oktober', 'November', 'Desember'
-                ],
-                datasets: [{
-                        label: 'Lecturer',
-                        data: [30, 40, 55, 60, 70, 80, 75, 85, 90, 95, 100, 110],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Student',
-                        data: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Staff',
-                        data: [5, 7, 10, 12, 15, 17, 20, 22, 25, 27, 30, 32],
-                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                        borderColor: 'rgba(255, 159, 64, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
+            data: {!! json_encode($peminjamanChartPerrole) !!},
             options: {
                 scales: {
                     y: {

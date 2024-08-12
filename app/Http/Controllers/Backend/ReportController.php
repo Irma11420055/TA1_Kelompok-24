@@ -9,6 +9,7 @@ use App\Exports\VisitorExport;
 use App\Exports\LendingBookExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
 
 class ReportController extends Controller
 {
@@ -19,6 +20,16 @@ class ReportController extends Controller
 
     public function exportLendingBook(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'start_month' => 'required',
+            'end_month' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
         $start_month = $request->start_month;
         $end_month = $request->end_month;
         $status = $request->status;
@@ -28,6 +39,16 @@ class ReportController extends Controller
 
     public function exportLendingCD(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'start_month' => 'required',
+            'end_month' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
         $start_month = $request->start_month;
         $end_month = $request->end_month;
         $status = $request->status;
@@ -37,64 +58,18 @@ class ReportController extends Controller
 
     public function exportVisitor(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'start_month' => 'required',
+            'end_month' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
         $start_month = $request->start_month;
         $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
 
-        return Excel::download(new VisitorExport($start_month, $end_month, $start_year, $end_year), 'Visitor.xlsx');
-    }
-
-    public function viewLendingBook(Request $request, $status)
-    {
-        $start_month = $request->start_month;
-        $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
-
-        $lendings = Lending::with('user', 'book')
-            ->where('status', $status)
-            ->whereYear('lending_date', '>=', $start_year)
-            ->whereYear('lending_date', '<=', $end_year)
-            ->whereMonth('lending_date', '>=', $start_month)
-            ->whereMonth('lending_date', '<=', $end_month)
-            ->get();
-
-        return view('backend.reports.lending-book', compact('lendings', 'start_month', 'end_month', 'start_year', 'end_year'));
-    }
-
-    public function viewLendingCD(Request $request, $status)
-    {
-        $start_month = $request->start_month;
-        $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
-
-        $lendings = Lending::with('user', 'compactDisk')
-            ->where('status', $status)
-            ->whereYear('lending_date', '>=', $start_year)
-            ->whereYear('lending_date', '<=', $end_year)
-            ->whereMonth('lending_date', '>=', $start_month)
-            ->whereMonth('lending_date', '<=', $end_month)
-            ->get();
-
-        return view('backend.reports.lending-cd-dvd', compact('lendings', 'start_month', 'end_month', 'start_year', 'end_year'));
-    }
-
-    public function viewVisitor(Request $request)
-    {
-        $start_month = $request->start_month;
-        $end_month = $request->end_month;
-        $start_year = $request->start_year;
-        $end_year = $request->end_year;
-
-        $visitors = LogVisitor::with('user')
-            ->whereYear('visited_at', '>=', $start_year)
-            ->whereYear('visited_at', '<=', $end_year)
-            ->whereMonth('visited_at', '>=', $start_month)
-            ->whereMonth('visited_at', '<=', $end_month)
-            ->get();
-
-        return view('backend.reports.visitor', compact('visitors', 'start_month', 'end_month', 'start_year', 'end_year'));
+        return Excel::download(new VisitorExport($start_month, $end_month), 'Visitor.xlsx');
     }
 }

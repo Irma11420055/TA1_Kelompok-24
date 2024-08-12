@@ -96,7 +96,7 @@ class LendingController extends Controller
             $books = [];
             $compactDisks = CompactDisk::all();
         }
-        $users = User::role(['lecturer', 'student', 'staff'])->get();
+        $users = User::role(['Dosen', 'Mahasiswa', 'Staff'])->get();
         return view('backend.lendings.create', compact('books', 'compactDisks', 'users', 'type'));
     }
 
@@ -113,6 +113,7 @@ class LendingController extends Controller
                 'compact_disk_id' => 'required_without:book_slug|integer|exists:compact_disks,id',
                 'return_date' => 'required|date',
             ]);
+            // dd($validator->fails());
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
@@ -125,7 +126,7 @@ class LendingController extends Controller
             DB::beginTransaction();
             $lending = Lending::create([
                 'user_id' => $request->user_id,
-                'book_id' => $book->id,
+                'book_id' => $type == 'book' ? $book->id : null,
                 'compact_disk_id' => $request->compact_disk_id,
                 'lending_date' => Carbon::now(),
                 'return_date' => $request->return_date,
@@ -184,7 +185,7 @@ class LendingController extends Controller
             $books = [];
             $compactDisks = CompactDisk::all();
         }
-        $users = User::role(['lecturer', 'student', 'staff'])->get();
+        $users = User::role(['Dosen', 'Mahasiswa', 'Staff'])->get();
         return view('backend.lendings.edit', compact('lending', 'books', 'compactDisks', 'users', 'type'));
     }
 
@@ -314,9 +315,15 @@ class LendingController extends Controller
                 'status' => 'returned'
             ]);
 
-            $book = Book::find($lending->book_id);
-            $book->status = 1;
-            $book->save();
+            if ($type == 'book') {
+                $book = Book::find($lending->book_id);
+                $book->status = 1;
+                $book->save();
+            } else {
+                $compactDisk = CompactDisk::find($lending->compact_disk_id);
+                $compactDisk->status = 1;
+                $compactDisk->save();
+            }
 
             // update user lending count
             $user = User::find($lending->user_id);

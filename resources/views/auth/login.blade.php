@@ -36,12 +36,12 @@
                                         </div>
                                     @endif
                                     <div class="mb-4">
-                                        <label for="id_member"
-                                            class="form-label @error('id_member') text-danger @enderror">ID Member
+                                        <label for="username" class="form-label @error('username') text-danger @enderror">ID
+                                            Member
                                             *</label>
-                                        <input name="id_member" id="id_member" required class="form-control"
-                                            placeholder="ID Member" type="text" value="{{ old('id_member') }}">
-                                        @error('id_member')
+                                        <input name="username" id="username" required class="form-control"
+                                            placeholder="ID Member" type="text" value="{{ old('username') }}">
+                                        @error('username')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

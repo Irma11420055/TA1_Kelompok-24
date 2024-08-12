@@ -1,4 +1,3 @@
-<!-- export compact disks modal -->
 <div class="modal fade" id="exportCompactDisks" tabindex="-1" role="dialog" aria-labelledby="exportCompactDisksLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -37,6 +36,16 @@
                                 <label class="form-check-label" for="{{ $column }}">{{ ucfirst($column) }}</label>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="form-group">
+                        <label for="start_year">Start Year</label>
+                        <input type="number" class="form-control" id="start_year" name="start_year"
+                            placeholder="e.g., 2000">
+                    </div>
+                    <div class="form-group">
+                        <label for="end_year">End Year</label>
+                        <input type="number" class="form-control" id="end_year" name="end_year"
+                            placeholder="e.g., 2024">
                     </div>
                 </div>
                 <div class="modal-footer">

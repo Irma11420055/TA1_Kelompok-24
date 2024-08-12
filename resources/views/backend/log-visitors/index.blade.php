@@ -10,6 +10,10 @@
     <div class="container-fluid">
         <!-- /.row -->
         <div class="row d-flex justify-content-center">
+            <div class="col-md-12 mb-3">
+                <x-alert />
+            </div>
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -43,12 +47,12 @@
                         <h3 class="card-title" id="visitorToday">Hari Ini {{ $visitorToday }}</h3>
                         <div class="card-tools">
                             <div class="d-flex justify-content-end">
+                                <!-- export button -->
+                                <button type="button" class="btn btn-success mr-2" data-toggle="modal"
+                                    data-target="#exportVisitor"><i class="fas fa-download"></i> Export</button>
                                 <div class="mr-2">
                                     <!-- filter dropdown -->
                                     <div class="dropdown">
-                                        <!-- export button -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#exportBook"><i class="fas fa-download"></i> Export</button>
                                         <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -102,8 +106,93 @@
             </div>
         </div>
     </div>
+
+    <!-- export book modal -->
+    <div class="modal fade" id="exportVisitor" tabindex="-1" role="dialog" aria-labelledby="exportVisitorLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('backend.reports.export-visitor') }}" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exportVisitorLabel">Export Pengunjung</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="start_month" class="col-sm-3 col-form-label">Pilih Bulan Awal</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="start_month" id="start_month"
+                                    class="form-control start_month">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="end_month" class="col-sm-3 col-form-label">Pilih Bulan Akhir</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="end_month" id="end_month" class="form-control end_month">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Export</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
+@endpush
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
+    <script>
+        $(document).ready(function() {
+            // flatpickr for start month
+            $('.start_month').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "m/Y",
+                        altFormat: "F Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for end month
+            $('.end_month').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "m/Y",
+                        altFormat: "F Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for start year
+            $('.start_year').flatpickr({
+                disableMobile: "true",
+                plugins: [
+                    new monthSelectPlugin({
+                        shorthand: true,
+                        dateFormat: "Y",
+                        altFormat: "Y",
+                        theme: "material_blue"
+                    })
+                ]
+            });
+            // flatpickr for end year
+            $('.end_year').flatpickr({
+
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             const url = window.location.href;

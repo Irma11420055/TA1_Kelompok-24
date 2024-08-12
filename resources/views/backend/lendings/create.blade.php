@@ -1,4 +1,3 @@
-
 @extends('layouts.backend.master')
 @section('title', 'Tambah Peminjaman')
 @section('breadcrumb')
@@ -33,6 +32,7 @@
                                         @foreach ($books as $book)
                                             <option value="{{ $book->slug }}"
                                                 {{ old('book_slug') == $book->id ? 'selected' : '' }}>
+                                                {{ $book->code }}
                                                 {{ $book->title }}
                                             </option>
                                         @endforeach
@@ -54,6 +54,7 @@
                                         @foreach ($compactDisks as $cd)
                                             <option value="{{ $cd->id }}"
                                                 {{ old('compact_disk_id') == $cd->id ? 'selected' : '' }}>
+                                                {{ $cd->id_member }}
                                                 {{ $cd->title }}
                                             </option>
                                         @endforeach
@@ -138,7 +139,7 @@
             // user onchange event
             $('#user_id').on('change', function() {
                 let role = $(this).find(':selected').data('role');
-                if (role == 'student') {
+                if (role == 'Mahasiswa') {
                     maxDate = new Date(maxDate.setDate(maxDate.getDate() + 7));
                 } else {
                     maxDate = new Date(maxDate.setDate(maxDate.getDate() + 14));

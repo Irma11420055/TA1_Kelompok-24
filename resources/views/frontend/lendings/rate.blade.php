@@ -24,10 +24,6 @@
                             <label for="star1" title="text">1 star</label>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="comment" class="form-label">Komentar</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>

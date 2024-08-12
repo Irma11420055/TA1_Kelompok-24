@@ -88,6 +88,11 @@
                         className: 'text-center',
                         orderable: false,
                         render: function(data, type, row) {
+                            if (row.image.includes('drive.google.com')) {
+                                var fileId = row.image.split('=')[1];
+                                fileId = fileId.split('&')[0];
+                                row.image = `https://drive.google.com/thumbnail?id=${fileId}`;
+                            }
                             return row.image ?
                                 `<img src="${row.image}" alt="Gambar" style="max-width: 100px; max-height: 100px;">` :
                                 'Tidak ada gambar';
@@ -137,7 +142,7 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(function() {
             let images = document.querySelectorAll('img');
             images.forEach((img) => {
                 let fileUrl = img.src;
@@ -146,11 +151,6 @@
                     fileId = fileId.split('&')[0];
                     img.src = `https://drive.google.com/thumbnail?id=${fileId}`;
                 }
-            });
-
-            // on enter key
-            $(document).on('keyup', function(e) {
-                console.log(e.key);
             });
         });
     </script>

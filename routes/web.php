@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('backend')
     ->name('backend.')
     ->namespace('App\Http\Controllers\Backend')
-    ->middleware(['auth', 'role:admin'])
+    ->middleware(['auth', 'role:Pustakawan'])
     ->group(function () {
         Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -168,7 +168,7 @@ Route::namespace('App\Http\Controllers\Frontend')
         $ctrl = 'ProfileController';
         Route::prefix($pref)->group(function () use ($ctrl) {
             Route::get('/', $ctrl . '@index')->name('profile.index');
-            Route::get('/edit', $ctrl . '@edit')->name('profile.edit');
+            // Route::get('/edit', $ctrl . '@edit')->name('profile.edit');
             Route::put('/', $ctrl . '@update')->name('profile.update');
             Route::get('/change-password', $ctrl . '@changePassword')->name('profile.change-password');
             Route::put('/change-password', $ctrl . '@updatePassword')->name('profile.update-password');

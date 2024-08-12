@@ -52,6 +52,7 @@
                                         <label class="custom-file-label" for="image">Choose file</label>
                                     </div>
                                 </div>
+                                <small class="text-muted">File harus berformat .jpg|.jpeg|.png</small>
                                 @error('image')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

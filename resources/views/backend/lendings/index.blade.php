@@ -102,7 +102,7 @@
     </div>
 
     <!-- export book modal -->
-    <div class="modal fade" id="exportBook" tabindex="-1" role="dialog" aria-labelledby="exportBookLabel"
+    <div class="modal fade" id="exportLending" tabindex="-1" role="dialog" aria-labelledby="exportLendingLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -116,7 +116,7 @@
                 @endphp
                 <form action="{{ route($route) }}" method="post">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exportBookLabel">Export Peminjaman
+                        <h5 class="modal-title" id="exportLendingLabel">Export Peminjaman
                             {{ $type == 'book' ? 'Buku' : 'CD/DVD' }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -146,9 +146,6 @@
                                 <input type="text" name="end_month" id="end_month" class="form-control end_month">
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -159,6 +156,9 @@
         </div>
     </div>
 @endsection
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css">
+@endpush
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/index.js"></script>
     <script>
@@ -186,22 +186,6 @@
                         theme: "material_blue"
                     })
                 ]
-            });
-            // flatpickr for start year
-            $('.start_year').flatpickr({
-                disableMobile: "true",
-                plugins: [
-                    new monthSelectPlugin({
-                        shorthand: true,
-                        dateFormat: "Y",
-                        altFormat: "Y",
-                        theme: "material_blue"
-                    })
-                ]
-            });
-            // flatpickr for end year
-            $('.end_year').flatpickr({
-
             });
         });
     </script>
@@ -447,6 +431,128 @@
 
             });
         </script>
+    @else
+        <script>
+            $(document).ready(function() {
+                const url = window.location.href;
+                const lendingTable = $('#lending_datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: url + '/data/lent',
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            defaultContent: '',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'user.id_member',
+                            name: 'user.id_member'
+                        },
+                        {
+                            data: 'item',
+                            name: 'item'
+                        },
+                        {
+                            data: 'return_date',
+                            name: 'return_date'
+                        }
+                    ],
+                    columnDefs: [{
+                        targets: 0,
+                        className: 'text-center',
+                        width: '5%',
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    }],
+                    lengthChange: false,
+                    dom: 'l<"toolbar">frtip',
+                    info: false,
+                    pageLength: 3,
+                    // set data id
+                    createdRow: function(row, data, dataIndex) {
+                        $(row).attr('data-id', data.id);
+                    },
+                    order: [
+                        [0, 'desc']
+                    ]
+                });
+
+                const table = $('#returned_datatable').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: url + '/data/all',
+                    columns: [{
+                            data: 'DT_RowIndex',
+                            defaultContent: '',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'user.id_member',
+                            name: 'user.id_member'
+                        },
+                        {
+                            data: 'item',
+                            name: 'item'
+                        },
+                        {
+                            data: 'lending_date',
+                            name: 'lending_date'
+                        },
+                        {
+                            data: 'return_date',
+                            name: 'return_date'
+                        },
+                        {
+                            data: 'status',
+                            name: 'status'
+                        }
+                    ],
+                    columnDefs: [{
+                            targets: 0,
+                            className: 'text-center',
+                            width: '5%',
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1;
+                            },
+                        },
+                        {
+                            targets: 5,
+                            className: 'text-center',
+                            orderable: false,
+                            render: function(data, type, row) {
+                                // status returned or rejected
+                                var status = '';
+                                if (row.status === 'returned') {
+                                    status = '<span class="badge badge-info">Returned</span>';
+                                } else if (row.status === 'rejected') {
+                                    status = '<span class="badge badge-danger">Rejected</span>';
+                                }
+                                return status;
+                            }
+                        },
+                    ],
+                    lengthChange: false,
+                    dom: 'l<"toolbar">frtip',
+                    info: false,
+                    pageLength: 3,
+                    order: [
+                        [0, 'desc']
+                    ]
+                });
+
+                // on row click
+                lendingTable.on('click', 'tr', function() {
+                    console.log('row clicked');
+                    const data = lendingTable.row(this).data();
+                    const url = window.location.href + '/' + data.id;
+                    openModal(url, '#modalListResult');
+                });
+
+            });
+        </script>
     @endif
     <script>
         $(document).ready(function() {
@@ -457,11 +563,14 @@
             @else
                 title = 'CD/DVD';
             @endif
-            // select toolbar this table
-            $('#pending_datatable_wrapper .toolbar').html(
-                `<h3 class="card-title">Pemesanan ${title}</h3>`);
+            @if ($type == 'book')
+                // select toolbar this table
+                $('#pending_datatable_wrapper .toolbar').html(
+                    `<h3 class="card-title">Pemesanan ${title}</h3>`);
+            @endif
             $('#lending_datatable_wrapper .toolbar').html(
                 `<h3 class="card-title">Peminjaman ${title}</h3>`);
+
             $('#returned_datatable_wrapper .toolbar').html(
                 `<h3 class="card-title">Riwayat Peminjaman ${title}</h3>`);
         });

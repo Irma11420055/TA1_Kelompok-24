@@ -71,3 +71,14 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            // bs-custom-file-input
+            bsCustomFileInput.init();
+        });
+    </script>
+@endpush

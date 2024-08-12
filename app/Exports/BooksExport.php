@@ -15,15 +15,29 @@ use Maatwebsite\Excel\Events\AfterSheet;
 class BooksExport implements FromQuery, WithHeadings, WithStyles, ShouldAutoSize, WithEvents, WithMapping
 {
     protected $columns;
+    protected $startYear;
+    protected $endYear;
 
-    public function __construct(array $columns)
+    public function __construct(array $columns, $startYear = null, $endYear = null)
     {
         $this->columns = $columns;
+        $this->startYear = $startYear;
+        $this->endYear = $endYear;
     }
 
     public function query()
     {
-        return Book::select($this->columns);
+        $query = Book::select($this->columns);
+
+        if ($this->startYear) {
+            $query->where('year', '>=', $this->startYear);
+        }
+
+        if ($this->endYear) {
+            $query->where('year', '<=', $this->endYear);
+        }
+
+        return $query;
     }
 
     public function headings(): array
